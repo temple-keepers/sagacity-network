@@ -30,7 +30,7 @@ export default function Footer() {
         style={{ background: "var(--border-hover)" }}
       />
 
-      <div className="max-container px-6 md:px-12 lg:px-20">
+      <div className="max-container section-px">
         {/* Main grid — generous vertical padding */}
         <div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_0.8fr_0.8fr] gap-y-10 gap-x-8 lg:gap-x-16 items-start"

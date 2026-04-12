@@ -50,7 +50,7 @@ export default function Nav() {
         boxShadow: scrolled ? "0 4px 30px rgba(0,0,0,0.1)" : "none",
       }}
     >
-      <nav className="max-container flex items-center justify-between h-full px-6 md:px-12">
+      <nav className="max-container flex items-center justify-between h-full section-px">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 shrink-0 group">
           <Image

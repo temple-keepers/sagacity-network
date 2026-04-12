@@ -41,20 +41,11 @@ export default function Services() {
             <RevealWrapper key={service.slug} delay={i * 60}>
               <Link
                 href={`/services#${service.slug}`}
-                className="group block"
+                className="group block grid grid-cols-[1fr] md:grid-cols-[56px_1fr_auto] gap-4 md:gap-8 items-center py-7 md:py-9 border-b border-border-line transition-all duration-[400ms]"
                 onMouseEnter={() => setHovered(i)}
                 onMouseLeave={() => setHovered(null)}
                 style={{
-                  display: "grid",
-                  gridTemplateColumns: "72px 1fr auto",
-                  gap: "clamp(16px, 3vw, 36px)",
-                  alignItems: "center",
-                  padding: "36px 0",
-                  paddingLeft: hovered === i ? 20 : 0,
-                  borderBottom: "1px solid var(--border)",
-                  cursor: "default",
-                  transition:
-                    "all 0.4s cubic-bezier(0.16, 1, 0.3, 1)",
+                  paddingLeft: hovered === i ? 12 : 0,
                   background:
                     hovered === i
                       ? "rgba(212, 175, 55, 0.02)"
@@ -63,7 +54,7 @@ export default function Services() {
               >
                 {/* Number */}
                 <div
-                  className="font-display text-[40px] font-light leading-none transition-colors duration-300"
+                  className="font-display text-[32px] md:text-[40px] font-light leading-none transition-colors duration-300 hidden md:block"
                   style={{
                     color:
                       hovered === i

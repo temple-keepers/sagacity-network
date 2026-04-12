@@ -19,9 +19,8 @@ function LiveCourseCard({
   return (
     <RevealWrapper delay={index * 60}>
       <div
-        className="course-card relative overflow-hidden rounded-[2px] flex flex-col h-full"
+        className="course-card relative overflow-hidden rounded-[2px] flex flex-col h-full p-5 md:p-7"
         style={{
-          padding: "28px 26px",
           background: course.hot ? "var(--gold-dim)" : "var(--bg-card)",
           border: `1px solid ${
             course.hot ? "var(--gold-border)" : "var(--border)"
@@ -130,9 +129,8 @@ function EvergreenCourseCard({
   return (
     <RevealWrapper delay={index * 50}>
       <div
-        className="course-card relative overflow-hidden rounded-[2px] flex flex-col h-full"
+        className="course-card relative overflow-hidden rounded-[2px] flex flex-col h-full p-6 md:p-8"
         style={{
-          padding: "32px 28px",
           background: "var(--bg-card)",
           border: "1px solid var(--border)",
         }}
@@ -371,7 +369,7 @@ export default function Academy() {
         {/* Academy CTA strip */}
         <RevealWrapper delay={100}>
           <div
-            className="rounded-[2px] p-10 lg:p-14 border border-gold-border"
+            className="rounded-[2px] p-6 md:p-10 lg:p-14 border border-gold-border"
             style={{ background: "rgba(212,175,55,0.03)" }}
           >
             <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">

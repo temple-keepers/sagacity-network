@@ -60,10 +60,9 @@ export default function ServicesPage() {
           <section
             key={service.slug}
             id={service.slug}
-            className="relative overflow-hidden"
+            className="relative overflow-hidden section-padding"
             style={{
               background: isEven ? "var(--bg-primary)" : "var(--bg-secondary)",
-              padding: "100px 24px",
             }}
           >
             {/* Subtle accent glow */}

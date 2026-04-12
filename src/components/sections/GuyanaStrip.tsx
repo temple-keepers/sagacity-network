@@ -83,7 +83,7 @@ export default function GuyanaStrip() {
     >
       {/* Purple glow */}
       <div
-        className="absolute top-[10%] left-[-5%] w-[500px] h-[500px] pointer-events-none"
+        className="absolute top-[10%] left-[-5%] w-[300px] md:w-[400px] lg:w-[500px] h-[300px] md:h-[400px] lg:h-[500px] pointer-events-none"
         style={{
           background:
             "radial-gradient(circle, rgba(109,40,217,0.05) 0%, transparent 60%)",
@@ -154,7 +154,7 @@ export default function GuyanaStrip() {
         </RevealWrapper>
 
         {/* Pricing packages */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {PACKAGES.map((pkg, i) => {
             const isHovered = hoveredPkg === i;
 
@@ -163,9 +163,8 @@ export default function GuyanaStrip() {
                 <div
                   onMouseEnter={() => setHoveredPkg(i)}
                   onMouseLeave={() => setHoveredPkg(null)}
-                  className="relative rounded-[2px] overflow-hidden h-full flex flex-col justify-between"
+                  className="relative rounded-[2px] overflow-hidden h-full flex flex-col justify-between p-6 md:p-8 lg:p-10"
                   style={{
-                    padding: "40px 32px",
                     background: pkg.highlight
                       ? "rgba(212,175,55,0.04)"
                       : "var(--bg-card)",

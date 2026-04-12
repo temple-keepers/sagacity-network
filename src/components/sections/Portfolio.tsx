@@ -45,13 +45,8 @@ export default function Portfolio() {
                   href={`/work/${project.slug}`}
                   onMouseEnter={() => setHovered(i)}
                   onMouseLeave={() => setHovered(null)}
-                  className="relative rounded-[2px] overflow-hidden block course-card"
+                  className="relative rounded-[2px] overflow-hidden block course-card p-6 md:p-8 lg:p-10 min-h-[220px] md:min-h-[280px] flex flex-col justify-between"
                   style={{
-                    padding: "40px 36px",
-                    minHeight: 280,
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
                     background: isHovered
                       ? "var(--bg-card-hover)"
                       : "var(--bg-card)",
@@ -85,7 +80,7 @@ export default function Portfolio() {
                         >
                           {project.category}
                         </div>
-                        <h3 className="font-display text-[32px] lg:text-[38px] font-light text-text-primary leading-none">
+                        <h3 className="font-display text-[26px] md:text-[32px] lg:text-[38px] font-light text-text-primary leading-none">
                           {project.name}
                         </h3>
                       </div>

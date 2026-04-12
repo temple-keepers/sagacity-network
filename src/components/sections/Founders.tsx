@@ -44,13 +44,12 @@ export default function Founders() {
         </RevealWrapper>
 
         {/* Two cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
           {FOUNDERS.map((founder, i) => (
             <RevealWrapper key={founder.name} delay={i * 100}>
               <div
-                className="relative overflow-hidden rounded-[2px] h-full card flex flex-col"
+                className="relative overflow-hidden rounded-[2px] h-full card flex flex-col p-6 md:p-8 lg:p-10"
                 style={{
-                  padding: "44px 40px",
                   border: `1px solid ${founder.border}`,
                 }}
               >
@@ -69,7 +68,7 @@ export default function Founders() {
                 </div>
 
                 {/* Name */}
-                <div className="font-display text-[38px] font-light text-text-primary leading-none mb-6">
+                <div className="font-display text-[28px] md:text-[34px] lg:text-[38px] font-light text-text-primary leading-none mb-6">
                   {founder.name}
                 </div>
 

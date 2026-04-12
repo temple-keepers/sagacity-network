@@ -16,28 +16,28 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center overflow-hidden grid-bg">
       {/* Background glow orbs */}
       <div
-        className="absolute top-[10%] right-[5%] w-[700px] h-[700px] rounded-full pointer-events-none"
+        className="absolute top-[10%] right-[5%] w-[350px] md:w-[500px] lg:w-[700px] h-[350px] md:h-[500px] lg:h-[700px] rounded-full pointer-events-none"
         style={{
           background:
             "radial-gradient(circle, rgba(109,40,217,0.08) 0%, transparent 70%)",
         }}
       />
       <div
-        className="absolute bottom-[5%] left-[-5%] w-[600px] h-[600px] rounded-full pointer-events-none"
+        className="absolute bottom-[5%] left-[-5%] w-[300px] md:w-[450px] lg:w-[600px] h-[300px] md:h-[450px] lg:h-[600px] rounded-full pointer-events-none"
         style={{
           background:
             "radial-gradient(circle, rgba(212,175,55,0.05) 0%, transparent 70%)",
         }}
       />
 
-      <div className="max-container w-full px-6 md:px-12 pt-[110px] lg:pt-[140px] pb-32 lg:pb-28">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-16 items-center">
+      <div className="max-container w-full section-px pt-[110px] md:pt-[130px] lg:pt-[140px] pb-24 md:pb-28">
+        <div className="grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] gap-12 md:gap-16 items-center">
           {/* Left column */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="order-2 lg:order-1"
+            className="order-2 md:order-1"
           >
             {/* Eyebrow badge */}
             <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-border-line bg-bg-card mb-10 lg:mb-12">
@@ -105,23 +105,23 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.92 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative flex items-center justify-center order-1 lg:order-2"
+            className="relative flex items-center justify-center order-1 md:order-2"
           >
             <div
-              className="absolute w-[280px] lg:w-[400px] h-[280px] lg:h-[400px] rounded-full"
+              className="absolute w-[220px] md:w-[300px] lg:w-[400px] h-[220px] md:h-[300px] lg:h-[400px] rounded-full"
               style={{
                 background:
                   "radial-gradient(circle, rgba(159,122,234,0.1) 0%, rgba(212,175,55,0.04) 50%, transparent 70%)",
               }}
             />
-            <div className="absolute w-[220px] lg:w-[340px] h-[220px] lg:h-[340px] rounded-full border border-gold-border/15 animate-[pulse-ring_3s_ease-out_infinite] hidden sm:block" />
+            <div className="absolute w-[180px] md:w-[260px] lg:w-[340px] h-[180px] md:h-[260px] lg:h-[340px] rounded-full border border-gold-border/15 animate-[pulse-ring_3s_ease-out_infinite] hidden sm:block" />
             <div className="float-animation relative z-10">
               <Image
                 src="/logo-tree.png"
                 alt="Sagacity Network"
                 width={340}
                 height={260}
-                className="w-[200px] lg:w-[340px] h-auto drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] drop-shadow-[0_0_60px_rgba(159,122,234,0.15)]"
+                className="w-[160px] md:w-[240px] lg:w-[340px] h-auto drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] drop-shadow-[0_0_60px_rgba(159,122,234,0.15)]"
                 style={{ filter: "brightness(1.3)" }}
                 priority
               />

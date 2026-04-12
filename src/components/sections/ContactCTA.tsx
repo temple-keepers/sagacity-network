@@ -21,7 +21,7 @@ export default function ContactCTA() {
     >
       {/* Centred purple glow */}
       <div
-        className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] pointer-events-none"
+        className="absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[350px] md:w-[500px] lg:w-[600px] h-[350px] md:h-[500px] lg:h-[600px] pointer-events-none"
         style={{
           background:
             "radial-gradient(circle, rgba(109,40,217,0.06) 0%, transparent 60%)",
