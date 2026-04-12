@@ -24,49 +24,50 @@ const FOOTER_LINKS = {
 export default function Footer() {
   return (
     <footer className="relative" style={{ background: "var(--bg-footer)" }}>
-      {/* Gold accent line at top */}
+      {/* Top border — visible in both themes */}
       <div
         className="absolute top-0 left-0 right-0 h-[1px]"
-        style={{
-          background:
-            "linear-gradient(90deg, transparent 5%, rgba(212,175,55,0.3) 30%, rgba(212,175,55,0.6) 50%, rgba(212,175,55,0.3) 70%, transparent 95%)",
-        }}
+        style={{ background: "var(--border-hover)" }}
       />
 
-      <div className="max-container px-6 md:px-12 pt-24 pb-14">
-        {/* Top row */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-10 mb-14">
+      <div className="max-container px-6 md:px-12 lg:px-20">
+        {/* Main grid — generous vertical padding */}
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_0.8fr_0.8fr] gap-y-10 gap-x-8 lg:gap-x-16 items-start"
+          style={{ paddingTop: 72, paddingBottom: 56 }}
+        >
           {/* Brand column */}
-          <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2.5 mb-5">
+          <div>
+            <Link href="/" className="inline-flex items-center gap-2.5 mb-4">
               <Image
                 src="/logo-tree.png"
                 alt="Sagacity Network"
                 width={38}
                 height={29}
-                className="w-[34px] h-auto"
+                className="w-[32px] h-auto"
                 style={{
-                  filter: "brightness(1.3) drop-shadow(0 0 10px rgba(212,175,55,0.3))",
+                  filter:
+                    "brightness(1.3) drop-shadow(0 0 10px rgba(212,175,55,0.3))",
                 }}
               />
               <span className="font-display text-[17px] font-light tracking-[0.02em] text-text-primary">
                 Sagacity Network
               </span>
             </Link>
-            <p className="text-[13px] leading-[1.8] text-text-secondary max-w-[260px] mb-5">
+            <p className="text-[13px] leading-[1.75] text-text-secondary max-w-[260px] mb-4">
               UK-registered digital product studio. Enterprise discipline meets
               human scale.
             </p>
             <p className="text-[12px] text-text-muted tracking-[0.06em] flex items-center gap-1.5">
               <span
-                className="inline-block w-1.5 h-1.5 rounded-full"
+                className="inline-block w-1.5 h-1.5 rounded-full shrink-0"
                 style={{ background: "var(--gold)" }}
               />
               Basildon, England
             </p>
           </div>
 
-          {/* Link columns */}
+          {/* Link columns — aligned to top */}
           {Object.entries(FOOTER_LINKS).map(([title, links]) => (
             <div key={title}>
               <h4
@@ -75,7 +76,7 @@ export default function Footer() {
               >
                 {title}
               </h4>
-              <ul className="flex flex-col gap-3">
+              <ul className="flex flex-col gap-2.5">
                 {links.map((link) => (
                   <li key={link.href}>
                     <Link
@@ -91,18 +92,18 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Divider + bottom */}
+        {/* Bottom bar */}
         <div
-          className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3"
-          style={{ borderTop: "1px solid var(--gold-border)" }}
+          className="py-6 flex flex-col sm:flex-row items-center justify-between gap-3"
+          style={{ borderTop: "1px solid var(--border-hover)" }}
         >
-          <p className="text-[11px] text-text-secondary tracking-[0.02em]">
-            &copy; {new Date().getFullYear()} Sagacity Network Ltd. Registered
-            in England &amp; Wales.
+          <p className="text-[11px] text-text-muted tracking-[0.02em]">
+            &copy;&nbsp;{new Date().getFullYear()}&nbsp;Sagacity Network Ltd.
+            Registered in England &amp; Wales.
           </p>
           <a
             href="mailto:hello@sagacitynetwork.net"
-            className="text-[12px] hover:text-gold transition-colors duration-300 tracking-[0.02em]"
+            className="text-[12px] transition-colors duration-300 tracking-[0.02em]"
             style={{ color: "var(--gold)" }}
           >
             hello@sagacitynetwork.net
