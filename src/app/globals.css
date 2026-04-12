@@ -1,26 +1,337 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ========================================
+   SAGACITY NETWORK — DESIGN SYSTEM v2
+   Premium tier. Every pixel intentional.
+   ======================================== */
+
+/* Dark mode (default) */
+:root,
+:root.dark {
+  --bg-primary: #07050F;
+  --bg-secondary: #110B20;
+  --bg-footer: #13102A;
+  --bg-card: rgba(255, 255, 255, 0.025);
+  --bg-card-hover: rgba(255, 255, 255, 0.05);
+  --gold: #D4AF37;
+  --gold-light: #F5E070;
+  --gold-dim: rgba(212, 175, 55, 0.12);
+  --gold-border: rgba(212, 175, 55, 0.18);
+  --purple: #9F7AEA;
+  --purple-deep: #6D28D9;
+  --text-primary: #F5F0E8;
+  --text-secondary: rgba(245, 240, 232, 0.65);
+  --text-muted: rgba(245, 240, 232, 0.38);
+  --border: rgba(245, 240, 232, 0.06);
+  --border-hover: rgba(245, 240, 232, 0.14);
+  --green: #34D399;
+  --blue: #60A5FA;
+  --coral: #F87171;
+  --nav-bg: rgba(7, 5, 15, 0.88);
+  --nav-border: rgba(212, 175, 55, 0.08);
+  --input-bg: rgba(255, 255, 255, 0.025);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-card-hover: 0 20px 48px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(212, 175, 55, 0.08);
+  --shadow-elevation: 0 24px 64px rgba(0, 0, 0, 0.4);
+}
+
+/* Light mode */
+:root.light {
+  --bg-primary: #FAF9F6;
+  --bg-secondary: #F0EDE6;
+  --bg-footer: #E8E4DB;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #FEFDFB;
+  --gold: #A07D1C;
+  --gold-light: #C9A232;
+  --gold-dim: rgba(160, 125, 28, 0.06);
+  --gold-border: rgba(160, 125, 28, 0.15);
+  --purple: #6D28D9;
+  --purple-deep: #5B21B6;
+  --text-primary: #18141F;
+  --text-secondary: #524D64;
+  --text-muted: #9590A6;
+  --border: rgba(24, 20, 31, 0.08);
+  --border-hover: rgba(24, 20, 31, 0.15);
+  --green: #047857;
+  --blue: #1D4ED8;
+  --coral: #DC2626;
+  --nav-bg: rgba(250, 249, 246, 0.94);
+  --nav-border: rgba(24, 20, 31, 0.06);
+  --input-bg: #FFFFFF;
+  --shadow-card: 0 1px 3px rgba(24, 20, 31, 0.04), 0 0 0 1px rgba(24, 20, 31, 0.03);
+  --shadow-card-hover: 0 16px 40px rgba(24, 20, 31, 0.08), 0 0 0 1px rgba(24, 20, 31, 0.06);
+  --shadow-elevation: 0 20px 48px rgba(24, 20, 31, 0.1);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-card: var(--bg-card);
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dim: var(--gold-dim);
+  --color-gold-border: var(--gold-border);
+  --color-purple: var(--purple);
+  --color-purple-deep: var(--purple-deep);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-border-line: var(--border);
+  --color-border-hover: var(--border-hover);
+  --color-green: var(--green);
+  --color-blue: var(--blue);
+  --color-coral: var(--coral);
+  --font-display: "Cormorant Garamond", serif;
+  --font-body: "DM Sans", sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ========================================
+   BASE
+   ======================================== */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.75;
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+::selection {
+  background: var(--gold-dim);
+  color: var(--text-primary);
+}
+
+:root.light ::selection {
+  background: rgba(109, 40, 217, 0.12);
+  color: #18141F;
+}
+
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+h1 { font-size: clamp(42px, 5.5vw, 82px); font-weight: 300; }
+h2 { font-size: clamp(36px, 4.5vw, 64px); font-weight: 300; }
+h3 { font-size: clamp(22px, 2.5vw, 32px); font-weight: 400; }
+
+a { color: inherit; text-decoration: none; }
+
+/* ========================================
+   GRID BACKGROUND
+   ======================================== */
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(212, 175, 55, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(212, 175, 55, 0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+:root.light .grid-bg {
+  background-image:
+    linear-gradient(rgba(24, 20, 31, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(24, 20, 31, 0.03) 1px, transparent 1px);
+}
+
+/* ========================================
+   KEYFRAMES
+   ======================================== */
+
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+@keyframes shimmer { 0%{background-position:200% center} 100%{background-position:-200% center} }
+@keyframes pulse-ring { 0%{transform:scale(0.9);opacity:.7} 100%{transform:scale(1.4);opacity:0} }
+@keyframes fade-up { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
+
+/* ========================================
+   SHIMMER
+   ======================================== */
+
+.shimmer-text {
+  background: linear-gradient(90deg, #C9961E 0%, #F5E070 25%, #D4AF37 50%, #F5E070 75%, #C9961E 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 5s linear infinite;
+}
+
+:root.light .shimmer-text {
+  background: linear-gradient(90deg, #7A5C0F 0%, #B8941E 30%, #A07D1C 50%, #C9A232 70%, #7A5C0F 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ========================================
+   UTILITIES
+   ======================================== */
+
+.float-animation { animation: float 7s ease-in-out infinite; }
+
+.logo-glow { filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.25)); }
+:root.light .logo-glow { filter: drop-shadow(0 0 12px rgba(109, 40, 217, 0.12)) drop-shadow(0 0 24px rgba(160, 125, 28, 0.08)); }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border-width: 0;
+}
+
+/* ========================================
+   LAYOUT
+   ======================================== */
+
+.section-padding { padding: 100px 24px; }
+@media (min-width: 768px) { .section-padding { padding: 120px 48px; } }
+@media (min-width: 1200px) { .section-padding { padding: 128px 80px; } }
+
+.max-container { max-width: 1280px; margin: 0 auto; }
+
+/* ========================================
+   SCROLL REVEAL
+   ======================================== */
+
+.reveal {
+  opacity: 0; transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ========================================
+   CARD SYSTEM — layered shadows + borders
+   ======================================== */
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease, background 0.4s ease;
+}
+
+.card:hover {
+  border-color: var(--gold-border);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+  background: var(--bg-card-hover);
+}
+
+/* Course cards */
+.course-card {
+  box-shadow: var(--shadow-card);
+  transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), box-shadow 0.35s cubic-bezier(0.16,1,0.3,1), background 0.35s ease;
+}
+.course-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* ========================================
+   ACCENT LINE
+   ======================================== */
+
+.accent-line-top { position: relative; }
+.accent-line-top::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* ========================================
+   PULSE DOT
+   ======================================== */
+
+.pulse-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); position: relative; }
+.pulse-dot::after {
+  content: ''; position: absolute; inset: -3px; border-radius: 50%;
+  border: 1px solid var(--green); animation: pulse-ring 2s ease-out infinite;
+}
+
+/* ========================================
+   CONTACT FORM
+   ======================================== */
+
+.contact-input {
+  padding: 15px 18px;
+  background: var(--input-bg);
+  border: 1.5px solid var(--border);
+  border-radius: 2px;
+  color: var(--text-primary);
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  width: 100%;
+}
+.contact-input:focus {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 3px rgba(159, 122, 234, 0.1);
+  outline: none;
+}
+:root.light .contact-input:focus {
+  box-shadow: 0 0 0 3px rgba(109, 40, 217, 0.08);
+}
+.contact-input::placeholder { color: var(--text-muted); }
+
+select.contact-input {
+  cursor: pointer; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239F7AEA' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 16px center; padding-right: 40px;
+}
+select.contact-input option { background: var(--bg-primary); color: var(--text-primary); }
+
+:root.light .contact-input {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-card);
+}
+
+/* ========================================
+   SCROLLBAR
+   ======================================== */
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg-primary); }
+::-webkit-scrollbar-thumb { background: var(--gold-border); border-radius: 3px; }
+
+/* ========================================
+   LIGHT MODE POLISH
+   ======================================== */
+
+:root.light body {
+  -webkit-font-smoothing: auto;
+}
+
+:root.light .card {
+  background: #FFFFFF;
+  border-color: rgba(24, 20, 31, 0.06);
+  box-shadow: var(--shadow-card);
+}
+:root.light .card:hover {
+  background: #FEFDFB;
+  box-shadow: var(--shadow-card-hover);
+  border-color: rgba(160, 125, 28, 0.2);
+}
+
+:root.light .course-card {
+  background: #FFFFFF;
+  border: 1px solid rgba(24, 20, 31, 0.06);
+  box-shadow: var(--shadow-card);
+}
+:root.light .course-card:hover {
+  box-shadow: var(--shadow-card-hover);
+  border-color: rgba(24, 20, 31, 0.1);
 }
