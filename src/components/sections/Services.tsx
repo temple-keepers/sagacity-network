@@ -41,7 +41,7 @@ export default function Services() {
             <RevealWrapper key={service.slug} delay={i * 60}>
               <Link
                 href={`/services#${service.slug}`}
-                className="group block grid grid-cols-[1fr] md:grid-cols-[56px_1fr_auto] gap-4 md:gap-8 items-center py-7 md:py-9 border-b border-border-line transition-all duration-[400ms]"
+                className="group block grid grid-cols-[1fr] md:grid-cols-[60px_1fr_auto] gap-3 md:gap-8 items-center py-6 md:py-8 border-b border-border-line transition-all duration-[400ms]"
                 onMouseEnter={() => setHovered(i)}
                 onMouseLeave={() => setHovered(null)}
                 style={{
@@ -68,7 +68,7 @@ export default function Services() {
                 {/* Title + description */}
                 <div>
                   <h3
-                    className="font-display text-[22px] lg:text-[26px] font-light mb-1 transition-colors duration-300"
+                    className="font-display text-[20px] md:text-[22px] lg:text-[26px] font-light mb-1.5 transition-colors duration-300"
                     style={{
                       color:
                         hovered === i

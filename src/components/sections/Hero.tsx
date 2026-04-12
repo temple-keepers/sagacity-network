@@ -40,15 +40,15 @@ export default function Hero() {
             className="order-2 md:order-1"
           >
             {/* Eyebrow badge */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-border-line bg-bg-card mb-10 lg:mb-12">
+            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-[2px] border border-border-line bg-bg-card mb-8 md:mb-10">
               <span className="pulse-dot" />
-              <span className="text-[12px] font-medium tracking-[0.06em] uppercase text-text-secondary">
+              <span className="text-[11px] font-medium tracking-[0.08em] uppercase text-text-secondary">
                 UK Registered Digital Product Studio
               </span>
             </div>
 
             {/* Headline */}
-            <h1 className="mb-8 lg:mb-10">
+            <h1 className="mb-6 md:mb-8">
               <span className="block text-text-primary leading-[1.05]">
                 We Build
               </span>
@@ -61,7 +61,7 @@ export default function Hero() {
             </h1>
 
             {/* Subheading */}
-            <p className="text-[16px] md:text-[18px] leading-[1.8] text-text-secondary max-w-[500px] mb-10 lg:mb-12">
+            <p className="text-[15px] md:text-[17px] leading-[1.75] text-text-secondary max-w-[480px] mb-8 md:mb-10">
               Founded by an enterprise capital programme manager and a
               cybersecurity specialist — bringing Fortune 500 discipline to
               businesses and communities that deserve to operate at a higher
@@ -69,7 +69,7 @@ export default function Hero() {
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-wrap gap-4 mb-14 lg:mb-20">
+            <div className="flex flex-wrap gap-4 mb-10 md:mb-14">
               <Button href="/contact">Start a Project</Button>
               <Button href="/work" variant="outline">
                 View Our Work
