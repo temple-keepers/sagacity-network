@@ -9,6 +9,14 @@ import {
   COURSE_CATEGORIES,
 } from "@/lib/data/courses";
 
+/* Visual icon mapping for course topics */
+const COURSE_ICONS: Record<string, string> = {
+  "AI & Automation": "⟡",
+  Cybersecurity: "⬢",
+  "Data & Reporting": "◈",
+  "Caribbean & Guyana": "◎",
+};
+
 function LiveCourseCard({
   course,
   index,
@@ -19,7 +27,7 @@ function LiveCourseCard({
   return (
     <RevealWrapper delay={index * 60}>
       <div
-        className="course-card relative overflow-hidden rounded-[2px] flex flex-col h-full p-5 md:p-7"
+        className="course-card relative overflow-hidden rounded-[2px] flex flex-col h-full"
         style={{
           background: course.hot ? "var(--gold-dim)" : "var(--bg-card)",
           border: `1px solid ${
@@ -28,84 +36,76 @@ function LiveCourseCard({
         }}
       >
         {/* Accent line */}
-        {course.hot && (
-          <div
-            className="absolute top-0 left-0 right-0 h-[2px]"
-            style={{ background: course.accent }}
-          />
-        )}
+        <div
+          className="absolute top-0 left-0 right-0 h-[2px]"
+          style={{ background: course.accent, opacity: course.hot ? 1 : 0.4 }}
+        />
 
-        <div className="flex-grow">
-          {/* Tag + hot badge */}
-          <div className="flex justify-between items-start mb-3">
+        {/* Decorative graphic area */}
+        <div
+          className="relative flex items-center justify-center py-8 md:py-10"
+          style={{
+            background: `linear-gradient(135deg, ${course.accent}08 0%, ${course.accent}03 100%)`,
+          }}
+        >
+          <span
+            className="text-[48px] md:text-[56px] leading-none opacity-20"
+            style={{ color: course.accent }}
+          >
+            {COURSE_ICONS[course.category] || "⟡"}
+          </span>
+          {course.hot && (
+            <span className="absolute top-3 right-3 text-[9px] font-extrabold tracking-[0.1em] uppercase px-2.5 py-1 rounded-[2px] bg-gold text-bg-primary">
+              Booking Now
+            </span>
+          )}
+        </div>
+
+        {/* Content */}
+        <div className="flex flex-col flex-grow p-5 md:p-6">
+          <div className="flex-grow">
             <span
-              className="text-[9px] tracking-[0.16em] uppercase font-bold px-2.5 py-1 rounded-[2px]"
-              style={{
-                color: course.accent,
-                border: `1px solid ${course.accent}33`,
-                background: `${course.accent}10`,
-              }}
+              className="text-[9px] tracking-[0.16em] uppercase font-bold"
+              style={{ color: course.accent }}
             >
               {course.tag}
             </span>
-            {course.hot && (
-              <span className="text-[9px] font-extrabold tracking-[0.1em] uppercase px-2 py-1 rounded-[2px] bg-gold text-bg-primary">
-                Booking Now
-              </span>
-            )}
+            <h3 className="font-display text-[19px] md:text-[21px] font-light text-text-primary leading-[1.3] mt-2 mb-4">
+              {course.title}
+            </h3>
           </div>
 
-          {/* Title + desc */}
-          <h3 className="font-display text-[20px] font-light text-text-primary leading-[1.3] mb-2.5">
-            {course.title}
-          </h3>
-          <p className="text-[13px] text-text-secondary font-light leading-[1.7] mb-5">
-            {course.description}
-          </p>
-        </div>
-
-        {/* Bottom: price/format + CTA */}
-        <div>
-          <div className="grid grid-cols-2 gap-2 py-3 border-t border-border-line mb-3">
-            <div>
-              <div
-                className="font-display text-[26px] font-semibold leading-none"
-                style={{ color: course.accent }}
-              >
-                {course.price}
-              </div>
-              <div className="text-[11px] text-text-muted mt-1">
-                {course.format}
+          {/* Price + CTA */}
+          <div className="pt-4 border-t border-border-line">
+            <div className="flex justify-between items-center mb-4">
+              <div>
+                <span
+                  className="font-display text-[24px] font-semibold"
+                  style={{ color: course.accent }}
+                >
+                  {course.price}
+                </span>
+                <span className="text-[11px] text-text-muted ml-2">
+                  {course.format}
+                </span>
               </div>
             </div>
-            <div className="text-right">
-              <div className="text-[12px] text-text-primary font-medium">
-                {course.date}
-              </div>
-              <div
-                className="text-[11px] mt-1 font-medium"
-                style={{ color: course.accent }}
-              >
-                {course.seats ? `${course.seats} seats` : "Org-wide delivery"}
-              </div>
-            </div>
+            <a
+              href={course.bookingUrl}
+              target={
+                course.bookingUrl.startsWith("http") ? "_blank" : undefined
+              }
+              rel="noopener noreferrer"
+              className="block text-center py-2.5 text-[11px] font-bold tracking-[0.1em] uppercase rounded-[2px] transition-all duration-200 hover:-translate-y-0.5"
+              style={{
+                background: course.hot ? "var(--gold)" : "transparent",
+                border: `1.5px solid ${course.accent}`,
+                color: course.hot ? "var(--bg-primary)" : course.accent,
+              }}
+            >
+              {course.hot ? "Book Now" : "Register Interest"}
+            </a>
           </div>
-
-          <a
-            href={course.bookingUrl}
-            target={
-              course.bookingUrl.startsWith("http") ? "_blank" : undefined
-            }
-            rel="noopener noreferrer"
-            className="block text-center py-2.5 text-[11px] font-bold tracking-[0.1em] uppercase rounded-[2px] transition-all duration-200 hover:-translate-y-0.5"
-            style={{
-              background: course.hot ? "var(--gold)" : "transparent",
-              border: `1.5px solid ${course.accent}`,
-              color: course.hot ? "var(--bg-primary)" : course.accent,
-            }}
-          >
-            {course.hot ? `Book Now \u2014 ${course.price}` : "Register Interest"}
-          </a>
         </div>
       </div>
     </RevealWrapper>
@@ -129,7 +129,7 @@ function EvergreenCourseCard({
   return (
     <RevealWrapper delay={index * 50}>
       <div
-        className="course-card relative overflow-hidden rounded-[2px] flex flex-col h-full p-6 md:p-8"
+        className="course-card relative overflow-hidden rounded-[2px] flex flex-col h-full"
         style={{
           background: "var(--bg-card)",
           border: "1px solid var(--border)",
@@ -137,65 +137,58 @@ function EvergreenCourseCard({
       >
         {/* Accent line */}
         <div
-          className="absolute top-0 left-0 right-0 h-[2px] opacity-50"
+          className="absolute top-0 left-0 right-0 h-[2px] opacity-40"
           style={{ background: course.accent }}
         />
 
-        <div className="flex-grow">
-          {/* Tag + badge */}
-          <div className="flex justify-between items-start mb-3">
+        {/* Decorative graphic area */}
+        <div
+          className="relative flex items-center justify-center py-8 md:py-10"
+          style={{
+            background: `linear-gradient(135deg, ${course.accent}06 0%, transparent 100%)`,
+          }}
+        >
+          <span
+            className="text-[48px] md:text-[56px] leading-none opacity-15"
+            style={{ color: course.accent }}
+          >
+            {COURSE_ICONS[course.category] || "⟡"}
+          </span>
+          {course.badge && (
             <span
-              className="text-[9px] tracking-[0.16em] uppercase font-bold px-2.5 py-1 rounded-[2px]"
+              className="absolute top-3 right-3 text-[9px] font-extrabold tracking-[0.1em] uppercase px-2.5 py-1 rounded-[2px]"
               style={{
-                color: course.accent,
-                border: `1px solid ${course.accent}33`,
-                background: `${course.accent}10`,
+                background: badgeColors[course.badge] || "var(--border)",
+                color:
+                  course.badge === "Coming Soon"
+                    ? "var(--text-muted)"
+                    : "#FFFFFF",
               }}
             >
-              On-Demand
+              {course.badge}
             </span>
-            {course.badge && (
-              <span
-                className="text-[9px] font-extrabold tracking-[0.1em] uppercase px-2.5 py-1 rounded-[2px]"
-                style={{
-                  background: badgeColors[course.badge] || "var(--border)",
-                  color:
-                    course.badge === "Coming Soon"
-                      ? "var(--text-muted)"
-                      : "#FFFFFF",
-                }}
-              >
-                {course.badge}
-              </span>
-            )}
-          </div>
-
-          {/* Title */}
-          <h3 className="font-display text-[21px] font-light text-text-primary leading-[1.3] mb-2">
-            {course.title}
-          </h3>
+          )}
         </div>
 
-        {/* Bottom */}
-        <div>
-          <div className="flex gap-4 items-center py-2.5 border-t border-border-line mb-3">
-            <span
-              className="text-[11px] font-semibold"
-              style={{ color: course.accent }}
-            >
-              {"\u25CF"} {course.level}
-            </span>
-            <span className="text-[11px] text-text-muted">
-              {course.lessons} lessons
-            </span>
-            <span className="text-[11px] text-text-muted">
-              {course.hours}h
-            </span>
+        {/* Content */}
+        <div className="flex flex-col flex-grow p-5 md:p-6">
+          <div className="flex-grow">
+            <h3 className="font-display text-[19px] md:text-[21px] font-light text-text-primary leading-[1.3] mb-3">
+              {course.title}
+            </h3>
+            <div className="flex gap-3 items-center text-[11px] text-text-muted">
+              <span>{course.lessons} lessons</span>
+              <span className="opacity-30">|</span>
+              <span>{course.hours}h</span>
+              <span className="opacity-30">|</span>
+              <span style={{ color: course.accent }}>{course.level}</span>
+            </div>
           </div>
 
-          <div className="flex justify-between items-center">
+          {/* Price + CTA */}
+          <div className="flex justify-between items-center pt-5 mt-5 border-t border-border-line">
             <span
-              className="font-display text-[28px] font-semibold"
+              className="font-display text-[26px] font-semibold"
               style={{ color: course.accent }}
             >
               {course.price}
@@ -232,15 +225,6 @@ export default function Academy() {
       className="section-padding relative overflow-hidden"
       style={{ background: "var(--bg-primary)" }}
     >
-      {/* Subtle purple tint */}
-      <div
-        className="absolute top-0 right-0 w-[600px] h-[600px] pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(109,40,217,0.04) 0%, transparent 60%)",
-        }}
-      />
-
       <div className="max-container relative z-10">
         {/* Header */}
         <RevealWrapper>
@@ -255,50 +239,35 @@ export default function Academy() {
           </div>
         </RevealWrapper>
 
-        {/* Live & Upcoming header */}
+        {/* Live & Upcoming */}
         <RevealWrapper>
-          <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
-            <div className="flex items-center gap-3">
-              <span className="pulse-dot" />
-              <span className="font-display text-[24px] font-light text-text-primary">
-                Live &amp; Upcoming
-              </span>
-            </div>
-            <a
-              href="#contact"
-              className="text-[12px] text-purple font-medium tracking-[0.08em] border-b border-purple/30 pb-0.5"
-            >
-              Request Corporate Training &rarr;
-            </a>
+          <div className="flex items-center gap-3 mb-8">
+            <span className="pulse-dot" />
+            <span className="font-display text-[22px] font-light text-text-primary">
+              Live &amp; Upcoming
+            </span>
           </div>
         </RevealWrapper>
 
-        {/* Live courses grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-20">
           {LIVE_COURSES.map((course, i) => (
             <LiveCourseCard key={course.slug} course={course} index={i} />
           ))}
         </div>
 
-        {/* On-Demand header */}
+        {/* On-Demand */}
         <RevealWrapper>
-          <div className="flex items-center justify-between mb-6 flex-wrap gap-4">
-            <div className="flex items-center gap-3">
-              <div className="w-2.5 h-2.5 bg-purple rotate-45 rounded-[1px]" />
-              <span className="font-display text-[24px] font-light text-text-primary">
-                On-Demand Courses
-              </span>
-            </div>
-            <span className="text-[12px] text-text-muted">
-              Lifetime access &middot; Certificate on completion &middot; CPD
-              eligible
+          <div className="flex items-center gap-3 mb-8">
+            <div className="w-2.5 h-2.5 bg-purple rotate-45 rounded-[1px]" />
+            <span className="font-display text-[22px] font-light text-text-primary">
+              On-Demand
             </span>
           </div>
         </RevealWrapper>
 
         {/* Category filter */}
         <RevealWrapper delay={60}>
-          <div className="flex gap-2.5 mb-8 flex-wrap">
+          <div className="flex gap-2.5 mb-10 flex-wrap">
             {COURSE_CATEGORIES.map((cat) => (
               <button
                 key={cat}
@@ -312,8 +281,7 @@ export default function Academy() {
                       ? "var(--purple)"
                       : "rgba(159,122,234,0.25)"
                   }`,
-                  color:
-                    filter === cat ? "#FFFFFF" : "var(--purple)",
+                  color: filter === cat ? "#FFFFFF" : "var(--purple)",
                   fontFamily: "'DM Sans', sans-serif",
                 }}
               >
@@ -323,8 +291,7 @@ export default function Academy() {
           </div>
         </RevealWrapper>
 
-        {/* Evergreen courses grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-20">
           {filtered.map((course, i) => (
             <EvergreenCourseCard
               key={course.slug}
@@ -334,31 +301,20 @@ export default function Academy() {
           ))}
         </div>
 
-        {/* Academy CTA strip */}
+        {/* CTA */}
         <RevealWrapper delay={100}>
           <div
-            className="rounded-[2px] p-6 md:p-10 lg:p-14 border border-gold-border"
+            className="rounded-[2px] p-8 md:p-12 border border-gold-border text-center"
             style={{ background: "rgba(212,175,55,0.03)" }}
           >
-            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8">
-              <div>
-                <h3 className="font-display text-[26px] font-light text-text-primary mb-2">
-                  Not sure where to start?{" "}
-                  <em className="text-gold italic">
-                    Let&apos;s find the right course for you.
-                  </em>
-                </h3>
-                <p className="text-[14px] text-text-secondary font-light leading-[1.6]">
-                  Tell us about your business and goals — we&apos;ll point you
-                  to the right place.
-                </p>
-              </div>
-              <div className="flex flex-col sm:flex-row gap-3 shrink-0">
-                <Button href="#contact">Get a Recommendation</Button>
-                <Button href="#contact" variant="outline">
-                  Corporate Enquiry
-                </Button>
-              </div>
+            <h3 className="font-display text-[clamp(22px,2.5vw,30px)] font-light text-text-primary mb-6">
+              Not sure where to start?
+            </h3>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Button href="#contact">Get a Recommendation</Button>
+              <Button href="#contact" variant="outline">
+                Corporate Enquiry
+              </Button>
             </div>
           </div>
         </RevealWrapper>
