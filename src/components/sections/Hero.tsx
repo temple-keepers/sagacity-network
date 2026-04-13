@@ -14,21 +14,39 @@ const STATS = [
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden grid-bg">
-      {/* Background glow orbs */}
-      <div
-        className="absolute top-[10%] right-[5%] w-[350px] md:w-[500px] lg:w-[700px] h-[350px] md:h-[500px] lg:h-[700px] rounded-full pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(109,40,217,0.08) 0%, transparent 70%)",
-        }}
-      />
-      <div
-        className="absolute bottom-[5%] left-[-5%] w-[300px] md:w-[450px] lg:w-[600px] h-[300px] md:h-[450px] lg:h-[600px] rounded-full pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle, rgba(212,175,55,0.05) 0%, transparent 70%)",
-        }}
-      />
+      {/* Animated gradient mesh orbs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Large purple orb — top right */}
+        <div
+          className="mesh-orb mesh-orb-1 w-[400px] md:w-[600px] lg:w-[800px] h-[400px] md:h-[600px] lg:h-[800px]"
+          style={{
+            top: "-10%",
+            right: "-5%",
+            background:
+              "radial-gradient(circle, rgba(109,40,217,0.12) 0%, rgba(159,122,234,0.06) 40%, transparent 70%)",
+          }}
+        />
+        {/* Gold orb — bottom left */}
+        <div
+          className="mesh-orb mesh-orb-2 w-[350px] md:w-[500px] lg:w-[650px] h-[350px] md:h-[500px] lg:h-[650px]"
+          style={{
+            bottom: "0%",
+            left: "-8%",
+            background:
+              "radial-gradient(circle, rgba(212,175,55,0.09) 0%, rgba(212,175,55,0.03) 45%, transparent 70%)",
+          }}
+        />
+        {/* Small accent orb — center */}
+        <div
+          className="mesh-orb mesh-orb-3 w-[200px] md:w-[300px] lg:w-[400px] h-[200px] md:h-[300px] lg:h-[400px]"
+          style={{
+            top: "40%",
+            left: "35%",
+            background:
+              "radial-gradient(circle, rgba(159,122,234,0.06) 0%, rgba(212,175,55,0.04) 50%, transparent 70%)",
+          }}
+        />
+      </div>
 
       <div className="max-container w-full section-px pt-[110px] md:pt-[130px] lg:pt-[140px] pb-24 md:pb-28">
         <div className="grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] gap-12 md:gap-16 items-center">
