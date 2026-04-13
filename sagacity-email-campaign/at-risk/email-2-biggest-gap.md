@@ -1,22 +1,24 @@
-SUBJECT: Why your invisible online — and what it's actually costing
-PREVIEW: Web presence is where this starts. Here's the real math.
+SUBJECT: The people searching for what you do are hiring someone else
+PREVIEW: Why your web presence is the first thing to fix — not the last
 
 ---
 
 Hi {{name}},
 
-You're "Digitally At Risk" partly because you don't have a real web presence. And I know what you're thinking: "Denise, I get enquiries through word of mouth. I don't need a website."
+I said I would go deeper on the biggest gaps from your assessment, and I want to start with the one that costs you the most every single week: your web presence.
 
-Here's the thing — you're right that word of mouth works. But it's also the only way enquiries can reach you. The moment someone your customer knows mentions you, if they can't find you online to verify you're real, they move on to the next name. Or they find your competitor's site and assume you're out of business.
+Here is what I mean by that. Right now, when someone in your area needs the kind of service you provide, they open their phone and search. If you do not have a website that shows up in those results — or if what they find is outdated, incomplete, or does not exist — you are invisible to them. They are not choosing your competitor over you. They do not know you exist.
 
-I worked with a plumber recently who had the same mindset. No website, no online presence, just word of mouth. When I showed him his Google search results — literally nothing — he understood the cost immediately. Someone recommends you to a client. That client Googles your name to confirm you exist. Radio silence. Awkward. They book the other guy instead. This happens dozens of times a year, and you never even know it's happening.
+Most business owners I work with tell me they get their clients through word of mouth. That is true, but it is only half the picture. What they do not see is the person who heard their name, searched for them online, found nothing credible, and quietly moved on to someone else. That referral still happened. It just did not land.
 
-A basic, properly optimised web presence doesn't have to be elaborate. It's a single page that tells people who you are, what you do, and how to reach you. It's answering the phone when someone Googles your business name and finds you. It's credibility. It's not optional anymore.
+This is why I always say web presence is the first fix, not the last. Not because a website is magic, but because every other improvement you make — better follow-up, more referrals, paid advertising — depends on having somewhere credible to send people when they look you up.
 
-Fixing this actually looks like: a simple website with your story, your services, and a clear way for people to contact you. That's it. Not £5,000 and six months. Weeks. One time. Permanent.
+You do not need a twenty-page website. You need one that is clear about who you are, what you do, who you do it for, and how to get in touch. Four things. Done well, that alone changes the trajectory.
 
-Want us to take a look at this together? Book a free 30-minute call here: https://calendly.com/sagacitynetwork
+I have built sites for service businesses that went from zero online presence to consistent weekly enquiries within the first month. Not because the site was flashy, but because it finally existed where their clients were already looking.
+
+If you want to talk about what this would look like for your specific situation, I am happy to walk through it with you.
+
+Book a call: https://sagacitynetwork.co.uk/assessment-call
 
 Denise
-
-P.S. Next email is about what's actually possible when this part gets fixed.

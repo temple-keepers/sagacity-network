@@ -1,105 +1,82 @@
-# Sagacity Network — Post-Assessment Email Campaign
+# Sagacity Network -- Digital Readiness Assessment Email Campaign
 
-## What This Is
+## What this is
 
-A 5-email automated welcome sequence that fires after someone completes the Sagacity Network Digital Readiness Assessment. The campaign is sent via Resend, triggered by a new row in the Supabase `leads` table.
+A 20-email automated welcome sequence triggered when someone completes the Sagacity Network Digital Readiness Assessment. Each person is scored 0-100 and placed into one of 4 bands. Each band has its own tailored 5-email sequence. That is 4 bands x 5 emails = 20 emails total.
 
-There are 4 audience segments based on score band. Each segment gets the same 5-email structure with different content tailored to their digital maturity level. That's 20 emails total.
+The campaign runs on Supabase (database), Resend (email delivery), and n8n (automation).
 
-## The 4 Segments
+## The 4 bands
 
-| Band | Score Range | Profile |
-|------|------------|---------|
-| **Digitally At Risk** | 0–25 | Little or no web presence, no follow-up systems, no security, heavy manual admin |
-| **Early Stage** | 26–50 | Some basics in place but inconsistent. Getting enquiries but losing them |
-| **Developing** | 51–74 | Solid foundations. Website works. Some automation. Ready to act |
-| **Advanced** | 75–100 | Strong across the board. Looking to compound their advantage with AI and systems |
+| Band                  | Score range | Who they are                                                      |
+|-----------------------|-------------|-------------------------------------------------------------------|
+| Digitally At Risk     | 0-25        | Little or no web presence, no systems, heavy manual admin          |
+| Early Stage           | 26-50       | Some basics in place but inconsistent, losing enquiries            |
+| Developing            | 51-74       | Solid foundations, website works, some automation, ready to act    |
+| Advanced              | 75-100      | Strong across the board, looking to compound with AI and systems   |
 
-## The 5-Email Sequence
+## The 5-email sequence
 
-| Email | Timing | Purpose |
-|-------|--------|---------|
-| Email 1 | Immediately | Deliver the score, confirm what it means, set expectations |
-| Email 2 | Day 1 (24h) | Deep dive on their single biggest gap |
-| Email 3 | Day 3 | A real example of what fixing that gap looks like |
-| Email 4 | Day 5 | The cost of leaving it unfixed — specific numbers |
-| Email 5 | Day 7 | Book the free Digital Clarity Call |
+Every band follows the same structure. Only the content differs.
 
-## Folder Structure
+| Email   | Timing               | What it does                                                  |
+|---------|----------------------|---------------------------------------------------------------|
+| Email 1 | Immediately          | Deliver the score, explain what it means, set expectations    |
+| Email 2 | 24 hours later       | Deep dive on their single biggest gap                         |
+| Email 3 | 3 days after signup  | A real example of what fixing that gap looks like              |
+| Email 4 | 5 days after signup  | The cost of leaving it unfixed -- specific numbers             |
+| Email 5 | 7 days after signup  | Book the free Digital Clarity Call                             |
+
+## Template variables
+
+These are pulled from the Supabase `leads` table and injected into each email at send time:
+
+| Variable       | Content                |
+|----------------|------------------------|
+| `{{name}}`     | First name             |
+| `{{score}}`    | Numerical score 0-100  |
+| `{{band}}`     | Band name              |
+| `{{business}}` | Business name          |
+
+## Folder structure
 
 ```
 sagacity-email-campaign/
-├── README.md                          ← You're here
-├── setup-guide.md                     ← Full technical setup instructions
-│
-├── at-risk/                           ← Digitally At Risk (0–25)
-│   ├── email-1-score-delivery.md
-│   ├── email-2-biggest-gap.md
-│   ├── email-3-real-example.md
-│   ├── email-4-cost-of-waiting.md
-│   └── email-5-book-the-call.md
-│
-├── early-stage/                       ← Early Stage (26–50)
-│   ├── email-1-score-delivery.md
-│   ├── email-2-biggest-gap.md
-│   ├── email-3-real-example.md
-│   ├── email-4-cost-of-waiting.md
-│   └── email-5-book-the-call.md
-│
-├── developing/                        ← Developing (51–74)
-│   ├── email-1-score-delivery.md
-│   ├── email-2-biggest-gap.md
-│   ├── email-3-real-example.md
-│   ├── email-4-cost-of-waiting.md
-│   └── email-5-book-the-call.md
-│
-└── advanced/                          ← Advanced (75–100)
-    ├── email-1-score-delivery.md
-    ├── email-2-biggest-gap.md
-    ├── email-3-real-example.md
-    ├── email-4-cost-of-waiting.md
-    └── email-5-book-the-call.md
+  README.md                        -- This file
+  setup-guide.md                   -- Full implementation guide (Resend, Supabase, n8n)
+  privacy-policy.md                -- UK GDPR compliant privacy policy
+  seed_email_templates.sql         -- SQL seed for email templates
+  edge-function/                   -- Supabase Edge Function source
+
+  at-risk/                         -- Digitally At Risk (0-25)
+    email-1-score-delivery.md
+    email-2-biggest-gap.md
+    email-3-real-example.md
+    email-4-cost-of-waiting.md
+    email-5-book-the-call.md
+
+  early-stage/                     -- Early Stage (26-50)
+    email-1-score-delivery.md
+    email-2-biggest-gap.md
+    email-3-real-example.md
+    email-4-cost-of-waiting.md
+    email-5-book-the-call.md
+
+  developing/                      -- Developing (51-74)
+    email-1-score-delivery.md
+    email-2-biggest-gap.md
+    email-3-real-example.md
+    email-4-cost-of-waiting.md
+    email-5-book-the-call.md
+
+  advanced/                        -- Advanced (75-100)
+    email-1-score-delivery.md
+    email-2-biggest-gap.md
+    email-3-real-example.md
+    email-4-cost-of-waiting.md
+    email-5-book-the-call.md
 ```
 
-## How Each Email File Is Formatted
+## Implementation
 
-Every email file contains:
-
-```
-SUBJECT: [subject line]
-PREVIEW: [preview text for inbox]
-
----
-
-[Full email body — plain text, ready to paste into Resend]
-```
-
-## Template Variables
-
-These are pulled from the Supabase `leads` table and passed to Resend at send time:
-
-| Variable | Content |
-|----------|---------|
-| `{{name}}` | First name |
-| `{{email}}` | Email address |
-| `{{business}}` | Business name (may be blank) |
-| `{{score}}` | Numerical score 0–100 |
-| `{{band}}` | Digitally At Risk / Early Stage / Developing / Advanced |
-| `{{q1}}` – `{{q8}}` | Individual category scores |
-| `{{utm_source}}` | Traffic source |
-
-## How It's Set Up
-
-The campaign is fully wired through Supabase + Resend — no external automation tool. A database trigger queues 5 emails when a lead is inserted, and a `pg_cron` job hits a Supabase Edge Function (`process-assessment-queue`) every minute to send anything that's due.
-
-See [setup-guide.md](setup-guide.md) for the architecture, the two manual secret values you need to set in the Supabase dashboard, the testing checklist, and operational SQL (pause, edit a template, inspect failures, etc.).
-
-The Edge Function source lives in `edge-function/index.ts`. The 20 email templates are seeded into Supabase via `seed_email_templates.sql` — re-run it any time you edit the `.md` files.
-
-## Voice and Tone
-
-All emails are written as Denise, in first person. Direct, warm, expert. Short paragraphs, no bullet points, no hype, no generic agency language. Every email ends with a personal sign-off from Denise.
-
-## Booking Link
-
-All CTAs point to: https://calendly.com/sagacitynetwork
+See [setup-guide.md](setup-guide.md) for full step-by-step instructions covering Resend domain verification, Supabase webhook configuration, n8n workflow setup, and a testing checklist.

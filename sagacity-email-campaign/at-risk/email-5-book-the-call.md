@@ -1,24 +1,27 @@
-SUBJECT: Let's map out what's possible
-PREVIEW: This is where we talk. No pitch, no pressure.
+SUBJECT: 30 minutes to map out your next step
+PREVIEW: No pitch, no pressure — just a clear picture of where to start
 
 ---
 
 Hi {{name}},
 
-You've had a week now to sit with your assessment score. You know where you stand — and you know what it's costing you. So I'm going to ask directly: let's talk about fixing this.
+This is the last email in this sequence, and I want to keep it simple.
 
-I get it if you're hesitant. "Is this a sales pitch?" No. "Will you pressure me to buy something expensive?" No. "Will you try to dazzle me with jargon?" No. It's a 30-minute conversation. No pitch, no pressure. Just a clear picture of what's possible and what would make the biggest difference first.
+Over the past week I have walked you through what your Digital Readiness score of {{score}} means, why web presence is the first thing to address, what it looks like when a business like yours becomes visible online, and what staying invisible is already costing you in real terms.
 
-Here's what happens on the call: You talk. We listen. We look at your three lowest-scoring categories together — your web presence, your follow-up systems, your cybersecurity. We tell you what we'd do if it were our business. We give you a straight answer about cost and timeline. You decide what, if anything, you want to do next. That's it.
+If any of that resonated, I would like to talk with you.
 
-Most people who take this call do want to move forward. Not because they felt pressured, but because they realised the cost of waiting is higher than the cost of fixing it. Some people decide to wait another month. Some decide it's not for them right now. Both are fine. My job is to give you the truth so you can make the right decision.
+The call is 30 minutes. Here is exactly what happens. I will ask you a few questions about your business, your clients, and what you are trying to achieve this year. Then I will tell you, honestly, what I think your priorities should be and where I would start if I were in your position. If we are a good fit to work together, I will explain what that looks like. If we are not, I will tell you that too and point you toward whatever I think will help most.
 
-Book your free Digital Clarity Call here: https://calendly.com/sagacitynetwork
+There is no slide deck. There is no sales script. I have spent over eleven years delivering capital programmes worth over 200 million pounds, and I left that world to do this work because I believe small businesses deserve the same quality of strategic thinking that large organisations take for granted.
 
-If a calendar booking feels too formal and you'd rather just reply and chat, do that instead. I read my emails.
+This is more fixable than it feels right now. A score of {{score}} does not mean you are behind forever. It means you have not had the right guidance yet. That is a solvable problem.
 
-Looking forward to talking.
+Book your call here: https://sagacitynetwork.co.uk/assessment-call
+
+I look forward to hearing from you.
 
 Denise
+Co-founder, Sagacity Network
 
-P.S. You've got this. It's not as complicated as it feels.
+P.S. I read every assessment that comes through, and I remember yours. If a call feels like too big a step right now, you are welcome to reply to this email instead. I will answer personally, and we can go from there.

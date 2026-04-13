@@ -1,30 +1,30 @@
-SUBJECT: The Cost of Waiting (Do This Math)
-PREVIEW: What you're losing by not automating yet.
+SUBJECT: The maths on doing nothing
+PREVIEW: This is not about what fixing costs. It is about what not fixing already costs.
 
 ---
 
 Hi {{name}},
 
-I want you to do a quick calculation.
+I want to put a number on something.
 
-Assume you're spending eight hours a week on tasks that could be automated. That's 400 hours a year. Now, what's your hourly rate—or what would you charge a client for your time? For most people in your position, it's somewhere between £25 and £50 per hour. Let's be conservative and say £30.
+Think about the manual tasks in your week — the ones that repeat, the ones a system could handle. Estimate the hours. For most businesses in the {{band}} band, it lands somewhere between five and ten hours per week. Pick your number.
 
-400 hours × £30 = £12,000 in lost capacity every year.
+Now multiply it by your effective hourly rate. If you charge clients directly, use that figure. If not, use what your time is worth to the business — the revenue you generate or protect per hour. For most people reading this, that number sits between thirty and seventy-five pounds.
 
-That's not the cost of automation. That's the cost of not automating. It's money you're already losing.
+Now multiply by fifty-two weeks.
 
-And it compounds. That £12,000 becomes £36,000 over three years. It's not sitting in a bank account waiting for you to spend it. It's already gone. You've already used that time on work that doesn't move your business forward.
+If you are spending seven hours a week on automatable tasks at fifty pounds an hour, that is eighteen thousand two hundred pounds in annual capacity cost. Not the cost of building a solution. The cost of not having one. That money is already spent. Those hours are already gone.
 
-Now, I could build an automation solution for you. Depending on complexity, you're looking at somewhere between £1,000 and £5,000. Let's say £3,000 as a realistic mid-point. That's a payback period of about three months.
+I want to be honest with you — this is not a scare tactic. This is arithmetic. And the reason I am sharing it is that most business owners have never done this calculation. They feel the pressure of lost time without quantifying it, so it stays vague and tolerable.
 
-After three months, you've reclaimed £3,000 in capacity that you can invest in growth. Over a year, it's twelve grand. Over five years, it's sixty thousand.
+When you see the number, the question changes. It stops being "can I afford to automate?" and becomes "how much longer can I afford not to?"
 
-But here's the thing: most people don't act on this. They read the email, think "yeah, that makes sense," and then carry on doing things the same way. I see it all the time. The cost of inaction is always higher than the cost of fixing it—but inaction is still the default.
+The typical cost to automate a core workflow sits between one and five thousand pounds. The typical payback period is eight to twelve weeks. After that, every hour reclaimed is pure capacity you can reinvest in growth, rest, or both.
 
-I don't want that to be you.
+I am not asking you to spend money today. I am asking you to look at the number and decide whether a thirty-minute conversation is worth having.
 
-If this math resonates, book a call. We'll map out exactly where those eight hours are going and what it would take to reclaim them: https://calendly.com/sagacitynetwork
+Book a call here: https://calendly.com/sagacitynetwork
 
-Talk soon,
+Warm regards,
 
 Denise

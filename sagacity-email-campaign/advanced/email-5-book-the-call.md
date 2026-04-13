@@ -1,27 +1,23 @@
-SUBJECT: One conversation. No obligation.
-PREVIEW: Here's what the call is actually for.
+SUBJECT: 30 minutes — worth it or not, you will know quickly
+PREVIEW: Here is exactly what happens on the call.
 
 ---
 
 Hi {{name}},
 
-You've had a week to think about this. I'm not going to pretend the emails were subtle. I laid out what I see in your assessment, what's possible, and why timing matters.
+I have sent you four emails over the past week. You have read about compounding AI systems, seen a real example, and heard the honest case for acting now. I respect your time, so let me be direct about what I am offering.
 
-You know your business better than anyone. You probably know whether there's something here worth exploring. So I'm not going to push. Instead, I'll tell you what actually happens if you book the call.
+One 30-minute conversation. No slides, no pitch deck, no "let me show you our packages." Here is exactly what happens.
 
-We spend 30 minutes together. I ask you about your team, your workflows, and where you're losing time or accuracy. You tell me what matters to you right now. We map one or two specific problems. By the end, you'll know exactly what I think could move the needle and what it would actually take to build it.
+I review your assessment results in detail before the call. We spend the first ten minutes on your current systems and where you see friction. I share what I see as your highest-leverage opportunity based on your score and your specific situation. You leave with a clear picture of one concrete next step, whether that involves us or not.
 
-No sales pitch. No pretending you need something you don't. Just one straight conversation.
+That is it. If the call surfaces something worth acting on, we talk about what that looks like. If it does not, you have lost thirty minutes and gained clarity. I am comfortable with either outcome.
 
-If it lands — if something we talk through is worth acting on — then we talk next steps. If it doesn't, you've still got clear thinking about what your options are. That's valuable either way.
+You can book directly here: [booking link]. Pick any time that works for you.
 
-You can book here: https://calendly.com/sagacitynetwork
+I hope to speak with you soon.
 
-If you'd rather just reply to this email and tell me what you're thinking, do that instead. I read my own inbox. Sometimes a conversation by email is clearer.
-
-Either way, I'm here.
-
+Warm regards,
 Denise
-Sagacity Network
 
-P.S. — I don't send these sequences to everyone who scores in the Advanced band. Most businesses aren't set up to actually move on something like this. You are. That's not small. That's worth listening to.
+PS — I built Sagacity with my husband after more than a decade managing capital programmes worth over two hundred million pounds. I tell you that not to impress you, but so you know this advice comes from someone who has sat where you sit, made the hard calls, and learned what actually moves the needle. I would genuinely like to hear about what you are building.

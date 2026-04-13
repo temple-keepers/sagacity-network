@@ -1,189 +1,188 @@
-# Sagacity Network — Post-Assessment Email Campaign: Setup Guide
+# Sagacity Network -- Email Campaign Setup Guide
 
-This is the live setup. Everything is wired through Supabase + Resend. No Make, no n8n.
+This guide walks through the complete setup: Resend for sending emails, Supabase for the webhook trigger, and n8n for the automation workflow. No code required -- just configuration steps.
 
-## How it works
+---
 
-1. Someone completes the Digital Readiness Assessment.
-2. Your assessment app inserts a row into the Supabase `leads` table.
-3. A database trigger creates 5 rows in the `email_queue` table — one per email — scheduled for now, +24h, +72h, +120h, +168h.
-4. A pg_cron job runs every minute. It calls a Supabase Edge Function (`process-assessment-queue`) which finds any due rows, renders the right template for the lead's band, and sends the email through Resend.
-5. The queue row is marked `sent` (with the Resend message ID) or `failed` (with the error). Failed rows retry up to 5 times.
+## Section 1: Resend setup
 
-That's the whole system. Four moving parts: `leads` table, `email_queue` table, `email_templates` table, one Edge Function.
+### Create your account
 
-## Database objects
+1. Go to resend.com and create an account.
+2. Once logged in, go to **Domains** in the left sidebar.
+3. Click **Add Domain** and enter `sagacitynetwork.net`.
+4. Resend will give you DNS records to add (SPF, DKIM, and optionally DMARC). Add these to your domain's DNS settings. Verification usually takes a few minutes but can take up to 48 hours.
+5. Once the domain shows as **Verified**, you are ready to send.
 
-All in the `public` schema of project `gnndbcmwjgoxofabukrp`.
+### Create audiences
 
-- `leads` — your existing table. New columns `email_sequence_started boolean` and `utm_source text` were added.
-- `email_templates` — 20 rows (4 bands × 5 emails). Subject, preview, body. Idempotent seed lives at `seed_email_templates.sql` if you ever need to re-run it.
-- `email_queue` — one row per scheduled send. `status` is `pending`, `sent`, `failed`, or `skipped`. Retries up to 5 times before marking failed.
-- `enqueue_assessment_sequence()` trigger function — fires `AFTER INSERT ON leads`. Skips leads where `email_sequence_started=true` or `band` is unknown.
-- `cron.job` `process-assessment-queue` — runs every minute, calls the Edge Function via `net.http_post`, passes the `x-cron-secret` header from Vault.
+You need 4 audiences to segment your leads by band.
 
-## Edge Function
+1. Go to **Audiences** in the left sidebar.
+2. Create 4 audiences with these exact names:
+   - At Risk
+   - Early Stage
+   - Developing
+   - Advanced
 
-`process-assessment-queue` is deployed and active. It is JWT-disabled and authenticated via the `x-cron-secret` header.
+### Create email templates
 
-It needs three secrets set in the Supabase Dashboard (Project Settings → Edge Functions → Manage secrets):
+You need 20 templates total: 5 emails for each of the 4 bands.
 
-| Secret | Value |
-|--------|-------|
-| `RESEND_API_KEY` | Your Resend API key (`re_...`). Get it from resend.com/api-keys. |
-| `CRON_SECRET` | The shared secret stored in Supabase Vault under `assessment_cron_secret`. |
-| `SUPABASE_URL` | Auto-injected — do not set manually. |
-| `SUPABASE_SERVICE_ROLE_KEY` | Auto-injected — do not set manually. |
+1. Go to **Emails** in the left sidebar, then **Templates**.
+2. Create a template for each email. Use a clear naming convention, for example: `at-risk-email-1`, `at-risk-email-2`, `early-stage-email-1`, and so on.
+3. Copy the subject line and body content from the corresponding `.md` file in this folder (e.g., `at-risk/email-1-score-delivery.md`).
+4. Use these template variables in the content where needed: `{{name}}`, `{{score}}`, `{{band}}`.
+5. Note down the **template ID** for each template. You will need these when configuring n8n.
 
-To pull the `CRON_SECRET` value, run this in the SQL Editor:
+### Sender settings
 
-```sql
-SELECT decrypted_secret FROM vault.decrypted_secrets WHERE name = 'assessment_cron_secret';
+For every template, use these sender details:
+
+- **From:** `Denise at Sagacity Network <denise@sagacitynetwork.net>`
+- **Reply-to:** `denise@sagacitynetwork.net`
+
+---
+
+## Section 2: Supabase webhook setup
+
+This webhook fires every time a new lead is inserted into your database, sending the lead data to n8n.
+
+### Create the webhook
+
+1. In the Supabase dashboard, go to **Database** in the left sidebar, then **Webhooks**.
+2. Click **Create a new webhook**.
+3. Give it a name like `new-lead-to-n8n`.
+4. Set the table to `leads`.
+5. Set the event to **INSERT** only.
+6. For the URL, enter your n8n webhook URL. It will look something like: `YOUR_N8N_OR_MAKE_WEBHOOK_URL`. You will get this URL from n8n after creating the webhook trigger node (see Section 3).
+7. Set the HTTP method to **POST**.
+
+### Webhook payload
+
+The webhook will send the full row from the `leads` table. The payload includes:
+
+- `id` -- unique identifier
+- `name` -- full name
+- `email` -- email address
+- `business` -- business name
+- `score` -- numerical score (0-100)
+- `band` -- one of: Digitally At Risk, Early Stage, Developing, Advanced
+- `q1` through `q8` -- individual category scores
+- `utm_source` -- traffic source
+- `email_sequence_started` -- boolean flag
+- `created_at` -- timestamp
+
+### Test the webhook
+
+1. Go to the **SQL Editor** in Supabase.
+2. Run a test insert:
+
+```
+INSERT INTO public.leads (name, email, business, score, band, q1,q2,q3,q4,q5,q6,q7,q8, utm_source)
+VALUES ('Test User', 'denise+test@sagacitynetwork.net', 'Test Co', 35, 'Early Stage', 4,2,3,2,2,4,3,2, 'test');
 ```
 
-Copy the value and paste it as the `CRON_SECRET` Edge Function secret. They must match — that's how the cron job authenticates to the function.
+3. Check your n8n webhook trigger to confirm it received the payload.
+4. Delete the test row when done:
 
-## Sender configuration
-
-All emails are sent from `Denise at Sagacity Network <denise@sagacitynetwork.net>` with reply-to `denise@sagacitynetwork.net`. Domain `sagacitynetwork.net` is verified in Resend (eu-west-1).
-
-## Required `leads` table shape
-
-The trigger expects these columns to exist:
-
-| Column | Type | Notes |
-|--------|------|-------|
-| `id` | uuid | Primary key |
-| `name` | text | First word is used as `{{name}}` |
-| `email` | text | Recipient |
-| `business` | text | Optional. Defaults to "your business" if empty |
-| `score` | int | 0–100 |
-| `band` | text | Must be one of: `Digitally At Risk`, `Early Stage`, `Developing`, `Advanced` |
-| `q1`–`q8` | int | Individual category scores |
-| `utm_source` | text | Optional |
-| `email_sequence_started` | bool | Defaults to `false`. Set to `true` after enqueue |
-| `created_at` | timestamptz | Defaults to `now()` |
-
-If the `band` value doesn't match exactly (case- and space-sensitive), no emails will be queued.
-
-## Template variables
-
-These are substituted in subject, preview, and body:
-
-`{{name}}` `{{first_name}}` `{{email}}` `{{business}}` `{{score}}` `{{band}}` `{{q1}}`–`{{q8}}` `{{utm_source}}` `{{weakest_category}}` `{{weakest_2}}` `{{weakest_3}}`
-
-The "weakest" variables are computed from the three lowest q-scores using these category names: q1=web presence, q2=lead follow-up, q3=cybersecurity, q4=automation, q5=data and reporting, q6=client experience, q7=online reputation, q8=AI readiness.
-
-## Testing
-
-After setting the two Edge Function secrets, insert one dummy lead per band:
-
-```sql
-INSERT INTO public.leads (name, email, business, score, band, q1,q2,q3,q4,q5,q6,q7,q8, utm_source) VALUES
-('Test AtRisk',  'denise+atrisk@sagacitynetwork.net',  'Test Co', 15, 'Digitally At Risk', 0,2,0,0,2,0,2,0, 'test'),
-('Test Early',   'denise+early@sagacitynetwork.net',   'Test Co', 38, 'Early Stage',       4,2,3,2,2,4,3,2, 'test'),
-('Test Develop', 'denise+dev@sagacitynetwork.net',     'Test Co', 62, 'Developing',        6,4,4,3,3,6,4,2, 'test'),
-('Test Advance', 'denise+adv@sagacitynetwork.net',     'Test Co', 85, 'Advanced',          6,6,6,4,4,6,6,3, 'test');
+```
+DELETE FROM leads WHERE utm_source = 'test';
 ```
 
-Within 60 seconds, four "Email 1" messages should land in your inbox (Resend delivers nearly instantly, the cron tick is the only delay).
+---
 
-To verify queue state:
+## Section 3: n8n automation workflow
 
-```sql
-SELECT l.name, q.email_number, q.status, q.scheduled_for, q.sent_at, q.last_error
-FROM email_queue q JOIN leads l ON l.id = q.lead_id
-WHERE l.utm_source = 'test'
-ORDER BY l.created_at, q.email_number;
+This is the core of the campaign. n8n receives the webhook, routes the lead to the right band, and sends 5 emails over 7 days.
+
+### Step 1: Create the webhook trigger node
+
+1. In n8n, create a new workflow.
+2. Add a **Webhook** node as the trigger.
+3. Set the HTTP method to **POST**.
+4. Copy the webhook URL that n8n generates and paste it into your Supabase webhook configuration (from Section 2).
+5. This node will receive the full lead payload every time someone completes the assessment.
+
+### Step 2: Add a Switch node to route by band
+
+1. After the webhook node, add a **Switch** node.
+2. Set it to route based on the `band` field from the webhook payload.
+3. Create 4 outputs:
+   - Output 1: band equals `Digitally At Risk`
+   - Output 2: band equals `Early Stage`
+   - Output 3: band equals `Developing`
+   - Output 4: band equals `Advanced`
+
+### Step 3: Build the email sequence for each branch
+
+Each of the 4 branches follows the same pattern. Repeat this for all 4:
+
+1. **Send Email 1** -- Add a Resend node immediately after the Switch output. This sends the score delivery email right away.
+2. **Wait 24 hours** -- Add a Wait node set to 24 hours.
+3. **Send Email 2** -- Add a Resend node for the biggest gap email.
+4. **Wait 48 hours** -- Add a Wait node set to 48 hours (this lands on day 3).
+5. **Send Email 3** -- Add a Resend node for the real example email.
+6. **Wait 48 hours** -- Add a Wait node set to 48 hours (this lands on day 5).
+7. **Send Email 4** -- Add a Resend node for the cost of waiting email.
+8. **Wait 48 hours** -- Add a Wait node set to 48 hours (this lands on day 7).
+9. **Send Email 5** -- Add a Resend node for the book the call email.
+
+### Step 4: Update Supabase after the sequence
+
+After Email 5 in each branch, add a **Supabase** node (or HTTP Request node) to update the lead record:
+
+- Set `email_sequence_started` to `true` for the lead's row in the `leads` table.
+- Match on the lead's `id` from the original webhook payload.
+
+### Configuring the Resend API nodes
+
+Before configuring the individual nodes, add your Resend API credentials to n8n:
+
+1. Go to **Settings** (gear icon) then **Credentials**.
+2. Click **Add Credential** and search for Resend (or use a generic HTTP Header Auth).
+3. Your Resend API key is found at resend.com/api-keys. It starts with `re_`.
+4. Save the credential.
+
+For each Resend node in the workflow, configure:
+
+- **From:** `Denise at Sagacity Network <denise@sagacitynetwork.net>`
+- **To:** use the `email` field from the webhook payload
+- **Subject:** use the subject from the corresponding email template, with variables replaced
+- **Template ID:** the Resend template ID for that specific email
+- **Template variables:** pass `name`, `score`, and `band` from the webhook payload
+
+### Alternative: Make.com
+
+If you prefer Make.com over n8n, the logic is identical:
+
+1. Use a **Webhook** module as the trigger.
+2. Use a **Router** module to split by band (4 branches).
+3. Use **HTTP** modules to call the Resend API for each email.
+4. Use **Sleep** modules for the delays between emails.
+5. Use an **HTTP** module to update Supabase at the end.
+
+The Resend API endpoint for sending is `POST https://api.resend.com/emails` with your API key in the `Authorization: Bearer re_...` header.
+
+---
+
+## Section 4: Testing checklist
+
+Work through these in order. Do not move on until each step passes.
+
+1. Insert a test row in Supabase using the SQL Editor (use `utm_source = 'test'` so you can easily clean up).
+2. Confirm the webhook fires by checking the n8n webhook trigger node for the received payload.
+3. Confirm Email 1 arrives in your inbox within 30 seconds of the test insert.
+4. Confirm the sender shows as "Denise at Sagacity Network" (not a generic address).
+5. Confirm `{{name}}` renders correctly in the email (shows the actual name, not the placeholder text).
+6. Confirm `{{score}}` and `{{band}}` render correctly in the email.
+7. Manually trigger Email 2 in n8n (skip the wait node) to verify it sends correctly without waiting 24 hours.
+8. Confirm `email_sequence_started` is set to `true` in the Supabase `leads` table after the sequence completes.
+9. Insert the same test email address again and confirm it does not re-trigger the sequence (no duplicate sends).
+10. Test all 4 bands by inserting one test lead per band (scores of 15, 38, 62, and 85) and confirming each receives the correct Email 1 for their band.
+
+After testing, clean up:
+
 ```
-
-To clean up after testing:
-
-```sql
-DELETE FROM leads WHERE utm_source = 'test';   -- cascade deletes the queue rows
+DELETE FROM leads WHERE utm_source = 'test';
 ```
-
-To accelerate the full sequence for testing (so you don't wait 7 days), temporarily move all your test queue rows into the past:
-
-```sql
-UPDATE email_queue SET scheduled_for = now()
-WHERE lead_id IN (SELECT id FROM leads WHERE utm_source = 'test') AND status = 'pending';
-```
-
-The next cron tick will fire all of them.
-
-## Operations
-
-**Manually trigger a tick** (useful for debugging, one-off sends):
-
-```sql
-SELECT net.http_post(
-  url := 'https://gnndbcmwjgoxofabukrp.supabase.co/functions/v1/process-assessment-queue',
-  headers := jsonb_build_object(
-    'Content-Type', 'application/json',
-    'x-cron-secret', (SELECT decrypted_secret FROM vault.decrypted_secrets WHERE name = 'assessment_cron_secret')
-  ),
-  body := '{}'::jsonb
-);
-```
-
-**Pause the entire sequence** for everyone:
-
-```sql
-SELECT cron.unschedule('process-assessment-queue');
-```
-
-**Resume:**
-
-```sql
-SELECT cron.schedule('process-assessment-queue', '* * * * *', $cron$
-  SELECT net.http_post(
-    url := 'https://gnndbcmwjgoxofabukrp.supabase.co/functions/v1/process-assessment-queue',
-    headers := jsonb_build_object(
-      'Content-Type', 'application/json',
-      'x-cron-secret', (SELECT decrypted_secret FROM vault.decrypted_secrets WHERE name = 'assessment_cron_secret')
-    ),
-    body := '{}'::jsonb,
-    timeout_milliseconds := 60000
-  );
-$cron$);
-```
-
-**Stop one specific lead's sequence** (e.g. they unsubscribed, or replied):
-
-```sql
-UPDATE email_queue SET status = 'skipped'
-WHERE lead_id = '<lead_id>' AND status = 'pending';
-```
-
-**Edit an email** — just update the row in `email_templates`. The next send picks up the change automatically:
-
-```sql
-UPDATE email_templates SET body = $body$...new content...$body$
-WHERE band = 'Early Stage' AND email_number = 3;
-```
-
-**Inspect failures:**
-
-```sql
-SELECT l.email, q.email_number, q.attempts, q.last_error
-FROM email_queue q JOIN leads l ON l.id = q.lead_id
-WHERE q.status IN ('failed','pending') AND q.attempts > 0
-ORDER BY q.scheduled_for DESC LIMIT 50;
-```
-
-**Edge Function logs:** Supabase Dashboard → Edge Functions → process-assessment-queue → Logs. Or use the `get_logs` MCP tool with `service: "edge-function"`.
-
-## Deliverability
-
-Domain `sagacitynetwork.net` should already be passing SPF, DKIM, and DMARC in Resend. If emails land in spam:
-
-1. Check resend.com/domains for any failed records.
-2. Avoid sending many test emails to the same address in a short window.
-3. Send a second test to a different inbox (Outlook, Yahoo) to confirm cross-provider delivery.
-
-## What to do if you change the email content
-
-The `.md` files in `at-risk/`, `early-stage/`, `developing/`, `advanced/` are the source of truth. After editing them, regenerate `seed_email_templates.sql` and re-run it against Supabase — the `ON CONFLICT DO UPDATE` clause makes it idempotent.
-
-Or just edit `email_templates` directly with SQL if it's a one-line change.

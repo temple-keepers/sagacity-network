@@ -1,20 +1,24 @@
-SUBJECT: What changed when they got online
-PREVIEW: A real story about visibility, enquiries, and six weeks
+SUBJECT: How a maintenance company went from invisible to fully booked
+PREVIEW: A real example of what happens when a service business finally shows up online
 
 ---
 
 Hi {{name}},
 
-A bookkeeper came to us last year. Had been running her business for eight years, built it entirely on referrals, and was tired. Not of the work — of the ceiling it put on her growth. She had all the clients she could manage, but only because she'd personally met them. Online? Nothing. Website? No. When I asked her how many enquiries she was missing, she said: "I don't know. I don't hear about them."
+I want to tell you about a property maintenance business in the Caribbean that came to us last year. The owner had been running his operation for over six years, built entirely on word of mouth and repeat clients. Good reputation, solid work, but no website, no Google presence, and no way for new clients to find him online.
 
-We built her a simple website. Home page, about her, services, testimonials from existing clients, and a contact form. We set up Google Business Profile so when someone searches her name or "bookkeeper [her area]", she shows up. We put in some basic automation so enquiries got a response within an hour.
+His diary had gaps. Some weeks were full, others were quiet, and he had no control over which it would be. When he did get a referral, the person would search his business name, find nothing, and sometimes just move on. He knew it was happening but did not know how to fix it without spending a fortune.
 
-Six weeks later, she was getting enquiries from people she'd never met. People who'd Googled "bookkeeper near me" and found her. People who'd had her referred but wanted to check she was legit first. That first month alone, three new clients came in through the website. Small jobs, but real money. She hadn't spent weeks on it. The website was basic. But it worked because it was there.
+We built him a clean, straightforward website. Five pages. Clear services, a few photos of completed work, a simple contact form, and proper local search optimisation so he would appear when people nearby searched for what he does. The whole thing was live within three weeks.
 
-Twelve months on, that basic website brings in about half her new work. The other half is still referrals. She's doubled her revenue, hired someone part-time, and cut her hours. Not because the website was fancy. Because it existed.
+Within the first month, he was getting three to four new enquiries a week through the site. Not tyre-kickers — people who had already read what he offered and were ready to talk. Two months in, he told me he had stopped worrying about quiet weeks.
 
-Your business is sitting on the same opportunity. People want to hire you. They just need to be able to find you first.
+Nothing about his actual service changed. He was always good at what he did. The only difference was that people could finally find him.
 
-Book a call and tell us what you're working with: https://calendly.com/sagacitynetwork
+That is the kind of shift I am talking about. Not a miracle. Just visibility where it counts.
+
+If you want to explore what this would look like for your business, I would be glad to talk it through.
+
+Book a call: https://sagacitynetwork.co.uk/assessment-call
 
 Denise

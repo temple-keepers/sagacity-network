@@ -1,21 +1,20 @@
-SUBJECT: {{name}}, your assessment score: {{score}}/100 (Advanced)
-PREVIEW: You're in the top tier. Here's what that means and where to look next.
+SUBJECT: {{name}}, your Digital Readiness score is {{score}}/100
+PREVIEW: You're in the Advanced band. Here's what that actually means.
 
 ---
 
 Hi {{name}},
 
-Your assessment is complete. Score: {{score}}/100. That puts you in the Advanced band.
+Your Digital Readiness score is {{score}} out of 100. That places you in the {{band}} band, which means you're genuinely ahead of most businesses I assess.
 
-What does Advanced mean? You've got strong fundamentals across web presence, client experience, and cybersecurity basics. You're not scrambling to fix broken things. Your real opportunity now is compounding — building systems and tooling that create structural advantage, so the more you run your business, the faster it gets. That's where the gap between you and competitors either closes or widens.
+This is not a participation trophy. Your foundations are solid across strategy, systems, and digital presence. The question now is how you compound that advantage before the gap between you and your closest competitors narrows.
 
-Your three strongest areas are {{q6}}, {{q2}}, and {{q7}}. Your three lowest-scoring categories are automation refinement, AI readiness, and data-driven reporting. These aren't crisis points. They're where you have the most room to move.
+Based on your responses, I see three areas where you can pull further ahead: AI integration into your daily workflows, building proprietary systems that competitors cannot replicate, and using predictive analytics to make decisions before the data becomes obvious to everyone else.
 
-Here's what's coming. Over the next week, I'm sending you four more emails. The first goes deep on AI readiness and why it matters to someone like you, right now. The second shows a real example of what building this looks like. The third walks through the actual cost of not moving. The last is a straightforward invitation to talk.
+Over the next seven days, I am going to send you four more emails. Each one goes deeper into one of these areas. I will share how other advanced businesses are compounding their lead, a real story about AI-driven workflow transformation, and an honest look at what waiting costs.
 
-No pressure on any of this. If nothing lands, that's fine. But if one conversation could surface something worth acting on, I'd rather you had the option.
+If you already know you want to talk about this, you can book a 30-minute call with me here: [booking link]. No pitch, just a conversation about where your specific advantage lies.
 
-You can book a free 30-minute call anytime: https://calendly.com/sagacitynetwork
-
-Talk soon,
+Speak soon,
 Denise
+Co-founder, Sagacity Network

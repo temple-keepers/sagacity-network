@@ -1,26 +1,26 @@
-SUBJECT: How {{business}} Could Save 8 Hours a Week (Real Story)
-PREVIEW: This is how a business like yours fixed its biggest leak.
+SUBJECT: She got 8 hours back every week
+PREVIEW: A small agency owner automated two workflows and changed her entire capacity.
 
 ---
 
 Hi {{name}},
 
-I want to tell you a story. It's about a recruitment consultancy I worked with last year.
+I want to tell you about someone I worked with last year. She ran a small creative agency — herself plus two contractors. Good clients, solid reputation, steady revenue. But she was drowning in administration.
 
-They'd been operating for eight years. They had a solid client base, good margins, and a team of four. But every Monday morning, one of them would spend three hours pulling candidate data from their ATS, cross-referencing it with their email archive, updating a spreadsheet, and then sending status reports to clients manually. Every Friday, they'd do it again to capture the week's placements. Wednesday afternoon involved another data pull for internal forecasting. That was eight hours a week—about 400 hours a year—spent shuffling the same data through different systems.
+Every Friday afternoon she sat down to invoice that week's completed projects. She pulled hours from her time tracker, cross-referenced them against each client's rate card in a spreadsheet, created invoices in her accounting tool, attached the right purchase order numbers, and sent them out one by one. That process alone took nearly three hours. Then on Mondays, she manually onboarded any new clients: creating folders, setting up project templates, sending welcome emails, sharing access credentials. Another two hours gone before the week even started.
 
-They came to me frustrated but resigned. They thought that's just what staffing looked like.
+She told me she had accepted this as the cost of running a small business. She assumed automation was something only larger companies could afford.
 
-We spent 45 minutes mapping the workflow. Turned out their ATS had an API. Their CRM could connect to it. And their client portal had a webhook. We built a simple automation that pulled placement data from the ATS every Friday morning, updated their CRM, and pushed a pre-formatted report to each client's portal within minutes. No human intervention.
+We mapped both workflows in a single session. Her invoicing tool already had an API. Her time tracker could push data automatically. Her onboarding steps followed the same sequence every time. We connected the systems she already paid for, added a few simple triggers, and within two weeks both processes ran without her touching them.
 
-The result: the team member reclaimed eight hours a week. The clients got faster reporting. The internal forecast was updated in real time instead of every Wednesday. They reinvested those hours into business development—and within three months they'd landed two significant new contracts worth £200k.
+She reclaimed eight hours every week. She used that time to take on a new retained client — revenue she had previously turned down because she did not have capacity.
 
-The automation cost them £1,200 to build. It paid for itself in ten days.
+The automation cost less than a single month of the revenue it freed up.
 
-Your business probably has something similar sitting right in front of you. A repeatable process that feels like it just has to be manual because that's how you've always done it. I'd like to help you find it.
+Your business almost certainly has a version of this story waiting to happen. A process you repeat, a sequence you follow, a task that feels permanent but is actually just unfinished infrastructure.
 
-Book a call and let's talk about what's possible: https://calendly.com/sagacitynetwork
+I would like to help you find it: https://calendly.com/sagacitynetwork
 
-Talk soon,
+Warm regards,
 
 Denise

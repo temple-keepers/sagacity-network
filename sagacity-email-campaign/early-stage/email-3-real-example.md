@@ -1,25 +1,23 @@
-SUBJECT: How a marketing agency stopped losing leads
-PREVIEW: Coffee talk: what changed when they automated follow-up
+SUBJECT: She was losing half her leads and didn't know it
+PREVIEW: A consultant's enquiry form was working fine. Her follow-up wasn't.
 
 ---
 
 Hi {{name}},
 
-I want to tell you about a business I worked with last year. Not to brag—just to show you what's possible.
+I want to tell you about someone I worked with last year. She's a management consultant — experienced, excellent at what she does, with a steady stream of traffic to her website. Her enquiry form was pulling in eight to ten submissions a week. Solid numbers by any measure.
 
-They ran a small digital marketing agency. Three people. Good work. But they were watching leads evaporate. Someone would fill in their contact form at 10 AM. By the time anyone noticed and called back at 4 PM, the prospect had already got quotes from two other agencies. Sound familiar?
+The problem was what happened after someone hit "submit." The form sent her a notification email, which she'd get to when she could — usually the next morning, sometimes the day after that. She'd write a personal reply, attach her services overview, and suggest a time to talk. By her own count, she was converting about two of those ten enquiries into paying clients each month.
 
-We had a conversation over coffee (well, a video call—pandemic habits die hard). They showed me their process. There wasn't one. Enquiries landed in email. If the right person was paying attention, they called back. If not, nobody did. Sometimes a lead would sit there for three days.
+We built a three-step automated sequence together. The moment someone submitted the form, they received an immediate confirmation with a short overview of her process and what to expect. Twelve hours later, a second email arrived with a relevant case study. Twenty-four hours after that, a direct invitation to book a discovery call, with her calendar link embedded. She still followed up personally — but the sequence held the lead's attention during those critical first hours.
 
-So we built them a system. When a form came in, an automated email went straight back saying "Thanks, we're looking at this now, you'll hear from us in the next hour." A Slack notification hit their team. A task appeared in their project tracker. And here's the thing: they added a rule. If an enquiry came in before 5 PM, it got a phone call that same day. If it came in after 5 PM, first thing next morning.
+Within two months her conversion rate had doubled. Same traffic, same form, same services. The only thing that changed was the speed and consistency of what happened after someone raised their hand.
 
-Three months later, their follow-up was happening within 30 minutes. Their close rate went from 8% to 17%. That's not a fluke. That's process.
+That gap between enquiry and response is where most Early Stage businesses lose the most ground. It's also one of the simplest things to fix.
 
-They didn't spend money on fancy marketing tools. They didn't hire anyone. They just fixed the thing that was already broken.
+If this sounds familiar, I'd be glad to walk you through how it could work for you.
 
-Book a call and tell us what you're working with. We'll listen to what's happening now and show you what we'd do.
+[Book a 30-minute call]
 
-Here's the link: https://calendly.com/sagacitynetwork
-
-All the best,
 Denise
+Co-founder, Sagacity Network

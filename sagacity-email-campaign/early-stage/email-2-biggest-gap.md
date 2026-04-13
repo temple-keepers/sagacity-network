@@ -1,23 +1,23 @@
-SUBJECT: Why you're losing leads in the first hour
-PREVIEW: It's not about luck. It's about response time.
+SUBJECT: The leads you're losing before you know they exist
+PREVIEW: Most businesses at your stage respond in 24-48 hours. By then it's already too late.
 
 ---
 
 Hi {{name}},
 
-Remember your score yesterday? {{score}} out of 100, Early Stage band. I said your three biggest gaps were lead follow-up, automation, and data.
+I want to talk about the single biggest gap I see in businesses at the {{band}} stage: lead follow-up speed.
 
-Today I want to talk about the first one, because it's the one that costs you the most right now.
+Here's something most people don't realise. Research from Lead Connect found that 78% of customers buy from the first business that responds to their enquiry. Not the best business. Not the cheapest. The first one to reply.
 
-Lead follow-up. You're not responding fast enough, or consistently enough, to the enquiries that come in. Here's what that means in real money: if you're getting 20 enquiries a month and you're only closing 10% of them, that's two clients a month. But if your follow-up is slow—if they don't hear back within an hour—they don't wait around. They call a competitor. The statistic is clear: every lead that doesn't hear back within 60 minutes is statistically more likely to go somewhere else.
+If your average response time to a new enquiry is somewhere around 24 hours — and for most small businesses it's closer to 48 — you're handing those leads to whoever got there before you did. Every single day. You never see them in your inbox as "lost" because they never came back to tell you they went elsewhere.
 
-So what does slow follow-up actually cost you? Let's say your average client is worth £5,000 in revenue. Right now you're losing the enquiries that slip through the cracks because nobody's following up. If you had a process—if someone responded within an hour, every time—you could easily double your conversion rate. That's ten clients a month instead of two. That's £100,000 a year in revenue that's already walking away.
+This is the invisible cost of operating without automation at the front of your pipeline. It's not that you're doing something wrong. It's that the window between someone expressing interest and choosing a provider has shrunk to minutes, and manual processes can't keep pace with that.
 
-What fixing it looks like: it's not complex. It's a system. An automated acknowledgement email that goes out the moment someone fills in your contact form. A reminder in someone's inbox to make a phone call within the hour. A log of who's called back. A checklist of what needs to happen next. That's it. Most businesses don't have this because they think it's hard. It's not. It's just consistent.
+The fix doesn't require a massive overhaul. A well-structured automated response that acknowledges the enquiry, sets expectations, and offers a clear next step can close that gap from days to seconds. It's one of the highest-return changes a business at your stage can make.
 
-Want us to take a look at this together? I can spend 30 minutes on a call with you, you can show us what's happening now, and we'll tell you exactly what would change if you fixed this one thing.
+I've helped businesses set this up in a single session. If you want to see what it looks like for your situation, let's talk.
 
-Book a free call here: https://calendly.com/sagacitynetwork
+[Book a 30-minute call]
 
-All the best,
 Denise
+Co-founder, Sagacity Network
