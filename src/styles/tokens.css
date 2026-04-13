@@ -1,28 +1,41 @@
 /* Light (default) */
 :root {
-  --color-bg:      #F7F5F2;
-  --color-ink:     #1C1C1C;
-  --color-accent:  #C8532A;
-  --color-muted:   #6B6B6B;
+  --color-bg:      #FAFAF8;
+  --color-ink:     #1A1128;
+  --color-accent:  #7B3FA0;
+  --color-gold:    #C9A84C;
+  --color-muted:   #6E6479;
   --color-surface: #FFFFFF;
-  --color-border:  #E5E2DD;
-  --color-footer:  #1C1C1C;
+  --color-border:  #E8E4EE;
+  --color-footer:  #110D1A;
+
+  /* Gradients */
+  --gradient-purple: linear-gradient(135deg, #7B3FA0 0%, #5B2D8E 50%, #3D1B6E 100%);
+  --gradient-gold:   linear-gradient(135deg, #D4B85A 0%, #C9A84C 50%, #A88B3D 100%);
+  --gradient-hero:   linear-gradient(180deg, #0D0B14 0%, #1A1230 40%, #2D1B4E 100%);
+  --gradient-glow:   radial-gradient(circle, rgba(123, 63, 160, 0.15) 0%, transparent 70%);
 
   --font-display:  "Bricolage Grotesque", sans-serif;
   --font-body:     "DM Sans", sans-serif;
 
-  --radius-sm:  6px;
-  --radius-md:  10px;
-  --radius-lg:  16px;
+  --radius-sm:  8px;
+  --radius-md:  14px;
+  --radius-lg:  20px;
 }
 
 /* Dark mode */
 :root.dark {
-  --color-bg:      #111111;
-  --color-ink:     #F0EDE8;
-  --color-accent:  #D4693A;
-  --color-muted:   #9A9590;
-  --color-surface: #1A1A1A;
-  --color-border:  #2A2725;
-  --color-footer:  #0A0A0A;
+  --color-bg:      #0D0B14;
+  --color-ink:     #F0ECF4;
+  --color-accent:  #A668D0;
+  --color-gold:    #D4B85A;
+  --color-muted:   #9A90A8;
+  --color-surface: #16122A;
+  --color-border:  #2A2440;
+  --color-footer:  #080612;
+
+  --gradient-purple: linear-gradient(135deg, #A668D0 0%, #7B3FA0 50%, #5B2D8E 100%);
+  --gradient-gold:   linear-gradient(135deg, #E0C868 0%, #D4B85A 50%, #C9A84C 100%);
+  --gradient-hero:   linear-gradient(180deg, #080612 0%, #0D0B14 40%, #1A1230 100%);
+  --gradient-glow:   radial-gradient(circle, rgba(166, 104, 208, 0.12) 0%, transparent 70%);
 }

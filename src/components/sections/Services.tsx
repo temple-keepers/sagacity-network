@@ -2,108 +2,141 @@
 
 import Link from "next/link";
 import ScrollReveal from "@/components/ui/ScrollReveal";
+import { Code2, BarChart3, Bot, ShieldCheck, GraduationCap } from "lucide-react";
 
 const SERVICES = [
   {
-    num: "01",
+    icon: Code2,
     title: "Web & App Development",
-    body: "Full-stack platforms and mobile-ready web apps built to production standard. From a five-page site to a full SaaS platform.",
+    body: "Full-stack platforms and mobile-ready web apps built to production standard.",
     tags: ["Next.js", "React", "TypeScript", "Supabase"],
+    gradient: "from-purple-500/10 to-blue-500/10",
   },
   {
-    num: "02",
+    icon: BarChart3,
     title: "Data & Programme Intelligence",
-    body: "Enterprise-grade reporting, Power BI dashboards, and capital programme tooling that makes your data visible and actionable.",
-    tags: ["Power BI", "Dashboards", "KPI Tracking", "Reporting"],
+    body: "Power BI dashboards and capital programme tooling that makes your data actionable.",
+    tags: ["Power BI", "Dashboards", "KPI Tracking"],
+    gradient: "from-amber-500/10 to-orange-500/10",
   },
   {
-    num: "03",
+    icon: Bot,
     title: "Business Automation & AI",
-    body: "WhatsApp bots, workflow automation, document generation, and Claude-powered tools that give your team hours back every week.",
+    body: "WhatsApp bots, workflow automation, and Claude-powered tools that save hours weekly.",
     tags: ["Claude API", "n8n", "Make", "WhatsApp"],
+    gradient: "from-emerald-500/10 to-teal-500/10",
   },
   {
-    num: "04",
+    icon: ShieldCheck,
     title: "Cybersecurity",
-    body: "Security audits, monthly monitoring, penetration testing, and staff training. Delivered by a certified specialist.",
-    tags: ["Audits", "Pen Testing", "Monitoring", "Training"],
+    body: "Security audits, penetration testing, monitoring, and staff training. Certified.",
+    tags: ["Audits", "Pen Testing", "Monitoring"],
+    gradient: "from-red-500/10 to-rose-500/10",
   },
   {
-    num: "05",
+    icon: GraduationCap,
     title: "Training & Workshops",
-    body: "Live workshops, cohort programmes, and on-demand courses. AI, cybersecurity, Power BI, and digital foundations.",
-    tags: ["AI Workshops", "Corporate", "CPD Eligible"],
+    body: "Live workshops, cohort programmes, and on-demand courses in AI, security, and data.",
+    tags: ["AI Workshops", "Corporate", "CPD"],
+    gradient: "from-violet-500/10 to-purple-500/10",
   },
 ];
 
 export default function Services() {
   return (
-    <section className="py-20 md:py-28" style={{ background: "var(--color-bg)" }}>
+    <section
+      className="relative py-24 md:py-32 section-glow-top"
+      style={{ background: "var(--color-bg)" }}
+    >
       <div className="max-w-site section-px">
         <ScrollReveal>
-          <h2
-            className="text-[28px] md:text-[36px] font-[800] tracking-[-0.02em] mb-12"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            What we build
-          </h2>
+          <div className="mb-14">
+            <span
+              className="text-[12px] font-[500] tracking-[0.12em] uppercase mb-4 block"
+              style={{ color: "var(--color-accent)" }}
+            >
+              Services
+            </span>
+            <h2
+              className="text-[32px] md:text-[42px] font-[800] tracking-[-0.03em] mb-4"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              Everything you need.
+              <br />
+              <span className="text-gradient-gold" style={{ WebkitTextFillColor: "transparent" }}>
+                One studio.
+              </span>
+            </h2>
+            <p
+              className="text-[16px] font-[300] leading-[1.7] max-w-[480px]"
+              style={{ color: "var(--color-muted)" }}
+            >
+              Five disciplines under one roof — so your product, data, security,
+              and team all move together.
+            </p>
+          </div>
         </ScrollReveal>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {SERVICES.map((s, i) => (
-            <ScrollReveal key={s.num} delay={i * 80}><Link
-              key={s.num}
-              href="/services"
-              className={`group block p-7 card-hover ${
-                i === SERVICES.length - 1 && SERVICES.length % 2 !== 0
-                  ? "md:col-span-2 md:max-w-[calc(50%-8px)] md:mx-auto"
-                  : ""
-              }`}
-              style={{
-                background: "var(--color-surface)",
-                border: "1px solid var(--color-border)",
-                borderRadius: "var(--radius-md)",
-                borderLeft: "1px solid var(--color-border)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderLeft = "3px solid var(--color-accent)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderLeft = "1px solid var(--color-border)";
-              }}
-            >
-              <div
-                className="text-[11px] font-[800] tracking-[0.12em] mb-3"
-                style={{ fontFamily: "var(--font-display)", color: "var(--color-accent)" }}
-              >
-                {s.num}
-              </div>
-              <h3
-                className="text-[20px] font-[600] mb-2"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                {s.title}
-              </h3>
-              <p className="text-[15px] font-[400] leading-[1.65] mb-4" style={{ color: "var(--color-muted)" }}>
-                {s.body}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {s.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="px-2.5 py-1 text-[11px]"
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {SERVICES.map((s, i) => {
+            const Icon = s.icon;
+            return (
+              <ScrollReveal key={s.title} delay={i * 80}>
+                <Link
+                  href="/services"
+                  className={`group block p-7 md:p-8 card-hover gradient-border ${
+                    i === SERVICES.length - 1 && SERVICES.length % 2 !== 0
+                      ? "md:col-span-2 md:max-w-[calc(50%-10px)] md:mx-auto"
+                      : ""
+                  }`}
+                  style={{
+                    background: "var(--color-surface)",
+                    borderRadius: "var(--radius-md)",
+                  }}
+                >
+                  {/* Icon */}
+                  <div
+                    className="w-11 h-11 flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110"
                     style={{
-                      background: "var(--color-bg)",
-                      color: "var(--color-ink)",
+                      background: "rgba(123, 63, 160, 0.08)",
                       borderRadius: "var(--radius-sm)",
+                      color: "var(--color-accent)",
                     }}
                   >
-                    {t}
-                  </span>
-                ))}
-              </div>
-            </Link></ScrollReveal>
-          ))}
+                    <Icon size={22} strokeWidth={1.8} />
+                  </div>
+
+                  <h3
+                    className="text-[20px] font-[700] mb-2 transition-colors duration-300 group-hover:text-[var(--color-accent)]"
+                    style={{ fontFamily: "var(--font-display)" }}
+                  >
+                    {s.title}
+                  </h3>
+                  <p
+                    className="text-[14px] font-[400] leading-[1.7] mb-5"
+                    style={{ color: "var(--color-muted)" }}
+                  >
+                    {s.body}
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    {s.tags.map((t) => (
+                      <span key={t} className="tag-purple px-2.5 py-1 text-[11px]" style={{ borderRadius: "var(--radius-sm)" }}>
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+
+                  {/* Hover arrow */}
+                  <div
+                    className="mt-5 text-[13px] font-[500] flex items-center gap-1.5 opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0"
+                    style={{ color: "var(--color-accent)" }}
+                  >
+                    Learn more <span className="text-[16px]">&rarr;</span>
+                  </div>
+                </Link>
+              </ScrollReveal>
+            );
+          })}
         </div>
       </div>
     </section>

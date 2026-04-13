@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 const COLS = {
   Services: [
@@ -11,7 +12,6 @@ const COLS = {
   Platforms: [
     { href: "/work", label: "Temple Keepers" },
     { href: "/work", label: "Rhythm & Roots" },
-    { href: "/work", label: "Crack Solve" },
     { href: "/work", label: "Totenga" },
   ],
   Company: [
@@ -24,18 +24,42 @@ const COLS = {
 
 export default function Footer() {
   return (
-    <footer style={{ background: "#1C1C1C", color: "#FFFFFF" }}>
+    <footer style={{ background: "var(--color-footer)", color: "#F0ECF4" }}>
+      {/* Top gradient line */}
+      <div
+        className="h-px"
+        style={{
+          background: "linear-gradient(90deg, transparent, rgba(123, 63, 160, 0.4), rgba(201, 168, 76, 0.3), transparent)",
+        }}
+      />
+
       <div className="max-w-site section-px pt-16 pb-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
           {/* Brand */}
           <div>
-            <div
-              className="text-[20px] font-[800] tracking-[-0.02em] mb-3"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              <span style={{ color: "var(--color-accent)" }}>●</span> SAGACITY
-            </div>
-            <p className="text-[13px] leading-[1.7] opacity-50 max-w-[240px]">
+            <Link href="/" className="inline-flex items-center gap-2.5 mb-4">
+              <Image
+                src="/logo-tree.png"
+                alt="Sagacity Network"
+                width={36}
+                height={36}
+              />
+              <div className="flex flex-col leading-none">
+                <span
+                  className="text-[17px] font-[800] tracking-[-0.01em]"
+                  style={{ fontFamily: "var(--font-display)" }}
+                >
+                  SAGACITY
+                </span>
+                <span
+                  className="text-[8px] font-[300] tracking-[0.28em] opacity-50"
+                  style={{ fontFamily: "var(--font-body)" }}
+                >
+                  NETWORK
+                </span>
+              </div>
+            </Link>
+            <p className="text-[13px] leading-[1.7] opacity-40 max-w-[240px]">
               UK digital product studio. Enterprise background, startup speed.
             </p>
           </div>
@@ -43,9 +67,7 @@ export default function Footer() {
           {/* Link columns */}
           {Object.entries(COLS).map(([title, links]) => (
             <div key={title}>
-              <h4
-                className="text-[11px] font-medium tracking-[0.14em] uppercase mb-4 opacity-40"
-              >
+              <h4 className="text-[11px] font-[500] tracking-[0.14em] uppercase mb-4 opacity-35">
                 {title}
               </h4>
               <ul className="flex flex-col gap-2.5">
@@ -53,7 +75,7 @@ export default function Footer() {
                   <li key={l.label}>
                     <Link
                       href={l.href}
-                      className="text-[13px] opacity-60 hover:opacity-100 transition-opacity duration-200"
+                      className="text-[13px] opacity-50 hover:opacity-100 transition-opacity duration-200"
                     >
                       {l.label}
                     </Link>
@@ -66,15 +88,15 @@ export default function Footer() {
 
         <div
           className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3"
-          style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}
+          style={{ borderTop: "1px solid rgba(240, 236, 244, 0.08)" }}
         >
-          <p className="text-[11px] opacity-40">
+          <p className="text-[11px] opacity-35">
             &copy;&nbsp;{new Date().getFullYear()}&nbsp;Sagacity Network Ltd.
             Registered in England &amp; Wales.
           </p>
           <a
             href="mailto:hello@sagacitynetwork.net"
-            className="text-[12px] opacity-50 hover:opacity-100 transition-opacity"
+            className="text-[12px] opacity-40 hover:opacity-100 transition-opacity"
           >
             hello@sagacitynetwork.net
           </a>
