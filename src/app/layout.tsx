@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
+import { Fraunces, DM_Sans } from "next/font/google";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
 import ThemeScript from "@/components/ui/ThemeScript";
 import "./globals.css";
 
-const bricolage = Bricolage_Grotesque({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  weight: ["400", "600", "800"],
+  weight: ["400", "500", "600", "700", "800"],
+  style: ["normal", "italic"],
   variable: "--font-display",
   display: "swap",
+  axes: ["SOFT", "WONK", "opsz"],
 });
 
 const dmSans = DM_Sans({
@@ -34,6 +36,27 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Sagacity Network",
+  legalName: "Sagacity Network Ltd",
+  url: "https://sagacitynetwork.net",
+  description:
+    "UK-registered digital product studio. Web development, data intelligence, automation, cybersecurity, and training.",
+  foundingDate: "2023",
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "GB",
+  },
+  sameAs: [],
+  contactPoint: {
+    "@type": "ContactPoint",
+    email: "denise@sagacitynetwork.net",
+    contactType: "customer service",
+  },
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -42,11 +65,15 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${bricolage.variable} ${dmSans.variable}`}
+      className={`${fraunces.variable} ${dmSans.variable}`}
       suppressHydrationWarning
     >
       <head>
         <ThemeScript />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body>
         <Nav />
