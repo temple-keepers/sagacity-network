@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import ScrollReveal from "@/components/ui/ScrollReveal";
 import { CheckCircle2, ArrowRight, Globe, Shield, Zap, Headphones } from "lucide-react";
@@ -8,6 +9,7 @@ const PACKAGES = [
   {
     name: "Starter",
     price: "$350",
+    checkoutId: "starter",
     description: "Perfect for small businesses going online for the first time.",
     features: [
       "5-page responsive website",
@@ -22,6 +24,7 @@ const PACKAGES = [
   {
     name: "Professional",
     price: "$850",
+    checkoutId: "professional",
     description: "For established businesses ready to compete online.",
     features: [
       "Up to 12 custom pages",
@@ -38,6 +41,7 @@ const PACKAGES = [
   {
     name: "Enterprise",
     price: "Custom",
+    checkoutId: null,
     description: "Full-scale digital transformation for larger organisations.",
     features: [
       "Custom web application",
@@ -77,6 +81,29 @@ const WHY_US = [
 ];
 
 export default function GuyanaPage() {
+  const [loading, setLoading] = useState<string | null>(null);
+
+  async function handleCheckout(packageId: string) {
+    setLoading(packageId);
+    try {
+      const res = await fetch("/api/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ packageId }),
+      });
+      const data = await res.json();
+      if (data.url) {
+        window.location.href = data.url;
+      } else {
+        alert(data.error || "Something went wrong. Please try again.");
+        setLoading(null);
+      }
+    } catch {
+      alert("Something went wrong. Please try again.");
+      setLoading(null);
+    }
+  }
+
   return (
     <div className="pt-[120px] pb-20">
       {/* Hero */}
@@ -278,19 +305,34 @@ export default function GuyanaPage() {
                     ))}
                   </ul>
 
-                  <Link
-                    href="/contact"
-                    className="block text-center px-6 py-3.5 text-[14px] font-[500] transition-all duration-300 hover:-translate-y-0.5"
-                    style={{
-                      background: pkg.highlighted
-                        ? "linear-gradient(135deg, #D4B85A 0%, #C9A84C 100%)"
-                        : "var(--gradient-purple)",
-                      color: pkg.highlighted ? "#1A1128" : "#FFFFFF",
-                      borderRadius: "var(--radius-sm)",
-                    }}
-                  >
-                    Get started
-                  </Link>
+                  {pkg.checkoutId ? (
+                    <button
+                      onClick={() => handleCheckout(pkg.checkoutId!)}
+                      disabled={loading === pkg.checkoutId}
+                      className="block w-full text-center px-6 py-3.5 text-[14px] font-[500] transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-60"
+                      style={{
+                        background: pkg.highlighted
+                          ? "linear-gradient(135deg, #D4B85A 0%, #C9A84C 100%)"
+                          : "var(--gradient-purple)",
+                        color: pkg.highlighted ? "#1A1128" : "#FFFFFF",
+                        borderRadius: "var(--radius-sm)",
+                      }}
+                    >
+                      {loading === pkg.checkoutId ? "Redirecting..." : "Get started"}
+                    </button>
+                  ) : (
+                    <Link
+                      href="/contact"
+                      className="block text-center px-6 py-3.5 text-[14px] font-[500] transition-all duration-300 hover:-translate-y-0.5"
+                      style={{
+                        background: "var(--gradient-purple)",
+                        color: "#FFFFFF",
+                        borderRadius: "var(--radius-sm)",
+                      }}
+                    >
+                      Contact us
+                    </Link>
+                  )}
                 </div>
               </ScrollReveal>
             ))}
