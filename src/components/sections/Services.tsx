@@ -17,22 +17,14 @@ export default function Services() {
       <div className="max-container">
         {/* Header */}
         <RevealWrapper>
-          <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-8 mb-14">
-            <div>
-              <div className="text-[11px] font-semibold tracking-[0.2em] uppercase text-gold mb-5">
-                How We Help
-              </div>
-              <h2>
-                Everything You Need.
-                <br />
-                <em className="text-gold italic">One Trusted Partner.</em>
-              </h2>
+          <div className="mb-12">
+            <div className="text-[11px] font-semibold tracking-[0.2em] uppercase text-gold mb-5">
+              Services
             </div>
-            <p className="text-[15px] leading-[1.8] text-text-secondary font-light max-w-[380px]">
-              Whether you need a platform built, data made visible, processes
-              automated, or your business secured &mdash; you get one team who
-              owns the outcome end to end.
-            </p>
+            <h2>
+              What We
+              <em className="text-gold italic"> Deliver.</em>
+            </h2>
           </div>
         </RevealWrapper>
 

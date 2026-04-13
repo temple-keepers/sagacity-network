@@ -167,7 +167,7 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Headline — client-focused */}
+          {/* Headline */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -176,20 +176,17 @@ export default function Hero() {
               delay: 0.15,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="mb-6 md:mb-8"
+            className="mb-8 md:mb-12"
           >
-            <span className="block text-text-primary leading-[1.05]">
-              Your Business Deserves
-            </span>
             <span className="block shimmer-text leading-[1.05]">
               Digital Infrastructure
             </span>
             <span className="block text-text-muted leading-[1.05]">
-              That Actually Works.
+              Built to Last.
             </span>
           </motion.h1>
 
-          {/* Subheading — client pain + solution */}
+          {/* Single line subtitle */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -198,31 +195,11 @@ export default function Hero() {
               delay: 0.3,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="text-[15px] md:text-[17px] leading-[1.75] text-text-secondary max-w-[560px] mb-8 md:mb-10"
+            className="text-[15px] md:text-[17px] leading-[1.7] text-text-secondary max-w-[420px] mb-10 md:mb-14"
           >
-            Tired of agencies that over-promise and under-deliver? We build
-            web platforms, dashboards, automations, and security systems that
-            are production-grade from day one &mdash; so you can focus on
-            growing your business.
+            Web platforms, dashboards, automation &amp; security &mdash;
+            production-grade from day one.
           </motion.p>
-
-          {/* Value prop */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.45 }}
-            className="mb-8 md:mb-10"
-          >
-            <span className="text-[15px] md:text-[17px] text-text-primary font-light">
-              Enterprise quality.{" "}
-              <em
-                className="italic font-display text-[17px] md:text-[19px]"
-                style={{ color: "var(--gold)" }}
-              >
-                Human scale pricing.
-              </em>
-            </span>
-          </motion.div>
 
           {/* CTAs */}
           <motion.div
@@ -233,7 +210,7 @@ export default function Hero() {
               delay: 0.55,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="flex flex-wrap gap-4 justify-center mb-16 md:mb-20"
+            className="flex flex-wrap gap-4 justify-center mb-14 md:mb-16"
           >
             <Button href="/contact">Get a Free Assessment</Button>
             <Button href="/work" variant="outline">

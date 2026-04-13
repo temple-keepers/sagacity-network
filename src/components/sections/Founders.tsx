@@ -31,14 +31,13 @@ export default function Founders() {
       <div className="max-container">
         {/* Header */}
         <RevealWrapper>
-          <div className="mb-14">
+          <div className="mb-12">
             <div className="text-[11px] font-semibold tracking-[0.2em] uppercase text-gold mb-5">
-              Who&apos;s Behind Your Build
+              Founders
             </div>
             <h2>
-              You Work Directly
-              <br />
-              <em className="text-gold italic">With the People Who Build.</em>
+              Who
+              <em className="text-gold italic"> Builds.</em>
             </h2>
           </div>
         </RevealWrapper>

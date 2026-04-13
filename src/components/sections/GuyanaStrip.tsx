@@ -104,29 +104,14 @@ export default function GuyanaStrip() {
               </div>
 
               <h2 className="mb-6">
-                Putting Guyanese Businesses
+                Guyanese Businesses
                 <br />
                 <em className="text-gold italic">on the World Stage.</em>
               </h2>
 
-              <p className="text-[15px] text-text-secondary font-light leading-[1.8] mb-7 max-w-[520px]">
-                Professional websites secured from day one, live in 5 days,
-                maintained so you never have to think about it. Built by people
-                who understand Guyana, the diaspora, and the world you&apos;re
-                trying to reach.
+              <p className="text-[15px] text-text-secondary font-light leading-[1.7] max-w-[460px]">
+                Professional websites, secured from day one, live in 5 days.
               </p>
-
-              <div
-                className="px-5 py-3.5 rounded-[2px] text-[13px] font-medium leading-[1.5]"
-                style={{
-                  background: "var(--gold-dim)",
-                  border: "1px solid var(--gold-border)",
-                  color: "var(--gold)",
-                }}
-              >
-                No agency in Guyana combines website + cybersecurity + automation
-                at this price.
-              </div>
             </div>
 
             {/* Right: feature tiles */}

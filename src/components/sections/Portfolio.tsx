@@ -22,14 +22,13 @@ export default function Portfolio() {
       <div className="max-container relative z-10">
         {/* Header */}
         <RevealWrapper>
-          <div className="mb-14">
+          <div className="mb-12">
             <div className="text-[11px] font-semibold tracking-[0.2em] uppercase text-gold mb-5">
-              Proof It Works
+              Work
             </div>
             <h2>
-              Real Platforms.
-              <br />
-              <em className="text-gold italic">Real Users. Live Now.</em>
+              Live
+              <em className="text-gold italic"> Platforms.</em>
             </h2>
           </div>
         </RevealWrapper>
