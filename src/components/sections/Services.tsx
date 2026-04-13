@@ -96,29 +96,29 @@ export default function Services() {
                 >
                   {/* Icon */}
                   <div
-                    className="w-11 h-11 flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110"
+                    className="w-16 h-16 flex items-center justify-center mx-auto mb-5 transition-transform duration-300 group-hover:scale-110"
                     style={{
                       background: "rgba(123, 63, 160, 0.08)",
                       borderRadius: "var(--radius-sm)",
                       color: "var(--color-accent)",
                     }}
                   >
-                    <Icon size={22} strokeWidth={1.8} />
+                    <Icon size={32} strokeWidth={1.5} />
                   </div>
 
                   <h3
-                    className="text-[20px] font-[700] mb-2 transition-colors duration-300 group-hover:text-[var(--color-accent)]"
+                    className="text-[20px] font-[700] mb-2 text-center transition-colors duration-300 group-hover:text-[var(--color-accent)]"
                     style={{ fontFamily: "var(--font-display)" }}
                   >
                     {s.title}
                   </h3>
                   <p
-                    className="text-[14px] font-[400] leading-[1.7] mb-5"
+                    className="text-[14px] font-[400] leading-[1.7] mb-5 text-center"
                     style={{ color: "var(--color-muted)" }}
                   >
                     {s.body}
                   </p>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap justify-center gap-2">
                     {s.tags.map((t) => (
                       <span key={t} className="tag-purple px-2.5 py-1 text-[11px]" style={{ borderRadius: "var(--radius-sm)" }}>
                         {t}
@@ -128,7 +128,7 @@ export default function Services() {
 
                   {/* Hover arrow */}
                   <div
-                    className="mt-5 text-[13px] font-[500] flex items-center gap-1.5 opacity-0 -translate-x-2 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-0"
+                    className="mt-5 text-[13px] font-[500] flex items-center justify-center gap-1.5 opacity-0 transition-all duration-300 group-hover:opacity-100"
                     style={{ color: "var(--color-accent)" }}
                   >
                     Learn more <span className="text-[16px]">&rarr;</span>

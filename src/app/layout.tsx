@@ -25,6 +25,9 @@ export const metadata: Metadata = {
   description:
     "Web & app development, data intelligence, business automation, and cybersecurity. Built by practitioners.",
   metadataBase: new URL("https://sagacitynetwork.net"),
+  alternates: {
+    canonical: "https://sagacitynetwork.net",
+  },
   openGraph: {
     title: "Sagacity Network — UK Digital Product Studio",
     description:

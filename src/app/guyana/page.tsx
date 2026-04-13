@@ -164,14 +164,14 @@ export default function GuyanaPage() {
                     }}
                   >
                     <div
-                      className="w-10 h-10 flex items-center justify-center mb-4"
+                      className="w-14 h-14 flex items-center justify-center mb-4"
                       style={{
                         background: "rgba(201, 168, 76, 0.1)",
                         borderRadius: "var(--radius-sm)",
                         color: "var(--color-gold)",
                       }}
                     >
-                      <Icon size={20} strokeWidth={1.8} />
+                      <Icon size={28} strokeWidth={1.5} />
                     </div>
                     <h3
                       className="text-[16px] font-[700] mb-2"

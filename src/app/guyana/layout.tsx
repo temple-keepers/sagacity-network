@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     "cybersecurity Guyana",
     "web developer Caribbean",
   ],
+  alternates: { canonical: "https://sagacitynetwork.net/guyana" },
   openGraph: {
     title: "Web Design for Guyana & Caribbean — Sagacity Network",
     description: "Professional websites for Guyanese businesses. Live in 5 days. Starting at $350.",

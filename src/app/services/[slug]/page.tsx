@@ -203,6 +203,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: service.seoTitle,
     description: service.seoDescription,
+    alternates: { canonical: `https://sagacitynetwork.net/services/${service.slug}` },
     openGraph: {
       title: service.seoTitle,
       description: service.seoDescription,
@@ -233,13 +234,13 @@ export default async function ServicePage({ params }: PageProps) {
         {/* Hero */}
         <div className="mb-16">
           <div
-            className="w-14 h-14 flex items-center justify-center mb-6"
+            className="w-20 h-20 flex items-center justify-center mb-6"
             style={{
               background: service.gradient,
               borderRadius: "var(--radius-md)",
             }}
           >
-            <Icon size={28} strokeWidth={1.6} color="#FFFFFF" />
+            <Icon size={40} strokeWidth={1.4} color="#FFFFFF" />
           </div>
           <h1
             className="text-[36px] md:text-[48px] font-[800] tracking-[-0.03em] leading-[1.1] mb-4"

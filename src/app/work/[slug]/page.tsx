@@ -20,6 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `${platform.name} — Case Study | Sagacity Network`,
     description: platform.description,
+    alternates: { canonical: `https://sagacitynetwork.net/work/${platform.slug}` },
     openGraph: {
       title: `${platform.name} — Case Study | Sagacity Network`,
       description: platform.tagline,

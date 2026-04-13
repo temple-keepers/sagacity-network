@@ -162,14 +162,14 @@ export default function ServicesPage() {
                     {/* Content */}
                     <div style={{ direction: "ltr" }}>
                       <div
-                        className="w-12 h-12 flex items-center justify-center mb-6"
+                        className="w-16 h-16 flex items-center justify-center mb-6"
                         style={{
                           background: s.gradient,
-                          borderRadius: "var(--radius-sm)",
+                          borderRadius: "var(--radius-md)",
                           color: "#FFFFFF",
                         }}
                       >
-                        <Icon size={24} strokeWidth={1.8} />
+                        <Icon size={32} strokeWidth={1.5} />
                       </div>
 
                       <h2

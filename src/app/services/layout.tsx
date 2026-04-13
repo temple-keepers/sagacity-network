@@ -4,6 +4,7 @@ export const metadata: Metadata = {
   title: "Services — Sagacity Network",
   description:
     "Web development, data intelligence, business automation, cybersecurity, and training. Everything you need from one UK-based digital studio.",
+  alternates: { canonical: "https://sagacitynetwork.net/services" },
   openGraph: {
     title: "Services — Sagacity Network",
     description: "Full-stack digital services from a UK-registered product studio.",

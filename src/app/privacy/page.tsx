@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy — Sagacity Network",
   description:
     "How Sagacity Network Ltd handles your data. UK GDPR compliant. We never sell or share your data.",
+  alternates: { canonical: "https://sagacitynetwork.net/privacy" },
 };
 
 export default function PrivacyPage() {

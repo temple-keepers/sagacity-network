@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   title: "Contact — Sagacity Network",
   description:
     "Get in touch with Sagacity Network. Book a free consultation about web development, data, automation, cybersecurity, or training.",
+  alternates: { canonical: "https://sagacitynetwork.net/contact" },
   openGraph: {
     title: "Contact — Sagacity Network",
     description: "Book a free consultation. Let's talk about your project.",
