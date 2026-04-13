@@ -50,16 +50,16 @@ export default function Hero() {
         />
       </div>
 
-      {/* Glowing arc ring — two halves snap in and merge */}
+      {/* Glowing arc ring — intro → spin → outro on loop (10s cycle) */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="relative w-[650px] h-[650px] md:w-[850px] md:h-[850px] lg:w-[1000px] lg:h-[1000px]">
-          {/* Left half-arc — snaps in from far left */}
-          <motion.div
-            initial={{ x: -400, opacity: 0, rotate: -45 }}
-            animate={{ x: 0, opacity: 1, rotate: 0 }}
-            transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          {/* Left half-arc — cycles in and out */}
+          <div
             className="absolute inset-0"
-            style={{ clipPath: "inset(0 50% 0 0)" }}
+            style={{
+              clipPath: "inset(0 50% 0 0)",
+              animation: "ring-left-cycle 10s cubic-bezier(0.22,1,0.36,1) infinite",
+            }}
           >
             <div
               className="absolute inset-0 rounded-full"
@@ -72,15 +72,15 @@ export default function Hero() {
                   "radial-gradient(circle, transparent 60%, black 62%, black 68%, transparent 70%)",
               }}
             />
-          </motion.div>
+          </div>
 
-          {/* Right half-arc — snaps in from far right */}
-          <motion.div
-            initial={{ x: 400, opacity: 0, rotate: 45 }}
-            animate={{ x: 0, opacity: 1, rotate: 0 }}
-            transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          {/* Right half-arc — cycles in and out */}
+          <div
             className="absolute inset-0"
-            style={{ clipPath: "inset(0 0 0 50%)" }}
+            style={{
+              clipPath: "inset(0 0 0 50%)",
+              animation: "ring-right-cycle 10s cubic-bezier(0.22,1,0.36,1) infinite",
+            }}
           >
             <div
               className="absolute inset-0 rounded-full"
@@ -93,21 +93,21 @@ export default function Hero() {
                   "radial-gradient(circle, transparent 60%, black 62%, black 68%, transparent 70%)",
               }}
             />
-          </motion.div>
+          </div>
 
-          {/* Full bright ring — appears after merge, with comet glow */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
+          {/* Full ring — visible while halves are joined */}
+          <div
             className="absolute inset-0"
+            style={{
+              animation: "ring-body-cycle 10s ease infinite",
+            }}
           >
             {/* Base ring — bright and thick */}
             <div
               className="absolute inset-0 rounded-full"
               style={{
                 background:
-                  "conic-gradient(from 0deg, rgba(245,240,232,0.15) 0%, rgba(212,175,55,0.25) 10%, rgba(245,240,232,0.2) 20%, rgba(159,122,234,0.25) 35%, rgba(245,240,232,0.2) 50%, rgba(212,175,55,0.25) 65%, rgba(245,240,232,0.2) 80%, rgba(159,122,234,0.2) 90%, rgba(245,240,232,0.15) 100%)",
+                  "conic-gradient(from 0deg, rgba(245,240,232,0.15) 0%, rgba(212,175,55,0.3) 10%, rgba(245,240,232,0.22) 20%, rgba(159,122,234,0.3) 35%, rgba(245,240,232,0.22) 50%, rgba(212,175,55,0.3) 65%, rgba(245,240,232,0.22) 80%, rgba(159,122,234,0.25) 90%, rgba(245,240,232,0.15) 100%)",
                 mask: "radial-gradient(circle, transparent 60%, black 62%, black 68%, transparent 70%)",
                 WebkitMask:
                   "radial-gradient(circle, transparent 60%, black 62%, black 68%, transparent 70%)",
@@ -115,17 +115,17 @@ export default function Hero() {
               }}
             />
 
-            {/* Comet / traveling bright spot */}
+            {/* Comet — traveling bright spot */}
             <div
               className="absolute inset-0 rounded-full"
               style={{
                 background:
-                  "conic-gradient(from 0deg, transparent 0%, transparent 85%, rgba(245,240,232,0.6) 92%, rgba(255,255,255,0.9) 95%, rgba(212,175,55,0.7) 97%, transparent 100%)",
+                  "conic-gradient(from 0deg, transparent 0%, transparent 85%, rgba(245,240,232,0.6) 92%, rgba(255,255,255,0.95) 95%, rgba(212,175,55,0.7) 97%, transparent 100%)",
                 filter: "blur(2px)",
                 mask: "radial-gradient(circle, transparent 59%, black 62%, black 68%, transparent 71%)",
                 WebkitMask:
                   "radial-gradient(circle, transparent 59%, black 62%, black 68%, transparent 71%)",
-                animation: "hero-ring-rotate 8s linear infinite",
+                animation: "hero-ring-rotate 6s linear infinite",
               }}
             />
 
@@ -134,7 +134,7 @@ export default function Hero() {
               className="absolute inset-[-4%] rounded-full"
               style={{
                 background:
-                  "conic-gradient(from 0deg, transparent 0%, rgba(159,122,234,0.06) 25%, rgba(245,240,232,0.08) 50%, rgba(212,175,55,0.06) 75%, transparent 100%)",
+                  "conic-gradient(from 0deg, transparent 0%, rgba(159,122,234,0.08) 25%, rgba(245,240,232,0.1) 50%, rgba(212,175,55,0.08) 75%, transparent 100%)",
                 filter: "blur(20px)",
                 mask: "radial-gradient(circle, transparent 55%, black 60%, black 70%, transparent 75%)",
                 WebkitMask:
@@ -142,17 +142,15 @@ export default function Hero() {
                 animation: "hero-ring-rotate 20s linear infinite reverse",
               }}
             />
-          </motion.div>
+          </div>
 
-          {/* Inner ambient glow */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.5, delay: 1 }}
+          {/* Inner ambient glow — also cycles */}
+          <div
             className="absolute inset-[22%] rounded-full"
             style={{
               background:
                 "radial-gradient(circle, rgba(159,122,234,0.04) 0%, rgba(212,175,55,0.02) 50%, transparent 70%)",
+              animation: "ring-body-cycle 10s ease infinite",
             }}
           />
         </div>

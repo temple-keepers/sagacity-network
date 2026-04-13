@@ -212,6 +212,29 @@ a { color: inherit; text-decoration: none; }
   to { transform: rotate(360deg); }
 }
 
+/* Ring intro → spin → outro loop: 10s total cycle */
+@keyframes ring-left-cycle {
+  0%   { transform: translateX(-400px) rotate(-45deg); opacity: 0; }
+  8%   { transform: translateX(0) rotate(0deg); opacity: 1; }       /* snap in */
+  75%  { transform: translateX(0) rotate(0deg); opacity: 1; }       /* hold */
+  90%  { transform: translateX(-400px) rotate(-45deg); opacity: 0; } /* fly out */
+  100% { transform: translateX(-400px) rotate(-45deg); opacity: 0; } /* pause */
+}
+@keyframes ring-right-cycle {
+  0%   { transform: translateX(400px) rotate(45deg); opacity: 0; }
+  8%   { transform: translateX(0) rotate(0deg); opacity: 1; }
+  75%  { transform: translateX(0) rotate(0deg); opacity: 1; }
+  90%  { transform: translateX(400px) rotate(45deg); opacity: 0; }
+  100% { transform: translateX(400px) rotate(45deg); opacity: 0; }
+}
+@keyframes ring-body-cycle {
+  0%   { opacity: 0; }
+  10%  { opacity: 1; }   /* fade in after halves join */
+  73%  { opacity: 1; }   /* hold visible */
+  85%  { opacity: 0; }   /* fade out before halves leave */
+  100% { opacity: 0; }
+}
+
 /* ========================================
    SHIMMER
    ======================================== */
