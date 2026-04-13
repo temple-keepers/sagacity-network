@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Readiness Score — Sagacity Network</title>
+<meta name="description" content="8 real-world scenarios. Find out exactly where your business is losing clients, time, and money — and what to fix first.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0A0D14;--surface:#111520;--surface2:#1A1F2E;
+  --border:rgba(255,255,255,0.08);--border-h:rgba(255,255,255,0.18);
+  --text:#F0EDE6;--muted:rgba(240,237,230,0.5);--dim:rgba(240,237,230,0.26);
+  --accent:#4B7BF5;--accent-bg:rgba(75,123,245,0.10);
+  --red:#E05252;--amber:#E09B3D;--green:#3DBE8F;--teal:#2DD4BF;--purple:#A78BFA;--pink:#F472B6;
+}
+html{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:16px;line-height:1.6}
+body{min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:0 16px 80px}
+
+.nav{width:100%;max-width:700px;display:flex;align-items:center;justify-content:space-between;padding:24px 0 16px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-mark{width:30px;height:30px;background:var(--text);border-radius:6px;display:grid;grid-template-columns:1fr 1fr;gap:2px;padding:5px;flex-shrink:0}
+.logo-mark span{background:var(--bg);border-radius:1px}.logo-mark span:last-child{opacity:.2}
+.logo-text{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;letter-spacing:.08em;color:var(--text);text-transform:uppercase}
+.nav-link{font-size:13px;color:var(--muted);text-decoration:none}
+
+.prog-wrap{width:100%;max-width:700px;margin-bottom:32px}
+.prog-meta{display:flex;justify-content:space-between;margin-bottom:8px}
+.prog-label{font-size:12px;color:var(--muted);letter-spacing:.04em}
+.prog-bar{height:2px;background:var(--border);border-radius:2px;overflow:hidden}
+.prog-fill{height:100%;background:var(--accent);border-radius:2px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+
+.card{width:100%;max-width:700px;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:40px}
+@media(max-width:520px){.card{padding:28px 20px;border-radius:16px}}
+
+.step{display:none}.step.active{display:block;animation:up .3s ease}
+@keyframes up{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.q-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.q-num{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.q-tag{font-size:11px;font-weight:500;padding:3px 10px;border-radius:100px;border:1px solid;letter-spacing:.04em}
+.headline{font-family:'Syne',sans-serif;font-size:clamp(19px,3.5vw,26px);font-weight:800;color:var(--text);line-height:1.2;margin-bottom:8px}
+.scenario{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:24px;font-weight:300;font-style:italic;padding:12px 16px;background:var(--surface2);border-left:2px solid var(--accent);border-radius:0 8px 8px 0}
+
+.options{display:flex;flex-direction:column;gap:9px;margin-bottom:16px}
+.option{display:flex;align-items:flex-start;gap:14px;padding:15px 18px;background:var(--surface2);border:1px solid var(--border);border-radius:12px;cursor:pointer;transition:all .15s;user-select:none;-webkit-tap-highlight-color:transparent}
+.option:hover{border-color:var(--border-h)}
+.option.selected{border-color:var(--accent);background:rgba(75,123,245,.07)}
+.opt-dot{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--border-h);flex-shrink:0;margin-top:1px;position:relative;transition:all .15s}
+.option.selected .opt-dot{background:var(--accent);border-color:var(--accent)}
+.option.selected .opt-dot::after{content:'';width:6px;height:6px;border-radius:50%;background:#fff;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+.opt-text{flex:1}
+.opt-label{font-size:14px;color:var(--text);line-height:1.45;font-weight:400}
+.opt-sub{font-size:12px;color:var(--muted);margin-top:3px;font-weight:300}
+
+.insight{display:none;margin-bottom:16px;padding:14px 16px;background:rgba(75,123,245,.08);border:1px solid rgba(75,123,245,.18);border-radius:10px;animation:insightIn .25s ease}
+.insight.show{display:flex;align-items:flex-start;gap:12px}
+@keyframes insightIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+.insight-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.insight-text{font-size:13px;color:var(--muted);line-height:1.6;font-weight:300}
+.insight-text strong{color:var(--text);font-weight:500}
+
+.btn-row{display:flex;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:500;padding:12px 22px;border-radius:10px;border:none;cursor:pointer;transition:all .15s;letter-spacing:.01em;text-decoration:none}
+.btn-primary{background:var(--accent);color:#fff}.btn-primary:hover{background:#3a6ae0}
+.btn-primary:disabled{opacity:.35;cursor:not-allowed}
+.btn-ghost{background:transparent;color:var(--muted);border:1px solid var(--border)}.btn-ghost:hover{border-color:var(--border-h);color:var(--text)}
+
+.welcome-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px}
+@media(max-width:480px){.welcome-grid{grid-template-columns:1fr}}
+.wg-card{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px 16px}
+.wg-icon{font-size:18px;margin-bottom:8px}
+.wg-title{font-size:13px;font-weight:500;color:var(--text);margin-bottom:4px}
+.wg-desc{font-size:12px;color:var(--muted);font-weight:300;line-height:1.5}
+.social-proof{display:flex;align-items:center;gap:10px;margin-top:20px}
+.sp-dots{display:flex}
+.sp-dot{width:26px;height:26px;border-radius:50%;background:var(--surface2);border:2px solid var(--surface);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;color:var(--muted);margin-left:-7px}
+.sp-dot:first-child{margin-left:0}
+.sp-text{font-size:12px;color:var(--dim)}
+
+.eyebrow{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.subhead{font-size:15px;color:var(--muted);line-height:1.65;margin-bottom:28px;font-weight:300}
+.field-wrap{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+.field{width:100%;padding:13px 16px;font-family:'DM Sans',sans-serif;font-size:14px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;color:var(--text);outline:none;transition:border-color .15s}
+.field:focus{border-color:var(--accent)}.field::placeholder{color:var(--dim)}
+.consent{display:flex;align-items:flex-start;gap:10px;margin-bottom:20px}
+.consent input{width:16px;height:16px;margin-top:3px;flex-shrink:0;accent-color:var(--accent);cursor:pointer}
+.consent-text{font-size:12px;color:var(--dim);line-height:1.55;font-weight:300}
+.consent a{color:var(--muted)}
+.error-msg{font-size:13px;color:var(--red);margin-top:8px;display:none}
+
+.score-wrap{display:flex;flex-direction:column;align-items:center;margin-bottom:24px}
+.score-ring{position:relative;width:136px;height:136px}
+.score-ring svg{transform:rotate(-90deg)}
+.score-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+.score-num{font-family:'Syne',sans-serif;font-size:38px;font-weight:800;color:var(--text);line-height:1}
+.score-denom{font-size:12px;color:var(--muted);margin-top:2px}
+.score-band{margin-top:10px;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:4px 14px;border-radius:100px;border:1px solid}
+.result-head{font-family:'Syne',sans-serif;font-size:clamp(17px,3vw,22px);font-weight:800;color:var(--text);line-height:1.2;margin-bottom:8px}
+.result-body{font-size:14px;color:var(--muted);line-height:1.7;font-weight:300}
+
+.benchmark{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:14px 18px;margin:20px 0;display:flex;align-items:flex-start;gap:12px}
+.bm-text{font-size:13px;color:var(--muted);line-height:1.55}.bm-text strong{color:var(--text);font-weight:500}
+
+.divider{border:none;border-top:1px solid var(--border);margin:22px 0}
+.section-label{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+
+.cat-row{display:flex;align-items:center;gap:12px;margin-bottom:11px}
+.cat-name{font-size:13px;color:var(--muted);width:120px;flex-shrink:0;font-weight:300}
+.cat-bg{flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
+.cat-fill{height:100%;border-radius:3px;transition:width 1.1s cubic-bezier(.4,0,.2,1);width:0%}
+.cat-val{font-size:12px;font-weight:500;width:26px;text-align:right}
+
+.recs{display:flex;flex-direction:column;gap:9px;margin-bottom:0}
+.rec{display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:var(--surface2);border-radius:10px;border:1px solid var(--border)}
+.rec-num{width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.rec-title{font-size:14px;font-weight:500;color:var(--text);margin-bottom:3px}
+.rec-desc{font-size:13px;color:var(--muted);line-height:1.55;font-weight:300}
+
+.cta-box{border:1px solid var(--border);border-radius:14px;padding:22px;margin-top:22px;background:linear-gradient(135deg,rgba(75,123,245,.06),transparent)}
+.cta-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--text);margin-bottom:6px}
+.cta-body{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:16px;font-weight:300}
+.cta-btns{display:flex;gap:10px;flex-wrap:wrap}
+.share-row{display:flex;align-items:center;gap:8px;margin-top:16px;flex-wrap:wrap}
+.share-label{font-size:12px;color:var(--dim)}
+.share-btn{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:500;padding:6px 14px;border-radius:8px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:all .15s;font-family:'DM Sans',sans-serif}
+.share-btn:hover{border-color:var(--border-h);color:var(--text)}
+.share-btn.copied{border-color:var(--green);color:var(--green)}
+
+.loading-overlay{display:none;position:fixed;inset:0;background:rgba(10,13,20,.88);z-index:100;align-items:center;justify-content:center;flex-direction:column;gap:16px}
+.loading-overlay.show{display:flex}
+.spinner{width:32px;height:32px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{font-size:14px;color:var(--muted)}
+.exit-modal{display:none;position:fixed;inset:0;background:rgba(10,13,20,.88);z-index:200;align-items:center;justify-content:center;padding:20px}
+.exit-modal.show{display:flex;animation:up .25s ease}
+.exit-inner{background:var(--surface);border:1px solid var(--border-h);border-radius:20px;padding:36px;max-width:420px;width:100%;text-align:center}
+.exit-title{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--text);margin-bottom:10px}
+.exit-body{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:24px;font-weight:300}
+.exit-btns{display:flex;flex-direction:column;gap:10px}
+</style>
+</head>
+<body>
+
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="spinner"></div>
+  <div class="loading-text">Calculating your score...</div>
+</div>
+
+<div class="exit-modal" id="exitModal">
+  <div class="exit-inner">
+    <div class="exit-title">Don't leave yet.</div>
+    <div class="exit-body" id="exitModalBody">You're partway through — your score is almost ready. It takes less than 3 more minutes.</div>
+    <div class="exit-btns">
+      <button class="btn btn-primary" onclick="closeExitModal()" style="justify-content:center">Continue the assessment →</button>
+      <button class="btn btn-ghost" onclick="document.getElementById('exitModal').classList.remove('show')" style="justify-content:center">Leave anyway</button>
+    </div>
+  </div>
+</div>
+
+<nav class="nav">
+  <a href="https://sagacitynetwork.net" class="logo">
+    <div class="logo-mark"><span></span><span></span><span></span><span style="opacity:.15"></span></div>
+    <span class="logo-text">Sagacity Network</span>
+  </a>
+  <a href="https://sagacitynetwork.net" class="nav-link">Back to site →</a>
+</nav>
+
+<div class="prog-wrap">
+  <div class="prog-meta">
+    <span class="prog-label" id="progLabel">Assessment</span>
+    <span class="prog-label" id="progPct"></span>
+  </div>
+  <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+</div>
+
+<div class="card">
+
+  <!-- STEP 0: WELCOME -->
+  <div class="step active" id="step-0">
+    <div class="eyebrow">8 scenarios · 8 minutes · Instant results</div>
+    <h1 class="headline" style="font-size:clamp(22px,4vw,32px);margin-bottom:12px">How digitally ready is your business — really?</h1>
+    <p style="font-size:15px;color:var(--muted);line-height:1.65;margin-bottom:28px;font-weight:300">Not a generic quiz. Eight real-world scenarios that expose exactly where your business is losing clients, time, and money — with a stat or insight after every question so you learn as you go.</p>
+    <div class="welcome-grid">
+      <div class="wg-card"><div class="wg-icon">🎯</div><div class="wg-title">Scenario-based</div><div class="wg-desc">Real situations, not abstract ratings. You'll recognise yourself in the answers.</div></div>
+      <div class="wg-card"><div class="wg-icon">💡</div><div class="wg-title">Learn as you go</div><div class="wg-desc">Every answer reveals a stat or insight about your industry.</div></div>
+      <div class="wg-card"><div class="wg-icon">📊</div><div class="wg-title">8-category breakdown</div><div class="wg-desc">See exactly which areas are strong and which are costing you.</div></div>
+      <div class="wg-card"><div class="wg-icon">⚡</div><div class="wg-title">Instant action plan</div><div class="wg-desc">Your personalised fix list, ranked by impact, in your inbox.</div></div>
+    </div>
+    <button class="btn btn-primary" onclick="nextStep()">Start the assessment →</button>
+    <div class="social-proof">
+      <div class="sp-dots">
+        <div class="sp-dot">JM</div><div class="sp-dot">RB</div><div class="sp-dot">KA</div><div class="sp-dot">TP</div>
+      </div>
+      <span class="sp-text">Joined by 200+ business owners in Guyana, the UK &amp; beyond</span>
+    </div>
+  </div>
+
+  <!-- Q1: Web presence -->
+  <div class="step" id="step-1">
+    <div class="q-eyebrow">
+      <span class="q-num">Scenario 1 of 8</span>
+      <span class="q-tag" style="color:var(--accent);border-color:rgba(75,123,245,.3)">Web presence</span>
+    </div>
+    <h2 class="headline">Someone hears about your business and Googles you right now. What do they find?</h2>
+    <div class="scenario">Think about the last time a potential client tried to find you online. What was actually there waiting for them?</div>
+    <div class="options" id="opts-1">
+      <div class="option" data-q="1" data-v="0" data-insight="<strong>72% of clients research a business online before making contact.</strong> If you're not findable, you're invisible to the majority of potential clients — even the ones who've already heard of you." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">Nothing — I'm essentially invisible online</div><div class="opt-sub">No website, no Google Business profile, maybe a dormant social page</div></div>
+      </div>
+      <div class="option" data-q="1" data-v="2" data-insight="Social media builds awareness, but it doesn't convert browsers into clients the way a website does. <strong>30% of visitors won't trust a business enough to make contact without a proper website.</strong>" onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">My social profiles, but no website</div><div class="opt-sub">Facebook or Instagram show up, but there's no proper site</div></div>
+      </div>
+      <div class="option" data-q="1" data-v="3" data-insight="An outdated site can hurt more than no site. <strong>38% of visitors stop engaging with a website if the layout or content looks old.</strong> Your site is your first impression — right now it's making the wrong one." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">A website — but I'm embarrassed to send clients to it</div><div class="opt-sub">It exists, but it doesn't represent what I do now</div></div>
+      </div>
+      <div class="option" data-q="1" data-v="4" data-insight="A site that looks good but generates no leads is a brochure, not a business asset. The gap is usually just three things: a clear offer, a strong CTA, and a lead capture mechanism. All fixable in days." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">A decent website — but it never generates enquiries</div><div class="opt-sub">Looks professional, but nothing actually comes in through it</div></div>
+      </div>
+      <div class="option" data-q="1" data-v="6" data-insight="You're ahead of most businesses. The next level is optimising what's working — faster load times, better CTA placement, and a lead magnet to capture visitors who aren't ready to buy today." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">A site that consistently brings in enquiries and bookings</div><div class="opt-sub">Clients find me, get in touch, and the site does real sales work</div></div>
+      </div>
+    </div>
+    <div class="insight" id="insight-1"><span class="insight-icon">💡</span><span class="insight-text" id="insight-text-1"></span></div>
+    <div class="btn-row"><button class="btn btn-primary" id="btn-1" onclick="nextStep()" disabled>Next →</button></div>
+  </div>
+
+  <!-- Q2: Lead follow-up -->
+  <div class="step" id="step-2">
+    <div class="q-eyebrow">
+      <span class="q-num">Scenario 2 of 8</span>
+      <span class="q-tag" style="color:var(--teal);border-color:rgba(45,212,191,.3)">Lead follow-up</span>
+    </div>
+    <h2 class="headline">A potential client fills in your contact form at 11pm on Friday. What actually happens next?</h2>
+    <div class="scenario">This is the moment most businesses lose clients without ever knowing it. Be honest about what really happens — not what you intend to happen.</div>
+    <div class="options" id="opts-2">
+      <div class="option" data-q="2" data-v="0" data-insight="That lead is almost certainly gone. <strong>78% of clients buy from the first business that responds.</strong> If you don't reply until Monday, there's a strong chance they've already booked someone else." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">Nothing until I happen to check — probably Monday morning</div><div class="opt-sub">No notification, no auto-reply, no follow-up of any kind</div></div>
+      </div>
+      <div class="option" data-q="2" data-v="2" data-insight="You're ahead of many businesses — but timing still costs you. <strong>Companies that respond within 5 minutes are 9× more likely to convert a lead</strong> than those who wait 10+ minutes." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">I get a notification and reply when I can — hours or a day later</div><div class="opt-sub">They hear from me eventually, but timing is inconsistent</div></div>
+      </div>
+      <div class="option" data-q="2" data-v="3" data-insight="An auto-reply is good — but if that's where automation ends, you're relying on yourself to follow through. <strong>Most leads need 5–7 touchpoints before buying.</strong> Are you manually creating all of those?" onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">They get an auto-reply, then I follow up manually when I remember</div><div class="opt-sub">At least they know I got it — but the follow-up depends on me</div></div>
+      </div>
+      <div class="option" data-q="2" data-v="5" data-insight="<strong>Businesses with automated follow-up see 451% more qualified leads</strong> than those relying on manual outreach. You're on the right path — focus now on personalising by enquiry type." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">They enter an automated sequence that keeps them warm</div><div class="opt-sub">They get helpful emails over a few days while I prepare to respond</div></div>
+      </div>
+      <div class="option" data-q="2" data-v="6" data-insight="Fully segmented CRM + personalised sequences is genuinely elite for a small business. Your focus now is conversion rate optimisation and lead quality — not volume." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">They're tagged in my CRM and get a personalised sequence</div><div class="opt-sub">Different follow-ups based on what they enquired about</div></div>
+      </div>
+    </div>
+    <div class="insight" id="insight-2"><span class="insight-icon">💡</span><span class="insight-text" id="insight-text-2"></span></div>
+    <div class="btn-row"><button class="btn btn-ghost" onclick="prevStep()">← Back</button><button class="btn btn-primary" id="btn-2" onclick="nextStep()" disabled>Next →</button></div>
+  </div>
+
+  <!-- Q3: Cybersecurity -->
+  <div class="step" id="step-3">
+    <div class="q-eyebrow">
+      <span class="q-num">Scenario 3 of 8</span>
+      <span class="q-tag" style="color:var(--red);border-color:rgba(224,82,82,.3)">Cybersecurity</span>
+    </div>
+    <h2 class="headline">Your laptop is stolen tomorrow morning. How bad is it?</h2>
+    <div class="scenario">Don't imagine the best case. Think about what's actually sitting on your machine right now — client data, contracts, financial records, saved passwords.</div>
+    <div class="options" id="opts-3">
+      <div class="option" data-q="3" data-v="0" data-insight="This is one breach away from catastrophic. <strong>60% of small businesses that suffer a serious data breach close within 6 months.</strong> This is the most urgent gap to close — and a basic audit can identify your top risks in a single afternoon." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">Catastrophic — client data, contracts, everything is on there</div><div class="opt-sub">I'd have no way to revoke access and wouldn't know what was exposed</div></div>
+      </div>
+      <div class="option" data-q="3" data-v="2" data-insight="The real risk isn't the hardware — it's the data. <strong>Without remote access revocation and encryption, stolen credentials can be exploited for weeks before you notice.</strong> Recovery would be painful and expensive." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">Bad — I'd lose a lot and it would take weeks to recover</div><div class="opt-sub">Most things aren't backed up properly and some data would be gone</div></div>
+      </div>
+      <div class="option" data-q="3" data-v="4" data-insight="Cloud backups put you ahead of 60% of SMEs. The remaining risk is usually unencrypted local files, reused passwords, and no incident response plan. <strong>These are all fixable in an afternoon with the right guidance.</strong>" onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">Manageable — most things are backed up, recovery would take days</div><div class="opt-sub">I'd lose the device but could piece things back together</div></div>
+      </div>
+      <div class="option" data-q="3" data-v="6" data-insight="Remote management + encrypted storage + fast access revocation is the gold standard for SMEs. <strong>Your security posture is genuinely strong.</strong> The next step is staff training and a formal incident response plan." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">Minimal — I can revoke access remotely within minutes</div><div class="opt-sub">Everything is cloud-backed, encrypted, and recoverable fast</div></div>
+      </div>
+    </div>
+    <div class="insight" id="insight-3"><span class="insight-icon">💡</span><span class="insight-text" id="insight-text-3"></span></div>
+    <div class="btn-row"><button class="btn btn-ghost" onclick="prevStep()">← Back</button><button class="btn btn-primary" id="btn-3" onclick="nextStep()" disabled>Next →</button></div>
+  </div>
+
+  <!-- Q4: Automation -->
+  <div class="step" id="step-4">
+    <div class="q-eyebrow">
+      <span class="q-num">Scenario 4 of 8</span>
+      <span class="q-tag" style="color:var(--amber);border-color:rgba(224,155,61,.3)">Automation</span>
+    </div>
+    <h2 class="headline">Which of these best describes a typical week in your business?</h2>
+    <div class="scenario">Think about invoicing, chasing payments, scheduling calls, sending follow-up emails, copying data between apps. How much of that still happens by hand?</div>
+    <div class="options" id="opts-4">
+      <div class="option" data-q="4" data-v="0" data-insight="If admin runs your week, you're effectively employed by your own business rather than owning it. <strong>Business owners who automate routine tasks reclaim an average of 6.3 hours per week — that's 27 full working days per year.</strong>" onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">Admin runs my week — I spend more time on it than actual client work</div><div class="opt-sub">Invoicing, chasing, scheduling, updating — all done by hand</div></div>
+      </div>
+      <div class="option" data-q="4" data-v="2" data-insight="The tipping point is usually around £100K revenue, when manual processes start visibly costing growth. <strong>Most of what you're doing manually can be automated in a single afternoon</strong> with the right tools." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">Admin takes a significant chunk — it limits how much I can grow</div><div class="opt-sub">I've accepted it, but I know it's a ceiling</div></div>
+      </div>
+      <div class="option" data-q="4" data-v="4" data-insight="You've got the mindset right — you're just not all the way there. <strong>Automating client onboarding and payment follow-up alone typically saves 3–4 hours per week.</strong> That's the highest-leverage next step." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">I've automated the basics but repetitive tasks still add up</div><div class="opt-sub">Better than before, but clearly more to do</div></div>
+      </div>
+      <div class="option" data-q="4" data-v="6" data-insight="With your routine work handled by systems, your growth ceiling is now set by strategy and sales — not by working hours. <strong>The next frontier is AI-assisted decision-making and predictive automation.</strong>" onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">My systems handle the routine work — I focus on the actual business</div><div class="opt-sub">Automation runs the admin; I focus on strategy and clients</div></div>
+      </div>
+    </div>
+    <div class="insight" id="insight-4"><span class="insight-icon">💡</span><span class="insight-text" id="insight-text-4"></span></div>
+    <div class="btn-row"><button class="btn btn-ghost" onclick="prevStep()">← Back</button><button class="btn btn-primary" id="btn-4" onclick="nextStep()" disabled>Next →</button></div>
+  </div>
+
+  <!-- Q5: Data & reporting -->
+  <div class="step" id="step-5">
+    <div class="q-eyebrow">
+      <span class="q-num">Scenario 5 of 8</span>
+      <span class="q-tag" style="color:var(--green);border-color:rgba(61,190,143,.3)">Business intelligence</span>
+    </div>
+    <h2 class="headline">Without opening any apps — do you know this month's revenue versus last month?</h2>
+    <div class="scenario">Not an estimate. The actual number. And bonus: do you know which service or client type is driving it?</div>
+    <div class="options" id="opts-5">
+      <div class="option" data-q="5" data-v="0" data-insight="Running a business without revenue visibility is like driving at night without headlights. <strong>Businesses that track KPIs in real time grow 12% faster</strong> and are 3× more likely to spot a cash flow problem before it becomes a crisis." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">No idea — I'd have to check my bank account and do the maths</div><div class="opt-sub">Revenue tracking isn't something I actively manage</div></div>
+      </div>
+      <div class="option" data-q="5" data-v="2" data-insight="Gut instinct doesn't scale. The difference between a rough sense and a real number is often the difference between <strong>catching a slow month early and discovering it too late to act.</strong> A basic weekly spreadsheet changes your decision quality dramatically." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">I have a rough sense but couldn't give you a real number</div><div class="opt-sub">I go by feel and occasionally check the bank</div></div>
+      </div>
+      <div class="option" data-q="5" data-v="4" data-insight="Measuring puts you ahead of most small businesses. But if it takes 15 minutes to find the number, <strong>you're probably not checking as often as you should.</strong> The goal is data so frictionless you look at it daily without thinking." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">I could find it, but it'd take 10–15 minutes of spreadsheet digging</div><div class="opt-sub">The data is there — it's just not immediately accessible</div></div>
+      </div>
+      <div class="option" data-q="5" data-v="6" data-insight="Real-time visibility is a genuine competitive advantage. Most competitors make decisions based on last month's data at best. <strong>The next level is predictive analytics</strong> — using historical data to forecast next quarter before it happens." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">Yes — I have a live dashboard that shows me this in seconds</div><div class="opt-sub">Revenue, pipeline, and key metrics are always visible</div></div>
+      </div>
+    </div>
+    <div class="insight" id="insight-5"><span class="insight-icon">💡</span><span class="insight-text" id="insight-text-5"></span></div>
+    <div class="btn-row"><button class="btn btn-ghost" onclick="prevStep()">← Back</button><button class="btn btn-primary" id="btn-5" onclick="nextStep()" disabled>Next →</button></div>
+  </div>
+
+  <!-- Q6: Client onboarding -->
+  <div class="step" id="step-6">
+    <div class="q-eyebrow">
+      <span class="q-num">Scenario 6 of 8</span>
+      <span class="q-tag" style="color:var(--purple);border-color:rgba(167,139,250,.3)">Client experience</span>
+    </div>
+    <h2 class="headline">A new client just signed. What happens in the next 24 hours without you lifting a finger?</h2>
+    <div class="scenario">From the moment they say yes — how much of what follows is systematic, and how much depends entirely on you remembering to do it?</div>
+    <div class="options" id="opts-6">
+      <div class="option" data-q="6" data-v="0" data-insight="<strong>68% of clients who churn do so not because of the service itself — but because they felt neglected or confused after signing.</strong> Onboarding sets the tone for the entire relationship. Getting this right is your best retention tool." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">It all depends on me — I figure it out each time</div><div class="opt-sub">No system, no template — I cobble it together based on the client</div></div>
+      </div>
+      <div class="option" data-q="6" data-v="2" data-insight="Covering the basics is good — but if onboarding depends entirely on a call, <strong>you're one diary clash away from a client feeling lost and undervalued.</strong> The first 7 days after signing are when client relationships are won or lost." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">I send the contract and invoice manually, then we get on a call</div><div class="opt-sub">They're informed, but it's all reactive and driven by me</div></div>
+      </div>
+      <div class="option" data-q="6" data-v="3" data-insight="A checklist is a great starting point — but if it lives in your head or a Google Doc, it gets skipped when you're busy. <strong>Systematising your onboarding into an automated sequence is usually a half-day project</strong> with significant returns in client satisfaction and referrals." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">I have a checklist I follow, but execution is inconsistent</div><div class="opt-sub">Good in theory, but it depends on how busy I am</div></div>
+      </div>
+      <div class="option" data-q="6" data-v="5" data-insight="A structured onboarding experience is one of the most powerful drivers of referrals. <strong>Clients who feel taken care of from day one are 2.4× more likely to refer you.</strong> The next level is personalising by client type." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">I have a structured welcome sequence — clients know what to expect</div><div class="opt-sub">First few days are mapped out and consistent for everyone</div></div>
+      </div>
+      <div class="option" data-q="6" data-v="6" data-insight="Full onboarding automation means your client experience doesn't degrade as you scale. <strong>This is elite territory for a small business</strong> — most agencies with 20× your headcount don't run this well. Focus now on measuring satisfaction at each onboarding stage." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">Fully automated — contract, welcome email, access, kickoff — all triggered on sign</div><div class="opt-sub">The system handles the first week; I show up for the work itself</div></div>
+      </div>
+    </div>
+    <div class="insight" id="insight-6"><span class="insight-icon">💡</span><span class="insight-text" id="insight-text-6"></span></div>
+    <div class="btn-row"><button class="btn btn-ghost" onclick="prevStep()">← Back</button><button class="btn btn-primary" id="btn-6" onclick="nextStep()" disabled>Next →</button></div>
+  </div>
+
+  <!-- Q7: Online reputation -->
+  <div class="step" id="step-7">
+    <div class="q-eyebrow">
+      <span class="q-num">Scenario 7 of 8</span>
+      <span class="q-tag" style="color:var(--pink);border-color:rgba(244,114,182,.3)">Online reputation</span>
+    </div>
+    <h2 class="headline">A prospect who's never met you Googles your name before a meeting tomorrow. What do they find?</h2>
+    <div class="scenario">Not what you'd want them to find — what's actually there right now. If you're not sure, search your own name before answering this one.</div>
+    <div class="options" id="opts-7">
+      <div class="option" data-q="7" data-v="0" data-insight="<strong>93% of buyers research a service provider online before making first contact.</strong> If you're invisible on Google, LinkedIn, and review platforms, you're being disqualified silently — before the conversation even starts." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">Very little — I'm not visible outside my own website (if I have one)</div><div class="opt-sub">Googling me doesn't build any confidence or context</div></div>
+      </div>
+      <div class="option" data-q="7" data-v="2" data-insight="A scattered presence confirms you exist — but it doesn't build trust. <strong>Potential clients are looking for evidence that others have trusted you and been satisfied.</strong> Without reviews and a clear professional profile, that question stays unanswered." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">Some social profiles and a mention or two, but nothing that builds confidence</div><div class="opt-sub">They'd know I'm real, but nothing that would impress them</div></div>
+      </div>
+      <div class="option" data-q="7" data-v="4" data-insight="The gap between 'decent' and 'impressive' is usually just <strong>5 more Google reviews and a LinkedIn headline that shows results, not job titles.</strong> Both are achievable this week and have outsized impact on conversion." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">A decent LinkedIn profile and a few positive reviews, but it's not consistent</div><div class="opt-sub">Good enough, but not something I'm actively proud of</div></div>
+      </div>
+      <div class="option" data-q="7" data-v="6" data-insight="A strong trust presence does sales work before the first meeting — this is a <strong>significant competitive advantage that most small businesses dramatically underinvest in.</strong> Keep publishing and collecting reviews systematically. This compounds over time." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">Strong reviews, professional LinkedIn, content that positions me as an expert</div><div class="opt-sub">The picture they find would make them more confident, not less</div></div>
+      </div>
+    </div>
+    <div class="insight" id="insight-7"><span class="insight-icon">💡</span><span class="insight-text" id="insight-text-7"></span></div>
+    <div class="btn-row"><button class="btn btn-ghost" onclick="prevStep()">← Back</button><button class="btn btn-primary" id="btn-7" onclick="nextStep()" disabled>Next →</button></div>
+  </div>
+
+  <!-- Q8: AI readiness -->
+  <div class="step" id="step-8">
+    <div class="q-eyebrow">
+      <span class="q-num">Scenario 8 of 8</span>
+      <span class="q-tag" style="color:var(--teal);border-color:rgba(45,212,191,.3)">AI readiness</span>
+    </div>
+    <h2 class="headline">You find out your closest competitor just cut their admin time by 40% using AI. What's your honest reaction?</h2>
+    <div class="scenario">AI isn't coming — it's already being used by your competitors right now. The question isn't whether it matters. It's how far behind you are.</div>
+    <div class="options" id="opts-8">
+      <div class="option" data-q="8" data-v="0" data-insight="This is the most common reaction — and the most dangerous position to stay in. <strong>Businesses already 12 months into AI adoption are compounding their advantage every week.</strong> The learning curve is far shorter than most expect: most owners see meaningful time savings within their first week of guided implementation." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">Panic. I have no idea where to start and it all feels overwhelming.</div><div class="opt-sub">I know I should be doing something but I don't know what</div></div>
+      </div>
+      <div class="option" data-q="8" data-v="2" data-insight="Using ChatGPT occasionally is the equivalent of having a gym membership and going twice a year. <strong>The real ROI of AI comes from systematic integration</strong> — identifying the specific tasks that eat your time and building AI workflows around them. This is learnable in a single focused session." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">Mild concern. I've tried a few AI tools but it hasn't changed how I actually work.</div><div class="opt-sub">Played with ChatGPT, maybe used it for writing — but nothing stuck</div></div>
+      </div>
+      <div class="option" data-q="8" data-v="4" data-insight="You've got the habit — which puts you ahead of most. The next level is moving from ad-hoc AI use to <strong>proper workflow integration: connecting AI to your existing tools so it amplifies your whole operation,</strong> not just isolated tasks." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">Motivated. I use AI regularly for specific tasks — but it's not fully systematic yet.</div><div class="opt-sub">It helps, but it's not woven into how my business actually runs</div></div>
+      </div>
+      <div class="option" data-q="8" data-v="6" data-insight="<strong>AI embedded across multiple workflows is a genuine competitive moat at the SME level.</strong> Your competitor's 40% savings story doesn't surprise you — you've already got yours. The next frontier is building proprietary AI tools your competitors would need months to replicate." onclick="selectOption(this)">
+        <div class="opt-dot"></div><div class="opt-text"><div class="opt-label">Unsurprised. AI is embedded across my workflows and I've already seen the savings.</div><div class="opt-sub">Multiple processes run with AI assistance — it's just how I work now</div></div>
+      </div>
+    </div>
+    <div class="insight" id="insight-8"><span class="insight-icon">💡</span><span class="insight-text" id="insight-text-8"></span></div>
+    <div class="btn-row"><button class="btn btn-ghost" onclick="prevStep()">← Back</button><button class="btn btn-primary" id="btn-8" onclick="nextStep()" disabled>See my score →</button></div>
+  </div>
+
+  <!-- STEP 9: EMAIL CAPTURE -->
+  <div class="step" id="step-9">
+    <div class="eyebrow">Almost there</div>
+    <h2 class="headline" style="font-size:clamp(20px,3.5vw,28px)">Your score is ready.</h2>
+    <p class="subhead">Enter your details to receive your Digital Readiness Score, an 8-category breakdown, and a personalised action plan.</p>
+    <div class="field-wrap">
+      <input class="field" id="fieldName" type="text" placeholder="Your name" autocomplete="given-name"/>
+      <input class="field" id="fieldEmail" type="email" placeholder="Business email address" autocomplete="email"/>
+      <input class="field" id="fieldBiz" type="text" placeholder="Business name (optional)" autocomplete="organization"/>
+    </div>
+    <div class="consent">
+      <input type="checkbox" id="consentCheck"/>
+      <label class="consent-text" for="consentCheck">I agree to receive my score and follow-up emails from Sagacity Network Ltd. No spam. Unsubscribe anytime. <a href="https://sagacitynetwork.net/privacy">Privacy policy →</a></label>
+    </div>
+    <button class="btn btn-primary" id="submitBtn" onclick="submitForm()" style="width:100%;justify-content:center">Show my Digital Readiness Score →</button>
+    <div class="error-msg" id="errorMsg"></div>
+    <div style="display:flex;align-items:center;gap:8px;margin-top:14px">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="6" width="10" height="6" rx="1" stroke="rgba(240,237,230,0.26)" stroke-width="1.2"/><path d="M4.5 6V4.5a2.5 2.5 0 015 0V6" stroke="rgba(240,237,230,0.26)" stroke-width="1.2"/></svg>
+      <span style="font-size:12px;color:var(--dim)">Encrypted and never shared with third parties.</span>
+    </div>
+  </div>
+
+  <!-- STEP 10: RESULTS -->
+  <div class="step" id="step-10">
+    <div class="eyebrow">Your digital readiness score</div>
+
+    <div class="score-wrap">
+      <div class="score-ring">
+        <svg width="136" height="136" viewBox="0 0 136 136">
+          <circle cx="68" cy="68" r="58" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+          <circle cx="68" cy="68" r="58" fill="none" stroke-width="8" stroke-dasharray="364.4" stroke-dashoffset="364.4" id="scoreCircle" stroke-linecap="round"/>
+        </svg>
+        <div class="score-center">
+          <div class="score-num" id="scoreDisplay">0</div>
+          <div class="score-denom">out of 100</div>
+        </div>
+      </div>
+      <div class="score-band" id="scoreBand"></div>
+    </div>
+
+    <h2 class="result-head" id="resultHead"></h2>
+    <p class="result-body" id="resultBody"></p>
+
+    <div class="benchmark">
+      <span style="font-size:18px;flex-shrink:0">📊</span>
+      <div class="bm-text" id="benchmarkText"></div>
+    </div>
+
+    <hr class="divider">
+    <div class="section-label">Your score by category</div>
+    <div style="margin-bottom:20px">
+      <div class="cat-row"><div class="cat-name">Web presence</div><div class="cat-bg"><div class="cat-fill" id="cat-1"></div></div><div class="cat-val" id="catv-1"></div></div>
+      <div class="cat-row"><div class="cat-name">Lead follow-up</div><div class="cat-bg"><div class="cat-fill" id="cat-2"></div></div><div class="cat-val" id="catv-2"></div></div>
+      <div class="cat-row"><div class="cat-name">Cybersecurity</div><div class="cat-bg"><div class="cat-fill" id="cat-3"></div></div><div class="cat-val" id="catv-3"></div></div>
+      <div class="cat-row"><div class="cat-name">Automation</div><div class="cat-bg"><div class="cat-fill" id="cat-4"></div></div><div class="cat-val" id="catv-4"></div></div>
+      <div class="cat-row"><div class="cat-name">Data & reporting</div><div class="cat-bg"><div class="cat-fill" id="cat-5"></div></div><div class="cat-val" id="catv-5"></div></div>
+      <div class="cat-row"><div class="cat-name">Client experience</div><div class="cat-bg"><div class="cat-fill" id="cat-6"></div></div><div class="cat-val" id="catv-6"></div></div>
+      <div class="cat-row"><div class="cat-name">Online reputation</div><div class="cat-bg"><div class="cat-fill" id="cat-7"></div></div><div class="cat-val" id="catv-7"></div></div>
+      <div class="cat-row"><div class="cat-name">AI readiness</div><div class="cat-bg"><div class="cat-fill" id="cat-8"></div></div><div class="cat-val" id="catv-8"></div></div>
+    </div>
+
+    <hr class="divider">
+    <div class="section-label">Your top 3 priorities</div>
+    <div class="recs" id="recsContainer"></div>
+
+    <div class="cta-box">
+      <div class="cta-title">Ready to close the gaps?</div>
+      <div class="cta-body">Book a free 30-minute Digital Clarity Call. We'll walk through your score category by category, show you exactly what to fix first, and give you a clear picture of what's possible — no hard sell.</div>
+      <div class="cta-btns">
+        <a href="https://sagacitynetwork.net/contact" target="_blank" class="btn btn-primary">Book a free call →</a>
+        <a href="https://sagacitynetwork.net/services" class="btn btn-ghost">See our services</a>
+      </div>
+    </div>
+
+    <div class="share-row">
+      <span class="share-label">Share your score:</span>
+      <button class="share-btn" onclick="shareLinkedIn()">LinkedIn</button>
+      <button class="share-btn" onclick="shareWhatsApp()">WhatsApp</button>
+      <button class="share-btn" id="copyBtn" onclick="copyLink()">Copy link</button>
+    </div>
+
+    <div style="text-align:center;margin-top:24px;font-size:12px;color:var(--dim)">
+      sagacitynetwork.net · UK Registered · <a href="https://sagacitynetwork.net/privacy" style="color:var(--dim)">Privacy Policy</a>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const SUPABASE_URL='https://gnndbcmwjgoxofabukrp.supabase.co';
+const SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdubmRiY213amdveG9mYWJ1a3JwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzYwODQyNDcsImV4cCI6MjA5MTY2MDI0N30.JhcUoZCtA_Sxa1rJijovBJ8KRh_h2VUmXPE9e6DVYKc';
+const WEBHOOK_URL='';
+const TOTAL_Q=8;
+let currentStep=0;
+const answers={};
+
+const CATS={1:'web presence',2:'lead follow-up',3:'cybersecurity posture',4:'business automation',5:'data & reporting',6:'client onboarding experience',7:'online reputation',8:'AI readiness'};
+const REC_DESCS={
+  1:'Your online presence is the top of your entire funnel — every other improvement depends on it. A conversion-optimised site with a clear offer can start generating real enquiries within weeks.',
+  2:'Speed of response is one of the highest-leverage fixes available. Automated sequences mean every lead gets a professional reply — even on weekends, even when you\'re with another client.',
+  3:'Cybersecurity isn\'t about fear — it\'s about not being the easiest target on the street. A basic audit identifies and closes your highest-risk vulnerabilities, usually in a single session.',
+  4:'Time spent on manual admin is time not spent on growth or clients. Most routine tasks can be automated in an afternoon and the savings compound every single week after.',
+  5:'You can\'t improve what you can\'t see. A live dashboard that takes a day to set up can transform the quality of decisions you make every week — permanently.',
+  6:'The experience after the sale determines your referrals, retention, and reputation. A structured onboarding sequence is often the single highest-ROI process a small business can build.',
+  7:'Your reputation is doing sales work (or not) before every single meeting. Five more reviews and a clear LinkedIn presence could change how prospects feel about you before they\'ve said a word.',
+  8:'AI adoption is compounding — the earlier you build it into your workflows, the wider the gap between you and businesses that wait. A single focused session can change how you work permanently.'
+};
+
+function getUTM(){const p=new URLSearchParams(location.search);return{source:p.get('utm_source')||'direct',medium:p.get('utm_medium')||'',campaign:p.get('utm_campaign')||''};}
+
+function updateProgress(){
+  const emailStep=TOTAL_Q+1,resultsStep=TOTAL_Q+2;
+  let pct=0;
+  if(currentStep===0) pct=0;
+  else if(currentStep===emailStep) pct=90;
+  else if(currentStep===resultsStep) pct=100;
+  else pct=Math.round((currentStep/TOTAL_Q)*85);
+  document.getElementById('progFill').style.width=pct+'%';
+  document.getElementById('progPct').textContent=(currentStep>0&&currentStep<=TOTAL_Q)?`${currentStep} of ${TOTAL_Q}`:'';
+  document.getElementById('progLabel').textContent=currentStep===0?'Assessment':currentStep===emailStep?'Almost done':currentStep===resultsStep?'Your results':`Scenario ${currentStep}`;
+}
+
+function showStep(n){
+  document.querySelectorAll('.step').forEach(s=>s.classList.remove('active'));
+  document.getElementById('step-'+n).classList.add('active');
+  currentStep=n;
+  updateProgress();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function nextStep(){showStep(currentStep+1);}
+function prevStep(){showStep(currentStep-1);}
+
+function selectOption(el){
+  const q=el.dataset.q,v=parseInt(el.dataset.v),insight=el.dataset.insight;
+  document.querySelectorAll('[data-q="'+q+'"]').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  answers[q]=v;
+  const btn=document.getElementById('btn-'+q);
+  if(btn) btn.disabled=false;
+  const iEl=document.getElementById('insight-'+q);
+  const iText=document.getElementById('insight-text-'+q);
+  if(iEl&&insight){iText.innerHTML=insight;iEl.classList.add('show');}
+  setTimeout(()=>{if(currentStep<=TOTAL_Q) nextStep();},480);
+}
+
+function calcScore(){
+  const total=Object.values(answers).reduce((a,b)=>a+b,0);
+  return Math.round((total/(TOTAL_Q*6))*100);
+}
+function getBand(s){
+  if(s<=25) return{label:'Digitally At Risk',color:'#E05252',bg:'rgba(224,82,82,0.12)'};
+  if(s<=50) return{label:'Early Stage',color:'#E09B3D',bg:'rgba(224,155,61,0.12)'};
+  if(s<=74) return{label:'Developing',color:'#4B7BF5',bg:'rgba(75,123,245,0.12)'};
+  return{label:'Advanced',color:'#3DBE8F',bg:'rgba(61,190,143,0.12)'};
+}
+function getBenchmark(s){
+  if(s<=25) return`You're in the <strong>bottom 20% of businesses digitally.</strong> Every gap has a fix — and most can be addressed within 30 days.`;
+  if(s<=50) return`You're ahead of <strong>${s}% of small businesses</strong> in your sector. Closing your top 3 gaps could double inbound enquiries within 90 days.`;
+  if(s<=74) return`You're in the <strong>top 40% digitally.</strong> Targeted upgrades to your weakest categories could put you in the top 10% within six months.`;
+  return`You're in the <strong>top 15% of businesses digitally.</strong> The next stage is building compounding advantages that competitors can't easily replicate.`;
+}
+function getHeadline(s){
+  if(s<=25) return"Your business has significant digital gaps — and they're costing you clients right now.";
+  if(s<=50) return"You've made a start — but real revenue is slipping through the cracks.";
+  if(s<=74) return"Solid foundations. The right upgrades could significantly accelerate your growth.";
+  return"You're ahead of the curve. Time to build advantages that are hard to replicate.";
+}
+function getBody(s){
+  if(s<=25) return"The eight scenarios above reveal that your business is losing potential clients at multiple points — before they find you, in the follow-up, and through operational drag. None of this is unusual for a growing business. The question is how quickly you address it.";
+  if(s<=50) return"You're doing some things well, but there are clear gaps between where you are and where your strongest competitors operate. The good news: the scenarios above show exactly where those gaps are, and they're more fixable than they might feel right now.";
+  if(s<=74) return"You've built real digital infrastructure. The scenarios reveal you're ahead of most businesses in your sector — but there are still meaningful gaps that, once closed, will compound your advantage significantly. Focus on your two or three lowest-scoring categories first.";
+  return"The eight scenarios above show you're operating at a high level across the board. Your focus now should be on depth and differentiation — building systems and assets that competitors would need significant time and investment to replicate.";
+}
+function getRecs(){
+  const sorted=[1,2,3,4,5,6,7,8].sort((a,b)=>(answers[a]||0)-(answers[b]||0));
+  return sorted.filter(q=>(answers[q]||0)<4).slice(0,3).map(q=>({title:`Improve your ${CATS[q]}`,desc:REC_DESCS[q]}));
+}
+function getCatColor(v){
+  if(v===0) return'#E05252';if(v<=2) return'#E09B3D';if(v<=4) return'#4B7BF5';return'#3DBE8F';
+}
+
+async function submitForm(){
+  const name=document.getElementById('fieldName').value.trim();
+  const email=document.getElementById('fieldEmail').value.trim();
+  const biz=document.getElementById('fieldBiz').value.trim();
+  const consent=document.getElementById('consentCheck').checked;
+  const err=document.getElementById('errorMsg');
+  const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if(!name||!email||!emailValid||!consent){
+    err.style.display='block';
+    err.textContent = !name ? 'Please enter your name.' : !email || !emailValid ? 'Please enter a valid email address.' : 'Please agree to the terms to continue.';
+    return;
+  }
+  err.style.display='none';
+  const score=calcScore(),band=getBand(score),utm=getUTM();
+  document.getElementById('loadingOverlay').classList.add('show');
+  const payload={name,email,business:biz||null,score,band:band.label,q1:answers[1]||0,q2:answers[2]||0,q3:answers[3]||0,q4:answers[4]||0,q5:answers[5]||0,q6:answers[6]||0,q7:answers[7]||0,q8:answers[8]||0,...utm,created_at:new Date().toISOString()};
+  try{
+    if(SUPABASE_URL!=='https://YOUR_PROJECT.supabase.co'){
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/leads`,{
+        method:'POST',
+        headers:{'Content-Type':'application/json','apikey':SUPABASE_ANON_KEY,'Authorization':`Bearer ${SUPABASE_ANON_KEY}`,'Prefer':'return=minimal'},
+        body:JSON.stringify(payload)
+      });
+      if(!res.ok){
+        console.error('Supabase lead save failed:',res.status, await res.text());
+      }
+    }
+  }catch(e){console.error('Supabase error:',e);}
+  try{if(WEBHOOK_URL) await fetch(WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,email,score,band:band.label,business:biz})});}catch(e){}
+  setTimeout(()=>{document.getElementById('loadingOverlay').classList.remove('show');showResults(score,band);},1300);
+}
+
+function showResults(score,band){
+  showStep(TOTAL_Q+2);
+  const bandEl=document.getElementById('scoreBand');
+  bandEl.textContent=band.label;
+  bandEl.style.color=band.color;bandEl.style.borderColor=band.color;bandEl.style.background=band.bg;
+  document.getElementById('resultHead').textContent=getHeadline(score);
+  document.getElementById('resultBody').textContent=getBody(score);
+  document.getElementById('benchmarkText').innerHTML=getBenchmark(score);
+  const circle=document.getElementById('scoreCircle'),C=364.4;
+  circle.style.stroke=band.color;circle.style.strokeDashoffset=C;
+  const el=document.getElementById('scoreDisplay'),start=performance.now();
+  (function tick(now){const p=Math.min((now-start)/1500,1),e=1-Math.pow(1-p,3);el.textContent=Math.round(e*score);circle.style.strokeDashoffset=C-(C*(e*score/100));if(p<1) requestAnimationFrame(tick);})(start);
+  setTimeout(()=>{
+    [1,2,3,4,5,6,7,8].forEach(i=>{
+      const v=answers[i]||0,pct=Math.round((v/6)*100),color=getCatColor(v);
+      document.getElementById('cat-'+i).style.width=pct+'%';
+      document.getElementById('cat-'+i).style.background=color;
+      const label = v===0?'None':v<=2?'Weak':v<=4?'Fair':'Strong';
+      document.getElementById('catv-'+i).textContent=label;
+      document.getElementById('catv-'+i).style.color=color;
+    });
+  },200);
+  const recs=getRecs();
+  if(recs.length===0) recs.push({title:'Optimise and scale what\'s working',desc:'You\'re already in the top tier. The next level is AI-assisted decision making, proprietary tooling, and compounding advantages that are genuinely hard to replicate.'});
+  document.getElementById('recsContainer').innerHTML=recs.map((r,i)=>`<div class="rec"><div class="rec-num">${i+1}</div><div><div class="rec-title">${r.title}</div><div class="rec-desc">${r.desc}</div></div></div>`).join('');
+  window._score=score;window._band=band.label;
+}
+
+function shareLinkedIn(){const t=encodeURIComponent(`I just scored ${window._score||0}/100 on the Sagacity Network Digital Readiness Assessment — ${window._band||''}. 8 real-world scenarios that reveal exactly where your business stands: ${location.href.split('?')[0]}`);window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(location.href.split('?')[0])}&summary=${t}`,'_blank');}
+function shareWhatsApp(){const t=encodeURIComponent(`I scored ${window._score||0}/100 on the Sagacity Digital Readiness Assessment. Find out where your business stands: ${location.href.split('?')[0]}`);window.open(`https://wa.me/?text=${t}`,'_blank');}
+function copyLink(){navigator.clipboard.writeText(location.href.split('?')[0]).then(()=>{const b=document.getElementById('copyBtn');b.textContent='✓ Copied';b.classList.add('copied');setTimeout(()=>{b.textContent='Copy link';b.classList.remove('copied');},2000);});}
+
+let exitShown=false;
+function closeExitModal(){document.getElementById('exitModal').classList.remove('show');}
+document.addEventListener('mouseleave',e=>{
+  if(e.clientY<10&&currentStep>0&&currentStep<=TOTAL_Q&&!exitShown){
+    exitShown=true;
+    document.getElementById('exitModalBody').textContent=`You're ${currentStep} of ${TOTAL_Q} scenarios in — your score is almost ready. It takes less than 3 more minutes.`;
+    document.getElementById('exitModal').classList.add('show');
+  }
+});
+</script>
+</body>
+</html>
