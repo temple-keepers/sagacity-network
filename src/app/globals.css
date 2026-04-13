@@ -7,6 +7,7 @@ body {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Layout */
@@ -16,4 +17,42 @@ body {
 @media (min-width: 1280px) { .section-px { padding-left: 64px; padding-right: 64px; } }
 
 /* Selection */
-::selection { background: rgba(200, 83, 42, 0.15); }
+::selection { background: rgba(200, 83, 42, 0.2); }
+
+/* Scroll reveal animation */
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  animation: reveal-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.reveal-d1 { animation-delay: 0.08s; }
+.reveal-d2 { animation-delay: 0.16s; }
+.reveal-d3 { animation-delay: 0.24s; }
+.reveal-d4 { animation-delay: 0.32s; }
+.reveal-d5 { animation-delay: 0.40s; }
+
+/* Scroll-triggered reveal (via IntersectionObserver) */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Card hover lift */
+.card-hover {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.card-hover:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+}

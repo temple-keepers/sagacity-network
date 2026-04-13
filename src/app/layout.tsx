@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
+import ThemeScript from "@/components/ui/ThemeScript";
 import "./globals.css";
 
 const bricolage = Bricolage_Grotesque({
@@ -39,7 +40,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${bricolage.variable} ${dmSans.variable}`}>
+    <html
+      lang="en"
+      className={`${bricolage.variable} ${dmSans.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <ThemeScript />
+      </head>
       <body>
         <Nav />
         <main>{children}</main>

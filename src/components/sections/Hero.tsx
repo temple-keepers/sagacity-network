@@ -6,11 +6,10 @@ export default function Hero() {
       <div className="max-w-site section-px">
         {/* Pill */}
         <div
-          className="inline-flex items-center px-4 py-1.5 mb-8 text-[12px] tracking-[0.04em]"
+          className="reveal inline-flex items-center px-4 py-1.5 mb-8 text-[12px] tracking-[0.04em]"
           style={{
             border: "1px solid var(--color-accent)",
             color: "var(--color-accent)",
-            fontFamily: "var(--font-body)",
             borderRadius: 0,
           }}
         >
@@ -19,7 +18,7 @@ export default function Hero() {
 
         {/* Headline */}
         <h1
-          className="text-[40px] md:text-[56px] lg:text-[64px] font-[800] leading-[1.08] tracking-[-0.02em] mb-6 max-w-[780px]"
+          className="reveal reveal-d1 text-[40px] md:text-[56px] lg:text-[64px] font-[800] leading-[1.08] tracking-[-0.02em] mb-6 max-w-[780px]"
           style={{ fontFamily: "var(--font-display)", color: "var(--color-ink)" }}
         >
           We build digital products that work.
@@ -27,7 +26,7 @@ export default function Hero() {
 
         {/* Subheadline */}
         <p
-          className="text-[17px] md:text-[20px] font-[300] leading-[1.7] mb-10 max-w-[560px]"
+          className="reveal reveal-d2 text-[17px] md:text-[20px] font-[300] leading-[1.7] mb-10 max-w-[560px]"
           style={{ color: "var(--color-muted)" }}
         >
           Web apps, data systems, automation, and security. Built by
@@ -36,17 +35,17 @@ export default function Hero() {
         </p>
 
         {/* CTAs */}
-        <div className="flex flex-wrap gap-3 mb-12">
+        <div className="reveal reveal-d3 flex flex-wrap gap-3 mb-12">
           <Link
             href="/work"
-            className="px-7 py-3.5 text-[13px] font-medium tracking-[0.04em] transition-opacity hover:opacity-85"
+            className="px-7 py-3.5 text-[13px] font-[500] tracking-[0.04em] transition-all duration-200 hover:opacity-85 hover:-translate-y-0.5"
             style={{ background: "var(--color-accent)", color: "#FFFFFF", borderRadius: 0 }}
           >
             See our work
           </Link>
           <Link
             href="/contact"
-            className="px-7 py-3.5 text-[13px] font-medium tracking-[0.04em] transition-opacity hover:opacity-85"
+            className="px-7 py-3.5 text-[13px] font-[500] tracking-[0.04em] transition-all duration-200 hover:opacity-85 hover:-translate-y-0.5"
             style={{
               border: "1px solid var(--color-accent)",
               color: "var(--color-accent)",
@@ -59,7 +58,7 @@ export default function Hero() {
 
         {/* Trust strip */}
         <p
-          className="text-[13px] font-[300] tracking-[0.02em]"
+          className="reveal reveal-d4 text-[13px] font-[300] tracking-[0.02em]"
           style={{ color: "var(--color-muted)" }}
         >
           5 live platforms &nbsp;&middot;&nbsp; UK Registered &nbsp;&middot;&nbsp;

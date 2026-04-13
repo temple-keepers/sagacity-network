@@ -1,3 +1,4 @@
+/* Light (default) */
 :root {
   --color-bg:      #F7F5F2;
   --color-ink:     #1C1C1C;
@@ -5,6 +6,7 @@
   --color-muted:   #6B6B6B;
   --color-surface: #FFFFFF;
   --color-border:  #E5E2DD;
+  --color-footer:  #1C1C1C;
 
   --font-display:  "Bricolage Grotesque", sans-serif;
   --font-body:     "DM Sans", sans-serif;
@@ -12,4 +14,15 @@
   --radius-sm:  6px;
   --radius-md:  10px;
   --radius-lg:  16px;
+}
+
+/* Dark mode */
+:root.dark {
+  --color-bg:      #111111;
+  --color-ink:     #F0EDE8;
+  --color-accent:  #D4693A;
+  --color-muted:   #9A9590;
+  --color-surface: #1A1A1A;
+  --color-border:  #2A2725;
+  --color-footer:  #0A0A0A;
 }

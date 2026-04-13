@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 
 const SERVICES = [
   {
@@ -39,19 +40,21 @@ export default function Services() {
   return (
     <section className="py-20 md:py-28" style={{ background: "var(--color-bg)" }}>
       <div className="max-w-site section-px">
-        <h2
-          className="text-[28px] md:text-[36px] font-[800] tracking-[-0.02em] mb-12"
-          style={{ fontFamily: "var(--font-display)" }}
-        >
-          What we build
-        </h2>
+        <ScrollReveal>
+          <h2
+            className="text-[28px] md:text-[36px] font-[800] tracking-[-0.02em] mb-12"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            What we build
+          </h2>
+        </ScrollReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {SERVICES.map((s, i) => (
-            <Link
+            <ScrollReveal key={s.num} delay={i * 80}><Link
               key={s.num}
               href="/services"
-              className={`group block p-7 transition-all duration-200 ${
+              className={`group block p-7 card-hover ${
                 i === SERVICES.length - 1 && SERVICES.length % 2 !== 0
                   ? "md:col-span-2 md:max-w-[calc(50%-8px)] md:mx-auto"
                   : ""
@@ -99,7 +102,7 @@ export default function Services() {
                   </span>
                 ))}
               </div>
-            </Link>
+            </Link></ScrollReveal>
           ))}
         </div>
       </div>
