@@ -207,31 +207,48 @@ a { color: inherit; text-decoration: none; }
 
 :root.light .mesh-orb { opacity: 0.35; }
 
+/* Thin elegant ring used by half-arcs */
+.hero-ring-thin {
+  background: conic-gradient(
+    from 0deg,
+    rgba(245,240,232,0.3) 0%,
+    rgba(212,175,55,0.45) 15%,
+    rgba(245,240,232,0.5) 30%,
+    rgba(159,122,234,0.45) 50%,
+    rgba(245,240,232,0.5) 70%,
+    rgba(212,175,55,0.45) 85%,
+    rgba(245,240,232,0.3) 100%
+  );
+  -webkit-mask: radial-gradient(circle, transparent 64%, black 65.5%, black 67%, transparent 68.5%);
+  mask: radial-gradient(circle, transparent 64%, black 65.5%, black 67%, transparent 68.5%);
+  filter: blur(0.5px);
+}
+
 @keyframes hero-ring-rotate {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-/* Ring intro → spin → outro loop: 10s total cycle */
+/* Ring intro → spin → outro loop: 12s total cycle */
 @keyframes ring-left-cycle {
-  0%   { transform: translateX(-400px) rotate(-45deg); opacity: 0; }
-  8%   { transform: translateX(0) rotate(0deg); opacity: 1; }       /* snap in */
-  75%  { transform: translateX(0) rotate(0deg); opacity: 1; }       /* hold */
-  90%  { transform: translateX(-400px) rotate(-45deg); opacity: 0; } /* fly out */
-  100% { transform: translateX(-400px) rotate(-45deg); opacity: 0; } /* pause */
+  0%   { transform: translateX(-350px) rotate(-30deg); opacity: 0; }
+  10%  { transform: translateX(0) rotate(0deg); opacity: 1; }
+  72%  { transform: translateX(0) rotate(0deg); opacity: 1; }
+  88%  { transform: translateX(-350px) rotate(-30deg); opacity: 0; }
+  100% { transform: translateX(-350px) rotate(-30deg); opacity: 0; }
 }
 @keyframes ring-right-cycle {
-  0%   { transform: translateX(400px) rotate(45deg); opacity: 0; }
-  8%   { transform: translateX(0) rotate(0deg); opacity: 1; }
-  75%  { transform: translateX(0) rotate(0deg); opacity: 1; }
-  90%  { transform: translateX(400px) rotate(45deg); opacity: 0; }
-  100% { transform: translateX(400px) rotate(45deg); opacity: 0; }
+  0%   { transform: translateX(350px) rotate(30deg); opacity: 0; }
+  10%  { transform: translateX(0) rotate(0deg); opacity: 1; }
+  72%  { transform: translateX(0) rotate(0deg); opacity: 1; }
+  88%  { transform: translateX(350px) rotate(30deg); opacity: 0; }
+  100% { transform: translateX(350px) rotate(30deg); opacity: 0; }
 }
 @keyframes ring-body-cycle {
   0%   { opacity: 0; }
-  10%  { opacity: 1; }   /* fade in after halves join */
-  73%  { opacity: 1; }   /* hold visible */
-  85%  { opacity: 0; }   /* fade out before halves leave */
+  12%  { opacity: 1; }
+  70%  { opacity: 1; }
+  84%  { opacity: 0; }
   100% { opacity: 0; }
 }
 

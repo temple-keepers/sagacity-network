@@ -50,107 +50,89 @@ export default function Hero() {
         />
       </div>
 
-      {/* Glowing arc ring — intro → spin → outro on loop (10s cycle) */}
+      {/* Glowing arc ring — intro → spin → outro loop (12s cycle) */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <div className="relative w-[650px] h-[650px] md:w-[850px] md:h-[850px] lg:w-[1000px] lg:h-[1000px]">
-          {/* Left half-arc — cycles in and out */}
+          {/* Left half — uses full ring with clip, no gap at seam */}
           <div
             className="absolute inset-0"
             style={{
-              clipPath: "inset(0 50% 0 0)",
-              animation: "ring-left-cycle 10s cubic-bezier(0.22,1,0.36,1) infinite",
+              clipPath: "polygon(0 0, 50.5% 0, 50.5% 100%, 0 100%)",
+              animation: "ring-left-cycle 12s ease-in-out infinite",
             }}
           >
             <div
-              className="absolute inset-0 rounded-full"
-              style={{
-                background:
-                  "conic-gradient(from 90deg, rgba(212,175,55,0.5) 0%, rgba(245,240,232,0.8) 20%, rgba(159,122,234,0.5) 40%, transparent 50%, transparent 100%)",
-                filter: "blur(1px)",
-                mask: "radial-gradient(circle, transparent 60%, black 62%, black 68%, transparent 70%)",
-                WebkitMask:
-                  "radial-gradient(circle, transparent 60%, black 62%, black 68%, transparent 70%)",
-              }}
+              className="absolute inset-0 rounded-full hero-ring-thin"
             />
           </div>
 
-          {/* Right half-arc — cycles in and out */}
+          {/* Right half — overlaps center by 0.5% to eliminate seam */}
           <div
             className="absolute inset-0"
             style={{
-              clipPath: "inset(0 0 0 50%)",
-              animation: "ring-right-cycle 10s cubic-bezier(0.22,1,0.36,1) infinite",
+              clipPath: "polygon(49.5% 0, 100% 0, 100% 100%, 49.5% 100%)",
+              animation: "ring-right-cycle 12s ease-in-out infinite",
             }}
           >
             <div
-              className="absolute inset-0 rounded-full"
-              style={{
-                background:
-                  "conic-gradient(from 270deg, rgba(159,122,234,0.5) 0%, rgba(245,240,232,0.8) 20%, rgba(212,175,55,0.5) 40%, transparent 50%, transparent 100%)",
-                filter: "blur(1px)",
-                mask: "radial-gradient(circle, transparent 60%, black 62%, black 68%, transparent 70%)",
-                WebkitMask:
-                  "radial-gradient(circle, transparent 60%, black 62%, black 68%, transparent 70%)",
-              }}
+              className="absolute inset-0 rounded-full hero-ring-thin"
             />
           </div>
 
-          {/* Full ring — visible while halves are joined */}
+          {/* Full ring — visible while joined, with comet */}
           <div
             className="absolute inset-0"
-            style={{
-              animation: "ring-body-cycle 10s ease infinite",
-            }}
+            style={{ animation: "ring-body-cycle 12s ease infinite" }}
           >
-            {/* Base ring — bright and thick */}
+            {/* Thin elegant ring */}
             <div
               className="absolute inset-0 rounded-full"
               style={{
                 background:
-                  "conic-gradient(from 0deg, rgba(245,240,232,0.15) 0%, rgba(212,175,55,0.3) 10%, rgba(245,240,232,0.22) 20%, rgba(159,122,234,0.3) 35%, rgba(245,240,232,0.22) 50%, rgba(212,175,55,0.3) 65%, rgba(245,240,232,0.22) 80%, rgba(159,122,234,0.25) 90%, rgba(245,240,232,0.15) 100%)",
-                mask: "radial-gradient(circle, transparent 60%, black 62%, black 68%, transparent 70%)",
+                  "conic-gradient(from 0deg, rgba(245,240,232,0.12) 0%, rgba(212,175,55,0.22) 15%, rgba(245,240,232,0.18) 30%, rgba(159,122,234,0.22) 50%, rgba(245,240,232,0.18) 70%, rgba(212,175,55,0.22) 85%, rgba(245,240,232,0.12) 100%)",
+                mask: "radial-gradient(circle, transparent 64%, black 65.5%, black 67%, transparent 68.5%)",
                 WebkitMask:
-                  "radial-gradient(circle, transparent 60%, black 62%, black 68%, transparent 70%)",
+                  "radial-gradient(circle, transparent 64%, black 65.5%, black 67%, transparent 68.5%)",
                 animation: "hero-ring-rotate 30s linear infinite",
               }}
             />
 
-            {/* Comet — traveling bright spot */}
+            {/* Comet — bright traveling spot */}
             <div
               className="absolute inset-0 rounded-full"
               style={{
                 background:
-                  "conic-gradient(from 0deg, transparent 0%, transparent 85%, rgba(245,240,232,0.6) 92%, rgba(255,255,255,0.95) 95%, rgba(212,175,55,0.7) 97%, transparent 100%)",
-                filter: "blur(2px)",
-                mask: "radial-gradient(circle, transparent 59%, black 62%, black 68%, transparent 71%)",
+                  "conic-gradient(from 0deg, transparent 0%, transparent 88%, rgba(245,240,232,0.4) 93%, rgba(255,255,255,0.85) 96%, rgba(212,175,55,0.5) 98%, transparent 100%)",
+                filter: "blur(1.5px)",
+                mask: "radial-gradient(circle, transparent 63%, black 65%, black 67.5%, transparent 69.5%)",
                 WebkitMask:
-                  "radial-gradient(circle, transparent 59%, black 62%, black 68%, transparent 71%)",
+                  "radial-gradient(circle, transparent 63%, black 65%, black 67.5%, transparent 69.5%)",
                 animation: "hero-ring-rotate 6s linear infinite",
               }}
             />
 
-            {/* Outer glow halo */}
+            {/* Soft outer glow */}
             <div
-              className="absolute inset-[-4%] rounded-full"
+              className="absolute inset-[-2%] rounded-full"
               style={{
                 background:
-                  "conic-gradient(from 0deg, transparent 0%, rgba(159,122,234,0.08) 25%, rgba(245,240,232,0.1) 50%, rgba(212,175,55,0.08) 75%, transparent 100%)",
-                filter: "blur(20px)",
-                mask: "radial-gradient(circle, transparent 55%, black 60%, black 70%, transparent 75%)",
+                  "conic-gradient(from 0deg, transparent 0%, rgba(159,122,234,0.04) 25%, rgba(245,240,232,0.06) 50%, rgba(212,175,55,0.04) 75%, transparent 100%)",
+                filter: "blur(16px)",
+                mask: "radial-gradient(circle, transparent 60%, black 63%, black 70%, transparent 73%)",
                 WebkitMask:
-                  "radial-gradient(circle, transparent 55%, black 60%, black 70%, transparent 75%)",
+                  "radial-gradient(circle, transparent 60%, black 63%, black 70%, transparent 73%)",
                 animation: "hero-ring-rotate 20s linear infinite reverse",
               }}
             />
           </div>
 
-          {/* Inner ambient glow — also cycles */}
+          {/* Inner ambient glow */}
           <div
-            className="absolute inset-[22%] rounded-full"
+            className="absolute inset-[25%] rounded-full"
             style={{
               background:
-                "radial-gradient(circle, rgba(159,122,234,0.04) 0%, rgba(212,175,55,0.02) 50%, transparent 70%)",
-              animation: "ring-body-cycle 10s ease infinite",
+                "radial-gradient(circle, rgba(159,122,234,0.03) 0%, rgba(212,175,55,0.015) 50%, transparent 70%)",
+              animation: "ring-body-cycle 12s ease infinite",
             }}
           />
         </div>
