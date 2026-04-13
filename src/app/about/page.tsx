@@ -1,7 +1,1 @@
-export default function Page() {
-  return (
-    <div className="min-h-screen flex items-center justify-center">
-      <p className="text-text-muted text-lg">Coming soon</p>
-    </div>
-  );
-}
+export default function Page() { return <div className="pt-[100px] pb-20"><div className="max-w-site section-px"><h1 className="text-[36px] font-[800]" style={{ fontFamily: "var(--font-display)" }}>Coming soon</h1></div></div>; }

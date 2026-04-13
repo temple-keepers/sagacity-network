@@ -1,105 +1,105 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import RevealWrapper from "@/components/ui/RevealWrapper";
-import { SERVICES } from "@/lib/data/services";
+
+const SERVICES = [
+  {
+    num: "01",
+    title: "Web & App Development",
+    body: "Full-stack platforms and mobile-ready web apps built to production standard. From a five-page site to a full SaaS platform.",
+    tags: ["Next.js", "React", "TypeScript", "Supabase"],
+  },
+  {
+    num: "02",
+    title: "Data & Programme Intelligence",
+    body: "Enterprise-grade reporting, Power BI dashboards, and capital programme tooling that makes your data visible and actionable.",
+    tags: ["Power BI", "Dashboards", "KPI Tracking", "Reporting"],
+  },
+  {
+    num: "03",
+    title: "Business Automation & AI",
+    body: "WhatsApp bots, workflow automation, document generation, and Claude-powered tools that give your team hours back every week.",
+    tags: ["Claude API", "n8n", "Make", "WhatsApp"],
+  },
+  {
+    num: "04",
+    title: "Cybersecurity",
+    body: "Security audits, monthly monitoring, penetration testing, and staff training. Delivered by a certified specialist.",
+    tags: ["Audits", "Pen Testing", "Monitoring", "Training"],
+  },
+  {
+    num: "05",
+    title: "Training & Workshops",
+    body: "Live workshops, cohort programmes, and on-demand courses. AI, cybersecurity, Power BI, and digital foundations.",
+    tags: ["AI Workshops", "Corporate", "CPD Eligible"],
+  },
+];
 
 export default function Services() {
-  const [hovered, setHovered] = useState<number | null>(null);
-
   return (
-    <section
-      id="services"
-      className="section-padding"
-      style={{ background: "var(--bg-secondary)" }}
-    >
-      <div className="max-container">
-        {/* Header */}
-        <RevealWrapper>
-          <div className="mb-12">
-            <div className="text-[11px] font-semibold tracking-[0.2em] uppercase text-gold mb-5">
-              Services
-            </div>
-            <h2>
-              What We
-              <em className="text-gold italic"> Deliver.</em>
-            </h2>
-          </div>
-        </RevealWrapper>
+    <section className="py-20 md:py-28" style={{ background: "var(--color-bg)" }}>
+      <div className="max-w-site section-px">
+        <h2
+          className="text-[28px] md:text-[36px] font-[800] tracking-[-0.02em] mb-12"
+          style={{ fontFamily: "var(--font-display)" }}
+        >
+          What we build
+        </h2>
 
-        {/* Service rows */}
-        <div className="border-t border-border-line">
-          {SERVICES.map((service, i) => (
-            <RevealWrapper key={service.slug} delay={i * 60}>
-              <Link
-                href={`/services#${service.slug}`}
-                className="group block grid grid-cols-[1fr] md:grid-cols-[60px_1fr_auto] gap-3 md:gap-8 items-center py-6 md:py-8 border-b border-border-line transition-all duration-[400ms]"
-                onMouseEnter={() => setHovered(i)}
-                onMouseLeave={() => setHovered(null)}
-                style={{
-                  paddingLeft: hovered === i ? 12 : 0,
-                  background:
-                    hovered === i
-                      ? "rgba(212, 175, 55, 0.02)"
-                      : "transparent",
-                }}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {SERVICES.map((s, i) => (
+            <Link
+              key={s.num}
+              href="/services"
+              className={`group block p-7 transition-all duration-200 ${
+                i === SERVICES.length - 1 && SERVICES.length % 2 !== 0
+                  ? "md:col-span-2 md:max-w-[calc(50%-8px)] md:mx-auto"
+                  : ""
+              }`}
+              style={{
+                background: "var(--color-surface)",
+                border: "1px solid var(--color-border)",
+                borderRadius: "var(--radius-md)",
+                borderLeft: "1px solid var(--color-border)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.borderLeft = "3px solid var(--color-accent)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.borderLeft = "1px solid var(--color-border)";
+              }}
+            >
+              <div
+                className="text-[11px] font-[800] tracking-[0.12em] mb-3"
+                style={{ fontFamily: "var(--font-display)", color: "var(--color-accent)" }}
               >
-                {/* Number */}
-                <div
-                  className="font-display text-[32px] md:text-[40px] font-light leading-none transition-colors duration-300 hidden md:block"
-                  style={{
-                    color:
-                      hovered === i
-                        ? "var(--gold)"
-                        : "rgba(245, 240, 232, 0.15)",
-                  }}
-                >
-                  {service.number}
-                </div>
-
-                {/* Title + description */}
-                <div>
-                  <h3
-                    className="font-display text-[20px] md:text-[22px] lg:text-[26px] font-light mb-1.5 transition-colors duration-300"
+                {s.num}
+              </div>
+              <h3
+                className="text-[20px] font-[600] mb-2"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                {s.title}
+              </h3>
+              <p className="text-[15px] font-[400] leading-[1.65] mb-4" style={{ color: "var(--color-muted)" }}>
+                {s.body}
+              </p>
+              <div className="flex flex-wrap gap-2">
+                {s.tags.map((t) => (
+                  <span
+                    key={t}
+                    className="px-2.5 py-1 text-[11px]"
                     style={{
-                      color:
-                        hovered === i
-                          ? "var(--gold)"
-                          : "var(--text-primary)",
+                      background: "var(--color-bg)",
+                      color: "var(--color-ink)",
+                      borderRadius: "var(--radius-sm)",
                     }}
                   >
-                    {service.title}
-                  </h3>
-                  <p className="text-[13px] lg:text-[14px] text-text-secondary font-light leading-[1.75] max-w-[560px]">
-                    {service.description}
-                  </p>
-                </div>
-
-                {/* Tags */}
-                <div className="hidden lg:flex gap-2 flex-wrap justify-end max-w-[240px]">
-                  {service.tags.slice(0, 4).map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2.5 py-1 text-[10px] tracking-[0.06em] rounded-[2px] whitespace-nowrap transition-colors duration-300"
-                      style={{
-                        border: "1px solid var(--gold-border)",
-                        color:
-                          hovered === i
-                            ? "var(--gold)"
-                            : "var(--text-muted)",
-                        background:
-                          hovered === i
-                            ? "var(--gold-dim)"
-                            : "transparent",
-                      }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </Link>
-            </RevealWrapper>
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </Link>
           ))}
         </div>
       </div>

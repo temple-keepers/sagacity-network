@@ -1,0 +1,15 @@
+:root {
+  --color-bg:      #F7F5F2;
+  --color-ink:     #1C1C1C;
+  --color-accent:  #C8532A;
+  --color-muted:   #6B6B6B;
+  --color-surface: #FFFFFF;
+  --color-border:  #E5E2DD;
+
+  --font-display:  "Bricolage Grotesque", sans-serif;
+  --font-body:     "DM Sans", sans-serif;
+
+  --radius-sm:  6px;
+  --radius-md:  10px;
+  --radius-lg:  16px;
+}

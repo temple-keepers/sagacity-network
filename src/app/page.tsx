@@ -1,21 +1,19 @@
 import Hero from "@/components/sections/Hero";
+import ProofStrip from "@/components/sections/ProofStrip";
 import Services from "@/components/sections/Services";
 import Portfolio from "@/components/sections/Portfolio";
-import Academy from "@/components/sections/Academy";
+import LeadCapture from "@/components/sections/LeadCapture";
 import GuyanaStrip from "@/components/sections/GuyanaStrip";
-import Founders from "@/components/sections/Founders";
-import ContactCTA from "@/components/sections/ContactCTA";
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <ProofStrip />
       <Services />
       <Portfolio />
-      <Academy />
+      <LeadCapture />
       <GuyanaStrip />
-      <Founders />
-      <ContactCTA />
     </>
   );
 }

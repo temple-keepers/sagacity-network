@@ -1,62 +1,49 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
-import "./globals.css";
+import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
 import Nav from "@/components/layout/Nav";
 import Footer from "@/components/layout/Footer";
-import ThemeProvider from "@/components/ui/ThemeProvider";
+import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-display",
+const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: ["300", "400", "600"],
-  style: ["normal", "italic"],
+  weight: ["400", "600", "800"],
+  variable: "--font-display",
   display: "swap",
 });
 
 const dmSans = DM_Sans({
-  variable: "--font-body",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400", "500"],
+  variable: "--font-body",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Sagacity Network Ltd — Digital Product Studio | UK",
+  title: "Sagacity Network — UK Digital Product Studio",
   description:
-    "Enterprise-grade digital products for growing businesses. Web apps, Power BI dashboards, AI automation, cybersecurity, and training. Founded by a capital programme manager and cybersecurity specialist.",
+    "Web & app development, data intelligence, business automation, and cybersecurity. Built by practitioners.",
   metadataBase: new URL("https://sagacitynetwork.net"),
   openGraph: {
-    title: "Sagacity Network Ltd — Digital Product Studio | UK",
+    title: "Sagacity Network — UK Digital Product Studio",
     description:
-      "Enterprise-grade digital products for growing businesses. Web apps, Power BI dashboards, AI automation, cybersecurity, and training.",
+      "Web apps, data systems, automation, and security. Built by practitioners.",
     url: "https://sagacitynetwork.net",
-    siteName: "Sagacity Network Ltd",
-    images: ["/og-image.png"],
+    siteName: "Sagacity Network",
     type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@sagacitynetwork",
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
-    <html
-      lang="en"
-      className={`${cormorant.variable} ${dmSans.variable} dark`}
-      suppressHydrationWarning
-    >
-      <body className="font-body">
-        <ThemeProvider>
-          <Nav />
-          <main>{children}</main>
-          <Footer />
-        </ThemeProvider>
+    <html lang="en" className={`${bricolage.variable} ${dmSans.variable}`}>
+      <body>
+        <Nav />
+        <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

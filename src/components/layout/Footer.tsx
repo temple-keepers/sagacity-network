@@ -1,89 +1,61 @@
 import Link from "next/link";
-import Image from "next/image";
 
-const FOOTER_LINKS = {
+const COLS = {
   Services: [
-    { href: "/services#web-app-development", label: "Web & App Development" },
-    { href: "/services#data-intelligence", label: "Data & Intelligence" },
-    { href: "/services#automation-ai", label: "Automation & AI" },
-    { href: "/services#cybersecurity", label: "Cybersecurity" },
-    { href: "/services#training", label: "Training & Workshops" },
+    { href: "/services", label: "Web & App Development" },
+    { href: "/services", label: "Data Intelligence" },
+    { href: "/services", label: "Automation & AI" },
+    { href: "/services", label: "Cybersecurity" },
+    { href: "/services", label: "Training" },
+  ],
+  Platforms: [
+    { href: "/work", label: "Temple Keepers" },
+    { href: "/work", label: "Rhythm & Roots" },
+    { href: "/work", label: "Crack Solve" },
+    { href: "/work", label: "Totenga" },
   ],
   Company: [
-    { href: "/work", label: "Our Work" },
-    { href: "/about", label: "About Us" },
-    { href: "/blog", label: "Blog" },
+    { href: "/about", label: "About" },
+    { href: "/work", label: "Work" },
+    { href: "/guyana", label: "Guyana" },
     { href: "/contact", label: "Contact" },
-  ],
-  Explore: [
-    { href: "/training", label: "Sagacity Academy" },
-    { href: "/guyana", label: "Guyana Digital" },
   ],
 };
 
 export default function Footer() {
   return (
-    <footer className="relative" style={{ background: "var(--bg-footer)" }}>
-      {/* Top border — visible in both themes */}
-      <div
-        className="absolute top-0 left-0 right-0 h-[1px]"
-        style={{ background: "var(--border-hover)" }}
-      />
-
-      <div className="max-container section-px">
-        {/* Main grid — generous vertical padding */}
-        <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_0.8fr_0.8fr] gap-y-10 gap-x-8 lg:gap-x-16 items-start"
-          style={{ paddingTop: 72, paddingBottom: 56 }}
-        >
-          {/* Brand column */}
+    <footer style={{ background: "#1C1C1C", color: "#FFFFFF" }}>
+      <div className="max-w-site section-px pt-16 pb-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-14">
+          {/* Brand */}
           <div>
-            <Link href="/" className="inline-flex items-center gap-2.5 mb-4">
-              <Image
-                src="/logo-tree.png"
-                alt="Sagacity Network"
-                width={38}
-                height={29}
-                className="w-[32px] h-auto"
-                style={{
-                  filter:
-                    "brightness(1.3) drop-shadow(0 0 10px rgba(212,175,55,0.3))",
-                }}
-              />
-              <span className="font-display text-[17px] font-light tracking-[0.02em] text-text-primary">
-                Sagacity Network
-              </span>
-            </Link>
-            <p className="text-[13px] leading-[1.75] text-text-secondary max-w-[260px] mb-4">
-              UK-registered digital product studio. Enterprise discipline meets
-              human scale.
-            </p>
-            <p className="text-[12px] text-text-muted tracking-[0.06em] flex items-center gap-1.5">
-              <span
-                className="inline-block w-1.5 h-1.5 rounded-full shrink-0"
-                style={{ background: "var(--gold)" }}
-              />
-              Basildon, England
+            <div
+              className="text-[20px] font-[800] tracking-[-0.02em] mb-3"
+              style={{ fontFamily: "var(--font-display)" }}
+            >
+              <span style={{ color: "var(--color-accent)" }}>●</span> SAGACITY
+            </div>
+            <p className="text-[13px] leading-[1.7] opacity-50 max-w-[240px]">
+              UK digital product studio. Enterprise background, startup speed.
             </p>
           </div>
 
-          {/* Link columns — aligned to top */}
-          {Object.entries(FOOTER_LINKS).map(([title, links]) => (
+          {/* Link columns */}
+          {Object.entries(COLS).map(([title, links]) => (
             <div key={title}>
               <h4
-                className="text-[11px] font-semibold tracking-[0.16em] uppercase mb-5"
-                style={{ color: "var(--gold)" }}
+                className="text-[11px] font-medium tracking-[0.14em] uppercase mb-4 opacity-40"
               >
                 {title}
               </h4>
               <ul className="flex flex-col gap-2.5">
-                {links.map((link) => (
-                  <li key={link.href}>
+                {links.map((l) => (
+                  <li key={l.label}>
                     <Link
-                      href={link.href}
-                      className="text-[13px] text-text-secondary hover:text-gold transition-colors duration-300"
+                      href={l.href}
+                      className="text-[13px] opacity-60 hover:opacity-100 transition-opacity duration-200"
                     >
-                      {link.label}
+                      {l.label}
                     </Link>
                   </li>
                 ))}
@@ -92,19 +64,17 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Bottom bar */}
         <div
-          className="py-6 flex flex-col sm:flex-row items-center justify-between gap-3"
-          style={{ borderTop: "1px solid var(--border-hover)" }}
+          className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3"
+          style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}
         >
-          <p className="text-[11px] text-text-muted tracking-[0.02em]">
+          <p className="text-[11px] opacity-40">
             &copy;&nbsp;{new Date().getFullYear()}&nbsp;Sagacity Network Ltd.
             Registered in England &amp; Wales.
           </p>
           <a
             href="mailto:hello@sagacitynetwork.net"
-            className="text-[12px] transition-colors duration-300 tracking-[0.02em]"
-            style={{ color: "var(--gold)" }}
+            className="text-[12px] opacity-50 hover:opacity-100 transition-opacity"
           >
             hello@sagacitynetwork.net
           </a>
