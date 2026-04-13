@@ -31,19 +31,19 @@ export default function ContactCTA() {
       <div className="max-container relative z-10 max-w-[720px] mx-auto text-center">
         <RevealWrapper>
           <div className="text-[11px] font-semibold tracking-[0.2em] uppercase text-gold mb-5">
-            Start the Conversation
+            Free Assessment
           </div>
 
           <h2 className="mb-6">
-            Ready to Build
+            Tell Us What You Need.
             <br />
-            <em className="text-gold italic">Something Exceptional?</em>
+            <em className="text-gold italic">We&apos;ll Show You What&apos;s Possible.</em>
           </h2>
 
           <p className="text-[16px] text-text-secondary font-light leading-[1.8] max-w-[480px] mx-auto mb-14">
-            Tell us what you&apos;re building — or what&apos;s slowing you down.
-            We&apos;ll come back within 24 hours with an honest assessment and a
-            clear path forward.
+            Describe your challenge or goal &mdash; no jargon needed.
+            Within 24 hours you&apos;ll receive an honest assessment and a
+            clear path forward. No obligation.
           </p>
         </RevealWrapper>
 

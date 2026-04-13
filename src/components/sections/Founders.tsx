@@ -33,12 +33,12 @@ export default function Founders() {
         <RevealWrapper>
           <div className="mb-14">
             <div className="text-[11px] font-semibold tracking-[0.2em] uppercase text-gold mb-5">
-              The Founders
+              Who&apos;s Behind Your Build
             </div>
             <h2>
-              Enterprise Discipline.
+              You Work Directly
               <br />
-              <em className="text-gold italic">Human Scale.</em>
+              <em className="text-gold italic">With the People Who Build.</em>
             </h2>
           </div>
         </RevealWrapper>

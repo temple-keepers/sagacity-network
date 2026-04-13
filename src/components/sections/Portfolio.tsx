@@ -24,12 +24,12 @@ export default function Portfolio() {
         <RevealWrapper>
           <div className="mb-14">
             <div className="text-[11px] font-semibold tracking-[0.2em] uppercase text-gold mb-5">
-              Our Platforms
+              Proof It Works
             </div>
             <h2>
-              Live. Functional.
+              Real Platforms.
               <br />
-              <em className="text-gold italic">Production Ready.</em>
+              <em className="text-gold italic">Real Users. Live Now.</em>
             </h2>
           </div>
         </RevealWrapper>

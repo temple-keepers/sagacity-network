@@ -20,17 +20,18 @@ export default function Services() {
           <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-8 mb-14">
             <div>
               <div className="text-[11px] font-semibold tracking-[0.2em] uppercase text-gold mb-5">
-                What We Do
+                How We Help
               </div>
               <h2>
-                Five Pillars.
+                Everything You Need.
                 <br />
-                <em className="text-gold italic">One Integrated Studio.</em>
+                <em className="text-gold italic">One Trusted Partner.</em>
               </h2>
             </div>
             <p className="text-[15px] leading-[1.8] text-text-secondary font-light max-w-[380px]">
-              From platform architecture to a single automated process — we
-              operate across the complete spectrum of digital infrastructure.
+              Whether you need a platform built, data made visible, processes
+              automated, or your business secured &mdash; you get one team who
+              owns the outcome end to end.
             </p>
           </div>
         </RevealWrapper>

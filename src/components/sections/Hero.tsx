@@ -167,7 +167,7 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Headline */}
+          {/* Headline — client-focused */}
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -179,17 +179,17 @@ export default function Hero() {
             className="mb-6 md:mb-8"
           >
             <span className="block text-text-primary leading-[1.05]">
-              We Build
+              Your Business Deserves
             </span>
             <span className="block shimmer-text leading-[1.05]">
               Digital Infrastructure
             </span>
             <span className="block text-text-muted leading-[1.05]">
-              That Endures.
+              That Actually Works.
             </span>
           </motion.h1>
 
-          {/* Subheading */}
+          {/* Subheading — client pain + solution */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -198,14 +198,15 @@ export default function Hero() {
               delay: 0.3,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="text-[15px] md:text-[17px] leading-[1.75] text-text-secondary max-w-[540px] mb-8 md:mb-10"
+            className="text-[15px] md:text-[17px] leading-[1.75] text-text-secondary max-w-[560px] mb-8 md:mb-10"
           >
-            Founded by an enterprise capital programme manager and a
-            cybersecurity specialist — bringing Fortune 500 discipline to
-            businesses and communities that deserve to operate at a higher level.
+            Tired of agencies that over-promise and under-deliver? We build
+            web platforms, dashboards, automations, and security systems that
+            are production-grade from day one &mdash; so you can focus on
+            growing your business.
           </motion.p>
 
-          {/* Tagline */}
+          {/* Value prop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -213,12 +214,12 @@ export default function Hero() {
             className="mb-8 md:mb-10"
           >
             <span className="text-[15px] md:text-[17px] text-text-primary font-light">
-              Where Enterprise{" "}
+              Enterprise quality.{" "}
               <em
                 className="italic font-display text-[17px] md:text-[19px]"
                 style={{ color: "var(--gold)" }}
               >
-                Meets Imagination
+                Human scale pricing.
               </em>
             </span>
           </motion.div>
@@ -234,9 +235,9 @@ export default function Hero() {
             }}
             className="flex flex-wrap gap-4 justify-center mb-16 md:mb-20"
           >
-            <Button href="/contact">Start a Project</Button>
+            <Button href="/contact">Get a Free Assessment</Button>
             <Button href="/work" variant="outline">
-              View Our Work
+              See What We&apos;ve Built
             </Button>
           </motion.div>
 
