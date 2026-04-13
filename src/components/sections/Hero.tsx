@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Button from "@/components/ui/Button";
 import { motion } from "framer-motion";
 
@@ -13,99 +12,203 @@ const STATS = [
 
 export default function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden grid-bg">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Deep dark background */}
+      <div
+        className="absolute inset-0"
+        style={{ background: "var(--bg-primary)" }}
+      />
+
       {/* Animated gradient mesh orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Large purple orb — top right */}
         <div
           className="mesh-orb mesh-orb-1 w-[400px] md:w-[600px] lg:w-[800px] h-[400px] md:h-[600px] lg:h-[800px]"
           style={{
-            top: "-10%",
-            right: "-5%",
+            top: "-15%",
+            right: "-10%",
             background:
-              "radial-gradient(circle, rgba(109,40,217,0.12) 0%, rgba(159,122,234,0.06) 40%, transparent 70%)",
+              "radial-gradient(circle, rgba(109,40,217,0.1) 0%, rgba(159,122,234,0.04) 40%, transparent 70%)",
           }}
         />
-        {/* Gold orb — bottom left */}
         <div
           className="mesh-orb mesh-orb-2 w-[350px] md:w-[500px] lg:w-[650px] h-[350px] md:h-[500px] lg:h-[650px]"
           style={{
-            bottom: "0%",
-            left: "-8%",
+            bottom: "-5%",
+            left: "-10%",
             background:
-              "radial-gradient(circle, rgba(212,175,55,0.09) 0%, rgba(212,175,55,0.03) 45%, transparent 70%)",
+              "radial-gradient(circle, rgba(212,175,55,0.07) 0%, rgba(212,175,55,0.02) 45%, transparent 70%)",
           }}
         />
-        {/* Small accent orb — center */}
         <div
           className="mesh-orb mesh-orb-3 w-[200px] md:w-[300px] lg:w-[400px] h-[200px] md:h-[300px] lg:h-[400px]"
           style={{
-            top: "40%",
-            left: "35%",
+            top: "35%",
+            left: "30%",
             background:
-              "radial-gradient(circle, rgba(159,122,234,0.06) 0%, rgba(212,175,55,0.04) 50%, transparent 70%)",
+              "radial-gradient(circle, rgba(159,122,234,0.05) 0%, transparent 70%)",
           }}
         />
       </div>
 
-      <div className="max-container w-full section-px pt-[110px] md:pt-[130px] lg:pt-[140px] pb-24 md:pb-28">
-        <div className="grid grid-cols-1 md:grid-cols-[1.1fr_0.9fr] gap-12 md:gap-16 items-center">
-          {/* Left column */}
+      {/* Glowing arc ring — the hero visual */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <motion.div
+          initial={{ opacity: 0, scale: 0.85 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
+          className="relative w-[500px] h-[500px] md:w-[650px] md:h-[650px] lg:w-[780px] lg:h-[780px]"
+        >
+          {/* Outer glow ring */}
+          <div
+            className="absolute inset-0 rounded-full"
+            style={{
+              background:
+                "conic-gradient(from 180deg, transparent 0%, rgba(212,175,55,0.15) 15%, rgba(159,122,234,0.2) 30%, rgba(245,240,232,0.35) 45%, rgba(159,122,234,0.2) 60%, rgba(212,175,55,0.15) 75%, transparent 100%)",
+              filter: "blur(1px)",
+              mask: "radial-gradient(circle, transparent 62%, black 64%, black 66%, transparent 68%)",
+              WebkitMask:
+                "radial-gradient(circle, transparent 62%, black 64%, black 66%, transparent 68%)",
+              animation: "hero-ring-rotate 20s linear infinite",
+            }}
+          />
+
+          {/* Inner soft glow */}
+          <div
+            className="absolute inset-[15%] rounded-full"
+            style={{
+              background:
+                "radial-gradient(circle, rgba(159,122,234,0.04) 0%, rgba(212,175,55,0.02) 50%, transparent 70%)",
+            }}
+          />
+
+          {/* Particle shimmer dots along the ring */}
+          <div
+            className="absolute inset-0 rounded-full"
+            style={{
+              background:
+                "conic-gradient(from 90deg, transparent 0%, rgba(245,240,232,0.08) 2%, transparent 4%, transparent 25%, rgba(212,175,55,0.06) 27%, transparent 29%, transparent 50%, rgba(159,122,234,0.08) 52%, transparent 54%, transparent 75%, rgba(245,240,232,0.06) 77%, transparent 79%)",
+              mask: "radial-gradient(circle, transparent 60%, black 63%, black 67%, transparent 70%)",
+              WebkitMask:
+                "radial-gradient(circle, transparent 60%, black 63%, black 67%, transparent 70%)",
+              animation: "hero-ring-rotate 30s linear infinite reverse",
+              filter: "blur(0.5px)",
+            }}
+          />
+        </motion.div>
+      </div>
+
+      {/* Centered content */}
+      <div className="relative z-10 max-container w-full section-px pt-[120px] md:pt-[140px] pb-16 md:pb-20">
+        <div className="flex flex-col items-center text-center">
+          {/* Eyebrow badge */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="order-2 md:order-1"
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           >
-            {/* Eyebrow badge */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-[2px] border border-border-line bg-bg-card mb-8 md:mb-10">
+            <div className="inline-flex items-center gap-2.5 px-5 py-2 rounded-[2px] border border-border-line bg-bg-card mb-8 md:mb-10 backdrop-blur-sm">
               <span className="pulse-dot" />
               <span className="text-[11px] font-medium tracking-[0.08em] uppercase text-text-secondary">
                 UK Registered Digital Product Studio
               </span>
             </div>
+          </motion.div>
 
-            {/* Headline */}
-            <h1 className="mb-6 md:mb-8">
-              <span className="block text-text-primary leading-[1.05]">
-                We Build
-              </span>
-              <span className="block shimmer-text leading-[1.05]">
-                Digital Infrastructure
-              </span>
-              <span className="block text-text-muted leading-[1.05]">
-                That Endures.
-              </span>
-            </h1>
+          {/* Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.9,
+              delay: 0.15,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="mb-6 md:mb-8"
+          >
+            <span className="block text-text-primary leading-[1.05]">
+              We Build
+            </span>
+            <span className="block shimmer-text leading-[1.05]">
+              Digital Infrastructure
+            </span>
+            <span className="block text-text-muted leading-[1.05]">
+              That Endures.
+            </span>
+          </motion.h1>
 
-            {/* Subheading */}
-            <p className="text-[15px] md:text-[17px] leading-[1.75] text-text-secondary max-w-[480px] mb-8 md:mb-10">
-              Founded by an enterprise capital programme manager and a
-              cybersecurity specialist — bringing Fortune 500 discipline to
-              businesses and communities that deserve to operate at a higher
-              level.
-            </p>
+          {/* Subheading */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.3,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="text-[15px] md:text-[17px] leading-[1.75] text-text-secondary max-w-[540px] mb-8 md:mb-10"
+          >
+            Founded by an enterprise capital programme manager and a
+            cybersecurity specialist — bringing Fortune 500 discipline to
+            businesses and communities that deserve to operate at a higher level.
+          </motion.p>
 
-            {/* CTAs */}
-            <div className="flex flex-wrap gap-4 mb-10 md:mb-14">
-              <Button href="/contact">Start a Project</Button>
-              <Button href="/work" variant="outline">
-                View Our Work
-              </Button>
-            </div>
+          {/* Tagline */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.45 }}
+            className="mb-8 md:mb-10"
+          >
+            <span className="text-[15px] md:text-[17px] text-text-primary font-light">
+              Where Enterprise{" "}
+              <em
+                className="italic font-display text-[17px] md:text-[19px]"
+                style={{ color: "var(--gold)" }}
+              >
+                Meets Imagination
+              </em>
+            </span>
+          </motion.div>
 
-            {/* Stats bar */}
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.55,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="flex flex-wrap gap-4 justify-center mb-16 md:mb-20"
+          >
+            <Button href="/contact">Start a Project</Button>
+            <Button href="/work" variant="outline">
+              View Our Work
+            </Button>
+          </motion.div>
+
+          {/* Stats bar */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.7,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="w-full max-w-[700px]"
+          >
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-0 pt-6 border-t border-gold-border/20">
               {STATS.map((stat, i) => (
                 <div
                   key={stat.label}
-                  className={`flex items-center ${
+                  className={`flex items-center justify-center ${
                     i > 0
-                      ? "sm:border-l sm:border-gold-border sm:pl-6 md:pl-8"
+                      ? "sm:border-l sm:border-gold-border/20"
                       : ""
                   }`}
                 >
-                  <div>
+                  <div className="text-center">
                     <div className="font-display text-[26px] md:text-[34px] font-light text-text-primary leading-none">
                       {stat.value}
                     </div>
@@ -117,39 +220,11 @@ export default function Hero() {
               ))}
             </div>
           </motion.div>
-
-          {/* Right column — Logo */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.92 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative flex items-center justify-center order-1 md:order-2"
-          >
-            <div
-              className="absolute w-[220px] md:w-[300px] lg:w-[400px] h-[220px] md:h-[300px] lg:h-[400px] rounded-full"
-              style={{
-                background:
-                  "radial-gradient(circle, rgba(159,122,234,0.1) 0%, rgba(212,175,55,0.04) 50%, transparent 70%)",
-              }}
-            />
-            <div className="absolute w-[180px] md:w-[260px] lg:w-[340px] h-[180px] md:h-[260px] lg:h-[340px] rounded-full border border-gold-border/15 animate-[pulse-ring_3s_ease-out_infinite] hidden sm:block" />
-            <div className="float-animation relative z-10">
-              <Image
-                src="/logo-tree.png"
-                alt="Sagacity Network"
-                width={340}
-                height={260}
-                className="w-[160px] md:w-[240px] lg:w-[340px] h-auto drop-shadow-[0_0_20px_rgba(212,175,55,0.3)] drop-shadow-[0_0_60px_rgba(159,122,234,0.15)]"
-                style={{ filter: "brightness(1.3)" }}
-                priority
-              />
-            </div>
-          </motion.div>
         </div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 hidden lg:flex">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2 hidden lg:flex z-10">
         <span className="text-[10px] tracking-[0.15em] uppercase text-text-muted">
           Scroll
         </span>
