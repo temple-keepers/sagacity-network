@@ -3,22 +3,23 @@ import Image from "next/image";
 
 const COLS = {
   Services: [
-    { href: "/services", label: "Web & App Development" },
-    { href: "/services", label: "Data Intelligence" },
-    { href: "/services", label: "Automation & AI" },
-    { href: "/services", label: "Cybersecurity" },
-    { href: "/services", label: "Training" },
+    { href: "/services/web-dev", label: "Web & App Development" },
+    { href: "/services/data", label: "Data Intelligence" },
+    { href: "/services/automation", label: "Automation & AI" },
+    { href: "/services/security", label: "Cybersecurity" },
+    { href: "/services/training", label: "Training" },
   ],
   Platforms: [
-    { href: "/work", label: "Temple Keepers" },
-    { href: "/work", label: "Rhythm & Roots" },
-    { href: "/work", label: "Totenga" },
+    { href: "/work/temple-keepers", label: "Temple Keepers" },
+    { href: "/work/rhythm-and-roots", label: "Rhythm & Roots" },
+    { href: "/work/totenga", label: "Totenga" },
   ],
   Company: [
     { href: "/about", label: "About" },
     { href: "/work", label: "Work" },
     { href: "/guyana", label: "Guyana" },
     { href: "/contact", label: "Contact" },
+    { href: "/privacy", label: "Privacy Policy" },
   ],
 };
 

@@ -206,13 +206,22 @@ export default function ServicesPage() {
                         ))}
                       </div>
 
-                      <Link
-                        href="/contact"
-                        className="inline-flex items-center gap-2 text-[14px] font-[500] transition-opacity hover:opacity-80"
-                        style={{ color: "var(--color-accent)" }}
-                      >
-                        Discuss this service <ArrowRight size={16} />
-                      </Link>
+                      <div className="flex flex-wrap items-center gap-5">
+                        <Link
+                          href={`/services/${s.slug}`}
+                          className="inline-flex items-center gap-2 text-[14px] font-[500] transition-opacity hover:opacity-80"
+                          style={{ color: "var(--color-accent)" }}
+                        >
+                          Learn more <ArrowRight size={16} />
+                        </Link>
+                        <Link
+                          href="/contact"
+                          className="inline-flex items-center gap-2 text-[14px] font-[500] transition-opacity hover:opacity-80"
+                          style={{ color: "var(--color-muted)" }}
+                        >
+                          Discuss this service
+                        </Link>
+                      </div>
                     </div>
 
                     {/* Deliverables card */}

@@ -6,6 +6,7 @@ import { ExternalLink, ArrowRight } from "lucide-react";
 
 const PLATFORMS = [
   {
+    slug: "temple-keepers",
     name: "Temple Keepers",
     tagline: "Faith & wellness, reimagined for the modern believer.",
     description:
@@ -22,6 +23,7 @@ const PLATFORMS = [
     ],
   },
   {
+    slug: "rhythm-and-roots",
     name: "Rhythm & Roots",
     tagline: "Connecting the Guyanese diaspora with culture, events, and creators.",
     description:
@@ -38,6 +40,7 @@ const PLATFORMS = [
     ],
   },
   {
+    slug: "totenga",
     name: "Totenga",
     tagline: "Community-powered experiences and shared connections.",
     description:
@@ -184,15 +187,24 @@ export default function WorkPage() {
                         ))}
                       </div>
 
-                      <a
-                        href={p.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-[14px] font-[500] transition-opacity hover:opacity-80"
-                        style={{ color: "var(--color-accent)" }}
-                      >
-                        Visit {p.name} <ExternalLink size={15} />
-                      </a>
+                      <div className="flex flex-wrap items-center gap-5">
+                        <Link
+                          href={`/work/${p.slug}`}
+                          className="inline-flex items-center gap-2 text-[14px] font-[500] transition-opacity hover:opacity-80"
+                          style={{ color: "var(--color-accent)" }}
+                        >
+                          View case study <ArrowRight size={15} />
+                        </Link>
+                        <a
+                          href={p.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-[14px] font-[500] transition-opacity hover:opacity-80"
+                          style={{ color: "var(--color-muted)" }}
+                        >
+                          Visit site <ExternalLink size={15} />
+                        </a>
+                      </div>
                     </div>
                   </div>
                 </ScrollReveal>

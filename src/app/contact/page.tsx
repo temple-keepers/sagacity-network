@@ -1,4 +1,16 @@
 import ContactForm from "./ContactForm";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Contact — Sagacity Network",
+  description:
+    "Get in touch with Sagacity Network. Book a free consultation about web development, data, automation, cybersecurity, or training.",
+  openGraph: {
+    title: "Contact — Sagacity Network",
+    description: "Book a free consultation. Let's talk about your project.",
+    url: "https://sagacitynetwork.net/contact",
+  },
+};
 
 export default function ContactPage() {
   return (
