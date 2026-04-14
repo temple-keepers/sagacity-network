@@ -78,9 +78,7 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Nav />
-        <main>{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );
