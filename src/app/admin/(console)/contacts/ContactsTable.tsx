@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { Fragment, useState, useTransition } from "react";
 import { Trash2, ChevronDown, ChevronUp } from "lucide-react";
 import { deleteContact } from "../../actions";
 import { useRouter } from "next/navigation";
@@ -27,8 +27,8 @@ export default function ContactsTable({ contacts }: { contacts: Contact[] }) {
   };
 
   return (
-    <div className="rounded-xl border overflow-hidden" style={{ background: "#110E1C", borderColor: "#1E1A2E" }}>
-      <table className="w-full text-sm">
+    <div className="rounded-xl border overflow-x-auto" style={{ background: "#110E1C", borderColor: "#1E1A2E" }}>
+      <table className="w-full text-sm min-w-[500px]">
         <thead>
           <tr style={{ borderBottom: "1px solid #1E1A2E" }}>
             <th className="text-left px-4 py-3 text-xs uppercase tracking-wider" style={{ color: "#6E6479" }}>Name</th>
@@ -39,9 +39,8 @@ export default function ContactsTable({ contacts }: { contacts: Contact[] }) {
         </thead>
         <tbody>
           {contacts.map((c) => (
-            <>
+            <Fragment key={c.id}>
               <tr
-                key={c.id}
                 className="cursor-pointer transition-colors hover:bg-white/[0.02]"
                 style={{ borderBottom: "1px solid #1E1A2E" }}
                 onClick={() => setExpanded(expanded === c.id ? null : c.id)}
@@ -72,7 +71,7 @@ export default function ContactsTable({ contacts }: { contacts: Contact[] }) {
                   </td>
                 </tr>
               )}
-            </>
+            </Fragment>
           ))}
           {contacts.length === 0 && (
             <tr>

@@ -19,7 +19,6 @@ export async function submitContact(prevState: any, formData: FormData) {
   }
 
   try {
-    // 1. Save to Supabase (assuming you have a 'leads' or 'contacts' table)
     const { error: dbError } = await supabase
       .from("contacts")
       .insert([{ name, email, message, created_at: new Date().toISOString() }]);
@@ -29,22 +28,16 @@ export async function submitContact(prevState: any, formData: FormData) {
       return { error: "Failed to save your message. Please try again.", success: false };
     }
 
-    // 2. Send email via Resend
-    // (Uncomment and configure when RESEND_API_KEY is verified and domain is set up)
-    /*
-    const { error: emailError } = await resend.emails.send({
-      from: "Sagacity Network <onboarding@resend.dev>", // replace with your verified domain
-      to: "hello@sagacitynetwork.net", // replace with recipient
-      subject: `New Contact Request from ${name}`,
-      text: `Name: ${name}\nEmail: ${email}\nMessage:\n${message}`,
-    });
-
-    if (emailError) {
-      console.error("Resend Error:", emailError);
-      // We can decide whether to fail the whole request if email fails, 
-      // but usually if DB succeeds we can return true and log the email error.
+    // Send notification email
+    if (process.env.RESEND_API_KEY) {
+      await resend.emails.send({
+        from: "Sagacity Network <denise@sagacitynetwork.net>",
+        to: "denise@sagacitynetwork.net",
+        replyTo: email,
+        subject: `New contact: ${name}`,
+        text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
+      }).catch((err) => console.error("Resend notification error:", err));
     }
-    */
 
     return { success: true, error: null };
   } catch (err: any) {

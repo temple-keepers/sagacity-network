@@ -37,8 +37,8 @@ export default function QueueTable({ queue }: { queue: QueueItem[] }) {
   };
 
   return (
-    <div className="rounded-xl border overflow-hidden" style={{ background: "#110E1C", borderColor: "#1E1A2E" }}>
-      <table className="w-full text-sm">
+    <div className="rounded-xl border overflow-x-auto" style={{ background: "#110E1C", borderColor: "#1E1A2E" }}>
+      <table className="w-full text-sm min-w-[800px]">
         <thead>
           <tr style={{ borderBottom: "1px solid #1E1A2E" }}>
             <th className="text-left px-4 py-3 text-xs uppercase tracking-wider" style={{ color: "#6E6479" }}>Lead</th>
