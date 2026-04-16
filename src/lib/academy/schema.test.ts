@@ -170,4 +170,12 @@ describe("CourseSeedSchema", () => {
     };
     expect(() => CourseSeedSchema.parse(seed)).toThrow();
   });
+
+  it("rejects a module with empty lessons", () => {
+    const seed = {
+      course: { slug: "t", title: "T", subtitle: "s", description: "d", price_cents: 0, level: "beginner", instructor_name: "D" },
+      modules: [{ title: "M", summary: "s", position: 0, lessons: [] }],
+    };
+    expect(() => CourseSeedSchema.parse(seed)).toThrow();
+  });
 });

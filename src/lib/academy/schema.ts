@@ -64,7 +64,7 @@ const QuizQuestion = z.object({
   type: z.enum(["single-choice", "multi-choice", "true-false"]),
   question: z.string(),
   options: z.array(z.object({ id: z.string().min(1), text: z.string() })).min(2),
-  correctIds: z.array(z.string()).min(1),
+  correctIds: z.array(z.string().min(1)).min(1),
   explanation: z.string().optional(),
 });
 
@@ -130,7 +130,7 @@ const ModuleSeed = z.object({
   title: z.string(),
   summary: z.string(),
   position: z.number().int().nonnegative(),
-  lessons: z.array(LessonSeed),
+  lessons: z.array(LessonSeed).min(1),
 });
 
 export const CourseSeedSchema = z.object({
