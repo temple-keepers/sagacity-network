@@ -571,8 +571,17 @@ git commit -m "feat(academy): add ACADEMY_ENABLED feature flag"
 
 **Files:**
 - Create: `supabase/migrations/20260416000000_academy_foundation.sql`
+- Create: `supabase/migrations/20260416000100_academy_foundation_policy_fixes.sql`
 
 The migration runs via Supabase MCP `apply_migration` once written. All tables are additive; no existing tables are touched.
+
+> **Implementation note (2026-04-16):** The original SQL in this task was applied with two corrections. These corrections MUST be in the SQL as written — if copying verbatim, re-order and tighten as described below. If not, a second forward-only migration is required.
+>
+> 1. **Section order:** `enrollments` must be created **before** `lessons`, because the `lessons enrolled read` RLS policy references `public.enrollments`. Writing them in `user_roles → courses → modules → enrollments → lessons → lesson_progress → quiz_attempts → academy_audit_log` order avoids a `relation "public.enrollments" does not exist` error.
+> 2. **Policy tightening** (follow-up migration `20260416000100_academy_foundation_policy_fixes.sql`):
+>    - `lessons enrolled read` joins `courses` and asserts `c.status = 'published'` as defense-in-depth against an unpublished course with stale enrollments.
+>    - `quiz_attempts user rw own` is split into `user insert own` + `user read own` to make attempts immutable once submitted (blocks users rewriting past answers).
+>    - Adds `academy_audit_log_actor_idx` on `actor_id` for admin audit queries.
 
 - [ ] **Step 1: Write the migration SQL**
 
@@ -1000,14 +1009,16 @@ git commit -m "feat(academy): add @supabase/ssr server, client, and middleware h
 
 ---
 
-## Task 6: Root middleware
+## Task 6: Root middleware (proxy in Next.js 16)
 
 **Files:**
-- Create: `src/middleware.ts`
+- Create: `src/proxy.ts`
 
-- [ ] **Step 1: Write the middleware**
+> **Implementation note (2026-04-16):** Next.js 16 deprecated the `middleware.ts` file convention in favour of `proxy.ts` with an exported `proxy` function. Confirmed via `node_modules/next/dist/docs/01-app/01-getting-started/16-proxy.md`. Use `src/proxy.ts` with `export async function proxy(...)` — not `middleware`. Dev warnings disappear once the file is correctly named.
 
-Create `src/middleware.ts`:
+- [ ] **Step 1: Write the proxy**
+
+Create `src/proxy.ts`:
 
 ```ts
 import { NextResponse, type NextRequest } from "next/server";
@@ -1015,11 +1026,11 @@ import { updateSession } from "@/lib/supabase/middleware";
 import { isAcademyEnabled } from "@/lib/academy/feature-flag";
 
 /**
- * Root middleware. Two jobs:
+ * Root proxy (Next.js 16 replacement for middleware.ts). Two jobs:
  *   1. Refresh the Supabase session cookie on every matched request.
  *   2. Gate /academy and /login behind the ACADEMY_ENABLED flag.
  */
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Feature-flag gate
@@ -1307,11 +1318,16 @@ export async function GET(request: NextRequest) {
 /**
  * Allow only same-origin paths starting with "/" and not "//".
  * This blocks ?next=https://evil.com redirects.
+ *
+ * Backslashes are also blocked: Chromium-based browsers normalize "\" to "/"
+ * in URL paths, so "/\evil.com" would resolve to "//evil.com" and become an
+ * open redirect. We reject any backslash outright.
  */
 function sanitizeNext(raw: string | null): string {
   if (!raw) return "/academy/my-learning";
   if (!raw.startsWith("/")) return "/academy/my-learning";
   if (raw.startsWith("//")) return "/academy/my-learning";
+  if (raw.includes("\\")) return "/academy/my-learning";
   return raw;
 }
 ```
