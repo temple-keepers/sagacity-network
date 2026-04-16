@@ -1,0 +1,158 @@
+{
+  "course": {
+    "slug": "ai-for-small-business",
+    "title": "AI for Small Business",
+    "subtitle": "Practical AI tools that save your team hours every week \u2014 no coding required.",
+    "description": "A 3-module, 90-minute course covering the AI tools every small business owner should have in their toolkit: Claude for writing and research, ChatGPT for customer service, and Zapier AI for workflow automation. Everything is hands-on: by the end of each module you'll have built something real.",
+    "hero_image_url": "https://images.unsplash.com/photo-1677691819515-d1c4f0e7c9c7?w=1600&q=80",
+    "price_cents": 9900,
+    "level": "beginner",
+    "instructor_name": "Denise Isaac",
+    "instructor_bio": "Denise is the founder of Sagacity Network and has been shipping AI-powered platforms since 2023. She's taught AI workshops to over 200 small-business owners across the UK and Caribbean."
+  },
+  "modules": [
+    {
+      "title": "Module 1 \u2014 Getting Started With AI",
+      "summary": "Understand what AI is good at, what it's bad at, and how to write prompts that get useful results.",
+      "position": 0,
+      "lessons": [
+        {
+          "slug": "what-ai-can-and-cant-do",
+          "title": "What AI Can and Can't Do",
+          "summary": "A realistic picture of AI's strengths and limitations in a small-business context.",
+          "duration_minutes": 8,
+          "is_free_preview": true,
+          "position": 0,
+          "body": [
+            { "id": "h1", "type": "heading", "level": 2, "text": "Welcome" },
+            { "id": "t1", "type": "text", "markdown": "Before we touch any tools, let's set realistic expectations. AI is **extraordinary at some tasks** and **surprisingly bad at others**. Knowing the difference saves you hours of frustration." },
+            { "id": "call1", "type": "callout", "variant": "tip", "title": "The one-sentence rule", "markdown": "If a task would take a smart intern 10 minutes of reading to do, AI can probably do it well. If it requires judgement based on your specific business context, AI needs you to supply that context." },
+            { "id": "h2", "type": "heading", "level": 3, "text": "Three things AI is genuinely great at" },
+            { "id": "t2", "type": "text", "markdown": "1. **Transforming text** \u2014 summarising, translating, rewriting in a different tone.\n2. **Drafting from structure** \u2014 emails, proposals, blog outlines when you give it the bullet points.\n3. **Extracting structured data** \u2014 pulling key facts out of messy documents." },
+            { "id": "div1", "type": "divider" },
+            { "id": "h3", "type": "heading", "level": 3, "text": "Three things AI is surprisingly bad at" },
+            { "id": "t3", "type": "text", "markdown": "1. **Current events** \u2014 models have a knowledge cutoff; they don't know what happened yesterday.\n2. **Arithmetic at scale** \u2014 calculators are more reliable for anything beyond basic maths.\n3. **Making decisions without context** \u2014 'should I hire this person?' isn't a valid AI question on its own." },
+            { "id": "call2", "type": "callout", "variant": "warning", "markdown": "**Never** trust AI output on legal, medical, or financial matters without expert review. It sounds confident whether it's right or wrong." }
+          ]
+        },
+        {
+          "slug": "writing-a-good-prompt",
+          "title": "Writing a Good Prompt",
+          "summary": "The four-part prompt structure that works for 90% of tasks.",
+          "duration_minutes": 12,
+          "is_free_preview": false,
+          "position": 1,
+          "body": [
+            { "id": "h1", "type": "heading", "level": 2, "text": "The CLEAR prompt structure" },
+            { "id": "t1", "type": "text", "markdown": "Most bad AI output comes from bad prompts, not bad models. Use this structure:" },
+            { "id": "code1", "type": "code", "language": "text", "code": "Context: Who you are + what you're working on\nLength: How long you want the response\nExamples: 1-2 examples of the output style you want\nAudience: Who will read this\nRequest: The specific thing you want", "caption": "The CLEAR framework" },
+            { "id": "h2", "type": "heading", "level": 3, "text": "Before and after" },
+            { "id": "t2", "type": "text", "markdown": "**Bad prompt:** *Write me a welcome email.*\n\n**Good prompt:** *I run a small yoga studio in Leeds. Write a 150-word welcome email for new members that's warm but not saccharine. Mention our first-class-free offer. Audience: 30-50 year old women new to yoga.*" },
+            { "id": "dl1", "type": "download", "label": "CLEAR prompt cheat-sheet (PDF)", "url": "https://sagacitynetwork.net/downloads/clear-prompt-cheatsheet.pdf", "fileType": "PDF", "fileSize": "180 KB" }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Module 2 \u2014 Claude for Writing and Research",
+      "summary": "Use Claude as your always-available junior analyst for drafts, research, and document review.",
+      "position": 1,
+      "lessons": [
+        {
+          "slug": "setting-up-claude",
+          "title": "Setting Up Claude",
+          "summary": "Account setup, projects, and the Claude Desktop app.",
+          "duration_minutes": 10,
+          "is_free_preview": false,
+          "position": 0,
+          "body": [
+            { "id": "h1", "type": "heading", "level": 2, "text": "Get Claude running in 5 minutes" },
+            { "id": "img1", "type": "image", "url": "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=1200&q=80", "alt": "A laptop displaying an AI chat interface", "caption": "You'll use the web app for most tasks; the desktop app is worth it once you're using AI daily." },
+            { "id": "v1", "type": "video", "provider": "vimeo", "vimeoId": "76979871", "title": "Claude setup walkthrough", "durationSeconds": 420 },
+            { "id": "t1", "type": "text", "markdown": "Follow along with the video above. If you get stuck, the [Claude Help Center](https://support.claude.com) has step-by-step screenshots." }
+          ]
+        },
+        {
+          "slug": "projects-and-knowledge",
+          "title": "Projects and Knowledge",
+          "summary": "Upload your business documents so Claude can answer questions in your business's voice.",
+          "duration_minutes": 15,
+          "is_free_preview": false,
+          "position": 1,
+          "body": [
+            { "id": "h1", "type": "heading", "level": 2, "text": "Projects: give Claude a memory" },
+            { "id": "t1", "type": "text", "markdown": "A Project is a workspace where Claude remembers everything you upload. Think of it as a dedicated 'room' for one business function." },
+            { "id": "emb1", "type": "embed", "provider": "loom", "url": "https://www.loom.com/embed/abc123placeholder", "height": 420 }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Module 3 \u2014 Check Your Understanding",
+      "summary": "A short quiz to lock in what you've learned.",
+      "position": 2,
+      "lessons": [
+        {
+          "slug": "module-1-check",
+          "title": "Knowledge Check",
+          "summary": "A 3-question quiz covering Module 1 concepts.",
+          "duration_minutes": 5,
+          "is_free_preview": false,
+          "position": 0,
+          "body": [
+            { "id": "h1", "type": "heading", "level": 2, "text": "Quick check" },
+            { "id": "t1", "type": "text", "markdown": "Three questions. You can retake as many times as you want." },
+            {
+              "id": "q1",
+              "type": "quiz",
+              "prompt": "Module 1 knowledge check",
+              "passingScore": 0.66,
+              "questions": [
+                {
+                  "id": "q1a",
+                  "type": "single-choice",
+                  "question": "Which of these is AI genuinely great at?",
+                  "options": [
+                    { "id": "o1", "text": "Giving you today's stock prices" },
+                    { "id": "o2", "text": "Rewriting a long email in a friendlier tone" },
+                    { "id": "o3", "text": "Deciding whether to hire someone" }
+                  ],
+                  "correctIds": ["o2"],
+                  "explanation": "AI excels at transforming text. Current events and high-stakes judgement calls are the wrong fit."
+                },
+                {
+                  "id": "q1b",
+                  "type": "true-false",
+                  "question": "You should always trust AI output on legal questions.",
+                  "options": [
+                    { "id": "t", "text": "True" },
+                    { "id": "f", "text": "False" }
+                  ],
+                  "correctIds": ["f"],
+                  "explanation": "Never trust AI on legal, medical, or financial matters without expert review."
+                },
+                {
+                  "id": "q1c",
+                  "type": "multi-choice",
+                  "question": "Which parts belong in a good CLEAR prompt? (Select all that apply)",
+                  "options": [
+                    { "id": "c1", "text": "Context about you" },
+                    { "id": "c2", "text": "The specific request" },
+                    { "id": "c3", "text": "Your credit card number" },
+                    { "id": "c4", "text": "An example of the output style you want" }
+                  ],
+                  "correctIds": ["c1", "c2", "c4"],
+                  "explanation": "Context, request, and examples are all useful. Credit cards never belong in a prompt."
+                }
+              ],
+              "feedback": {
+                "correct": "Nice \u2014 you're ready to start using AI for real work.",
+                "incorrect": "Worth reviewing Module 1 once more before moving on."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
