@@ -6,11 +6,20 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 
-export default function Nav({ academyEnabled = false }: { academyEnabled?: boolean }) {
+export default function Nav({
+  academyEnabled = false,
+  isSignedIn = false,
+}: {
+  academyEnabled?: boolean;
+  isSignedIn?: boolean;
+}) {
   const LINKS = [
     { href: "/services", label: "Services" },
     { href: "/work", label: "Work" },
     ...(academyEnabled ? [{ href: "/academy", label: "Academy" }] : []),
+    ...(academyEnabled && isSignedIn
+      ? [{ href: "/academy/my-learning", label: "My Learning" }]
+      : []),
     { href: "/training", label: "Training" },
     { href: "/guyana", label: "Guyana" },
     { href: "/about", label: "About" },
