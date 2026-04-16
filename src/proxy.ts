@@ -3,11 +3,11 @@ import { updateSession } from "@/lib/supabase/middleware";
 import { isAcademyEnabled } from "@/lib/academy/feature-flag";
 
 /**
- * Root middleware. Two jobs:
+ * Root proxy. Two jobs:
  *   1. Refresh the Supabase session cookie on every matched request.
  *   2. Gate /academy and /login behind the ACADEMY_ENABLED flag.
  */
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // Feature-flag gate
