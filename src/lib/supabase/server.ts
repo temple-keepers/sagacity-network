@@ -1,6 +1,7 @@
 import "server-only";
 import { createServerClient, type CookieMethodsServer } from "@supabase/ssr";
 import { cookies } from "next/headers";
+import type { Database } from "./database.types";
 
 /**
  * Supabase client for Server Components and Route Handlers.
@@ -30,5 +31,5 @@ export async function createSupabaseServerClient() {
     },
   };
 
-  return createServerClient(url, anonKey, { cookies: cookieMethods });
+  return createServerClient<Database>(url, anonKey, { cookies: cookieMethods });
 }
