@@ -7,6 +7,10 @@ interface Props {
   courseTitle: string;
   modules: ModuleWithLessons[];
   currentLessonSlug: string;
+  completedLessonIds?: Set<string>;
+  isEnrolled?: boolean;
+  /** When true, lessons link to /learn/<slug> instead of /preview/<slug>. */
+  learnMode?: boolean;
 }
 
 function formatDuration(minutes: number): string {
@@ -21,6 +25,9 @@ export default function LessonSidebar({
   courseTitle,
   modules,
   currentLessonSlug,
+  completedLessonIds,
+  isEnrolled = false,
+  learnMode = false,
 }: Props) {
   return (
     <aside
@@ -67,17 +74,27 @@ export default function LessonSidebar({
                 {m.lessons.map((l) => {
                   const isCurrent = l.slug === currentLessonSlug;
                   const isPreview = l.is_free_preview;
-                  const canClick = isPreview && !isCurrent;
+                  const isCompleted = completedLessonIds?.has(l.id) ?? false;
+                  const unlocked = isEnrolled || isPreview;
+                  const canClick = unlocked && !isCurrent;
+                  const href = learnMode
+                    ? `/academy/${courseSlug}/learn/${l.slug}`
+                    : `/academy/${courseSlug}/preview/${l.slug}`;
 
                   const rowContent = (
                     <div className="flex items-start gap-2.5 min-w-0 flex-1">
                       <span className="flex-shrink-0 mt-0.5">
-                        {isCurrent ? (
+                        {isCompleted ? (
                           <CheckCircle2
                             size={14}
                             style={{ color: "var(--color-accent)" }}
                           />
-                        ) : isPreview ? (
+                        ) : isCurrent ? (
+                          <CheckCircle2
+                            size={14}
+                            style={{ color: "var(--color-accent)", opacity: 0.6 }}
+                          />
+                        ) : unlocked ? (
                           <Play
                             size={14}
                             style={{ color: "var(--color-accent)" }}
@@ -94,7 +111,7 @@ export default function LessonSidebar({
                         style={{
                           color: isCurrent
                             ? "var(--color-accent)"
-                            : isPreview
+                            : unlocked
                               ? "var(--color-ink)"
                               : "var(--color-muted)",
                           fontWeight: isCurrent ? 600 : 400,
@@ -115,7 +132,7 @@ export default function LessonSidebar({
                     <li key={l.id}>
                       {canClick ? (
                         <Link
-                          href={`/academy/${courseSlug}/preview/${l.slug}`}
+                          href={href}
                           className="flex items-center px-5 py-2.5 transition-colors hover:bg-[var(--surface-1)]"
                         >
                           {rowContent}
@@ -144,24 +161,26 @@ export default function LessonSidebar({
         })}
       </nav>
 
-      <div
-        className="px-5 py-4 border-t"
-        style={{
-          borderColor: "var(--color-border)",
-          background: "var(--surface-1)",
-        }}
-      >
-        <div className="text-[12px] mb-2" style={{ color: "var(--color-muted)" }}>
-          Unlock the full curriculum
-        </div>
-        <Link
-          href={`/academy/${courseSlug}`}
-          className="block w-full text-center px-4 py-2 text-[12px] font-[500] rounded-[6px]"
-          style={{ background: "var(--gradient-purple)", color: "#fff" }}
+      {!isEnrolled ? (
+        <div
+          className="px-5 py-4 border-t"
+          style={{
+            borderColor: "var(--color-border)",
+            background: "var(--surface-1)",
+          }}
         >
-          See enrolment options
-        </Link>
-      </div>
+          <div className="text-[12px] mb-2" style={{ color: "var(--color-muted)" }}>
+            Unlock the full curriculum
+          </div>
+          <Link
+            href={`/academy/${courseSlug}`}
+            className="block w-full text-center px-4 py-2 text-[12px] font-[500] rounded-[6px]"
+            style={{ background: "var(--gradient-purple)", color: "#fff" }}
+          >
+            See enrolment options
+          </Link>
+        </div>
+      ) : null}
     </aside>
   );
 }

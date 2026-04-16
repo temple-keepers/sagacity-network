@@ -14,9 +14,15 @@ interface Props {
   blocks: Block[];
   /** When true, quiz Submit CTAs link to /login instead of grading inline. */
   isPreview?: boolean;
+  /** When true, quizzes render in interactive mode. */
+  isEnrolled?: boolean;
 }
 
-export default function BlockRenderer({ blocks, isPreview = false }: Props) {
+export default function BlockRenderer({
+  blocks,
+  isPreview = false,
+  isEnrolled = false,
+}: Props) {
   return (
     <div className="flex flex-col gap-6">
       {blocks.map((b) => {
@@ -36,7 +42,14 @@ export default function BlockRenderer({ blocks, isPreview = false }: Props) {
           case "code":
             return <CodeBlock key={b.id} block={b} />;
           case "quiz":
-            return <QuizBlock key={b.id} block={b} isPreview={isPreview} />;
+            return (
+              <QuizBlock
+                key={b.id}
+                block={b}
+                isPreview={isPreview}
+                interactive={isEnrolled}
+              />
+            );
           case "divider":
             return <DividerBlock key={b.id} />;
           case "embed":
