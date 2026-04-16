@@ -31,16 +31,14 @@ export default function Nav() {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'nav-glass' : ''}`}
       style={{
         background: scrolled
-          ? "color-mix(in srgb, var(--color-bg) 85%, transparent)"
+          ? "color-mix(in srgb, var(--color-bg) 80%, transparent)"
           : "transparent",
         borderBottom: scrolled
-          ? "1px solid rgba(123, 63, 160, 0.1)"
+          ? "1px solid rgba(123, 63, 160, 0.08)"
           : "1px solid transparent",
-        backdropFilter: scrolled ? "blur(20px) saturate(1.4)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(20px) saturate(1.4)" : "none",
       }}
     >
       <nav className="max-w-site section-px flex items-center justify-between h-[72px]">

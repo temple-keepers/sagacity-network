@@ -13,8 +13,7 @@ const STATS = [
 export default function ProofStrip() {
   return (
     <section
-      className="relative section-glow-top"
-      style={{ background: "var(--color-bg)" }}
+      className="relative section-glow-top section-deep"
     >
       <div className="max-w-site section-px py-12 md:py-16">
         <ScrollReveal>

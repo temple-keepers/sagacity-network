@@ -45,8 +45,7 @@ const SERVICES = [
 export default function Services() {
   return (
     <section
-      className="relative py-24 md:py-32 section-glow-top"
-      style={{ background: "var(--color-bg)" }}
+      className="relative py-24 md:py-32 section-glow-top section-elevated"
     >
       <div className="max-w-site section-px">
         <ScrollReveal>
@@ -58,7 +57,7 @@ export default function Services() {
               Services
             </span>
             <h2
-              className="text-[32px] md:text-[42px] font-[800] tracking-[-0.03em] mb-4"
+              className="text-[32px] md:text-[42px] font-[800] tracking-heading md:tracking-display mb-4"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Everything you need.
@@ -84,13 +83,12 @@ export default function Services() {
               <ScrollReveal key={s.title} delay={i * 80}>
                 <Link
                   href="/services"
-                  className={`group block p-7 md:p-8 card-hover gradient-border ${
+                  className={`group block p-7 md:p-8 card-premium ${
                     i === SERVICES.length - 1 && SERVICES.length % 2 !== 0
                       ? "md:col-span-2 md:max-w-[calc(50%-10px)] md:mx-auto"
                       : ""
                   }`}
                   style={{
-                    background: "var(--color-surface)",
                     borderRadius: "var(--radius-md)",
                   }}
                 >

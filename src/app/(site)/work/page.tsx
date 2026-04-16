@@ -241,7 +241,7 @@ export default function WorkPage() {
               className="text-[16px] font-[300] leading-[1.7] mb-10 max-w-[440px] mx-auto"
               style={{ color: "rgba(240, 236, 244, 0.55)" }}
             >
-              We'd love to hear about it. Tell us what you're building and we'll
+              We&apos;d love to hear about it. Tell us what you&apos;re building and we&apos;ll
               show you how we can help.
             </p>
             <Link

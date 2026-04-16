@@ -294,7 +294,7 @@ export default function ServicesPage() {
               className="text-[16px] font-[300] leading-[1.7] mb-10 max-w-[440px] mx-auto"
               style={{ color: "rgba(240, 236, 244, 0.55)" }}
             >
-              Tell us what you need. We'll come back with a plan and a fixed
+              Tell us what you need. We&apos;ll come back with a plan and a fixed
               quote — no surprises.
             </p>
             <Link

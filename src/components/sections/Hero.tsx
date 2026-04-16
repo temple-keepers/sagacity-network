@@ -57,7 +57,7 @@ export default function Hero() {
       });
     }
 
-    let mouse = { x: -1000, y: -1000 };
+    const mouse = { x: -1000, y: -1000 };
     
     const handleMouseMove = (e: MouseEvent) => {
       const rect = canvas.getBoundingClientRect();
@@ -393,7 +393,7 @@ export default function Hero() {
             initial={{ y: "120%", opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-            className="text-[42px] md:text-[60px] lg:text-[72px] font-[800] leading-[1.1] tracking-[-0.03em]"
+            className="text-[42px] md:text-[60px] lg:text-[72px] font-[800] leading-[1.1] tracking-heading md:tracking-display lg:tracking-display-xl"
             style={{ fontFamily: "var(--font-display)", color: "#F0ECF4" }}
           >
             Your Next Product, <br/>
@@ -465,6 +465,9 @@ export default function Hero() {
           </span>
         </motion.div>
       </div>
+
+      {/* Superhuman-inspired dissolve: hero melts into next section */}
+      <div className="hero-dissolve" />
     </section>
   );
 }

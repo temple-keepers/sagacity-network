@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import ScrollReveal from "@/components/ui/ScrollReveal";
-import { CheckCircle2, ArrowRight, Globe, Shield, Zap, Headphones } from "lucide-react";
+import { CheckCircle2, Globe, Shield, Zap, Headphones } from "lucide-react";
 
 const PACKAGES = [
   {
@@ -93,7 +93,7 @@ export default function GuyanaPage() {
       });
       const data = await res.json();
       if (data.url) {
-        window.location.href = data.url;
+        window.location.assign(data.url);
       } else {
         alert(data.error || "Something went wrong. Please try again.");
         setLoading(null);

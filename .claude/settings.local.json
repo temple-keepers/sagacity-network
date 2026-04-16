@@ -2,7 +2,18 @@
   "permissions": {
     "allow": [
       "mcp__Claude_Preview__preview_start",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(ls ~/Downloads/*assess*)",
+      "Bash(git commit -m ':*)",
+      "Bash(vercel --prod --yes)",
+      "WebFetch(domain:sagacitynetwork.net)",
+      "Bash(ls /c/Users/sagac/Sagacity/public/*.png)",
+      "Bash(git merge:*)",
+      "Bash(ls C:\\\\Users\\\\sagac\\\\Sagacity/.env*)",
+      "Bash(ls C:/Users/sagac/Sagacity/.env*)",
+      "Bash(ls -d C:/Users/sagac/Sagacity/src/app/*/)",
+      "Bash(node -e \"console.log\\(require\\('crypto'\\).randomBytes\\(32\\).toString\\('hex'\\)\\)\")",
+      "Bash(node --env-file=.env.local scripts/test-calendar.mjs)"
     ]
   }
 }

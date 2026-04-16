@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { Fraunces, DM_Sans } from "next/font/google";
-import Nav from "@/components/layout/Nav";
-import Footer from "@/components/layout/Footer";
 import ThemeScript from "@/components/ui/ThemeScript";
 import "./globals.css";
 

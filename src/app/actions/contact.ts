@@ -9,7 +9,7 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function submitContact(prevState: any, formData: FormData) {
+export async function submitContact(prevState: unknown, formData: FormData) {
   const name = formData.get("name") as string;
   const email = formData.get("email") as string;
   const message = formData.get("message") as string;
@@ -40,8 +40,9 @@ export async function submitContact(prevState: any, formData: FormData) {
     }
 
     return { success: true, error: null };
-  } catch (err: any) {
-    console.error("Contact action error:", err.message);
+  } catch (err: unknown) {
+    const errorMsg = err instanceof Error ? err.message : "Unknown error";
+    console.error("Contact action error:", errorMsg);
     return { error: "Something went wrong. Please try again later.", success: false };
   }
 }

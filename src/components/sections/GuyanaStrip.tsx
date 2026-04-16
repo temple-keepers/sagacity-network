@@ -6,8 +6,7 @@ import ScrollReveal from "@/components/ui/ScrollReveal";
 export default function GuyanaStrip() {
   return (
     <section
-      className="relative py-24 md:py-32 section-glow-top overflow-hidden"
-      style={{ background: "var(--color-bg)" }}
+      className="relative py-24 md:py-32 section-glow-top overflow-hidden section-highlight"
     >
       <div className="max-w-site section-px">
         <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
@@ -25,7 +24,7 @@ export default function GuyanaStrip() {
                 {"\uD83C\uDDEC\uD83C\uDDFE"} Guyana & Caribbean
               </div>
               <h2
-                className="text-[32px] md:text-[42px] font-[800] tracking-[-0.03em] mb-4"
+                className="text-[32px] md:text-[42px] font-[800] tracking-heading md:tracking-display mb-4"
                 style={{ fontFamily: "var(--font-display)" }}
               >
                 Built for{" "}

@@ -10,7 +10,6 @@ import {
   Users,
   Clock,
   CheckCircle2,
-  ArrowRight,
 } from "lucide-react";
 
 const PROGRAMMES = [

@@ -98,6 +98,8 @@ body {
 }
 
 /* ========== CARD SYSTEMS ========== */
+
+/* Standard hover card (brand-tinted shadows — Stripe-inspired) */
 .card-hover {
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
               box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
@@ -105,8 +107,67 @@ body {
 }
 .card-hover:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 60px rgba(123, 63, 160, 0.12),
-              0 8px 24px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 30px 45px -15px var(--shadow-brand-far),
+    0 18px 36px -18px var(--shadow-brand-mid),
+    0 8px 16px -8px var(--shadow-brand-near);
+}
+
+/* Premium card — inner glow + shadow border (Vercel-inspired) */
+.card-premium {
+  background: var(--surface-0);
+  box-shadow:
+    0px 0px 0px 1px rgba(255, 255, 255, 0.05),
+    0 2px 4px var(--shadow-ambient),
+    rgba(255, 255, 255, 0.015) 0px 0px 0px 1px inset;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.35s ease;
+}
+.card-premium:hover {
+  transform: translateY(-6px);
+  background: var(--surface-1);
+  box-shadow:
+    0px 0px 0px 1px rgba(123, 63, 160, 0.2),
+    0 30px 45px -15px var(--shadow-brand-far),
+    0 18px 36px -18px var(--shadow-brand-mid),
+    0 8px 16px -8px var(--shadow-brand-near),
+    rgba(255, 255, 255, 0.03) 0px 0px 0px 1px inset;
+}
+
+:root:not(.dark) .card-premium {
+  background: var(--color-surface);
+  box-shadow:
+    0px 0px 0px 1px rgba(123, 63, 160, 0.06),
+    0 2px 8px var(--shadow-ambient);
+}
+:root:not(.dark) .card-premium:hover {
+  background: var(--color-surface);
+  box-shadow:
+    0px 0px 0px 1px rgba(123, 63, 160, 0.15),
+    0 20px 40px -12px var(--shadow-brand-far),
+    0 12px 24px -12px var(--shadow-brand-near);
+}
+
+/* Shadow-as-border technique (Vercel-inspired — replaces CSS border) */
+.shadow-border {
+  border: none;
+  box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.06);
+  transition: box-shadow 0.35s ease;
+}
+.shadow-border:hover {
+  box-shadow:
+    0px 0px 0px 1px rgba(123, 63, 160, 0.25),
+    0px 0px 12px 0px rgba(123, 63, 160, 0.08);
+}
+
+:root:not(.dark) .shadow-border {
+  box-shadow: 0px 0px 0px 1px rgba(123, 63, 160, 0.08);
+}
+:root:not(.dark) .shadow-border:hover {
+  box-shadow:
+    0px 0px 0px 1px rgba(123, 63, 160, 0.2),
+    0px 0px 12px 0px rgba(123, 63, 160, 0.06);
 }
 
 /* Glass morphism card */
@@ -263,6 +324,93 @@ body {
 :root.dark .tag-purple {
   background: rgba(166, 104, 208, 0.1);
   border-color: rgba(166, 104, 208, 0.2);
+}
+
+/* ========== PROGRESSIVE LETTER-SPACING (Stripe/Linear-inspired) ========== */
+.tracking-display-xl { letter-spacing: -0.03em; }   /* 72px+ */
+.tracking-display    { letter-spacing: -0.025em; }  /* ~48px */
+.tracking-heading    { letter-spacing: -0.02em; }   /* ~32px */
+.tracking-subhead    { letter-spacing: -0.01em; }   /* ~20px */
+
+/* ========== INSET SHADOW INPUTS (Linear-inspired) ========== */
+.input-recessed {
+  background: var(--surface-0);
+  border: none;
+  box-shadow:
+    rgba(0, 0, 0, 0.12) 0px 0px 6px 0px inset,
+    0px 0px 0px 1px rgba(255, 255, 255, 0.06);
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+.input-recessed:focus {
+  background: var(--surface-1);
+  box-shadow:
+    rgba(0, 0, 0, 0.06) 0px 0px 4px 0px inset,
+    0px 0px 0px 1px rgba(123, 63, 160, 0.5),
+    0px 0px 12px 0px rgba(123, 63, 160, 0.1);
+  outline: none;
+}
+
+:root:not(.dark) .input-recessed {
+  background: rgba(123, 63, 160, 0.02);
+  box-shadow:
+    rgba(123, 63, 160, 0.04) 0px 0px 4px 0px inset,
+    0px 0px 0px 1px rgba(123, 63, 160, 0.1);
+}
+:root:not(.dark) .input-recessed:focus {
+  background: #ffffff;
+  box-shadow:
+    rgba(123, 63, 160, 0.02) 0px 0px 2px 0px inset,
+    0px 0px 0px 1px rgba(123, 63, 160, 0.4),
+    0px 0px 12px 0px rgba(123, 63, 160, 0.08);
+}
+
+/* ========== FOCUS RING SYSTEM (Vercel/Apple-inspired) ========== */
+:focus-visible {
+  outline: 2px solid rgba(123, 63, 160, 0.7);
+  outline-offset: 2px;
+}
+
+:root.dark :focus-visible {
+  outline-color: rgba(166, 104, 208, 0.7);
+  box-shadow: 0 0 0 4px rgba(123, 63, 160, 0.15);
+}
+
+/* ========== SECTION RHYTHM (Apple-inspired cinematic backgrounds) ========== */
+.section-deep      { background: var(--section-deep); }
+.section-elevated  { background: var(--section-elevated); }
+.section-surface   { background: var(--section-surface); }
+.section-highlight { background: var(--section-highlight); }
+
+/* ========== HERO DISSOLVE GRADIENT (Superhuman-inspired) ========== */
+.hero-dissolve {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(13, 11, 20, 0.3) 40%,
+    var(--section-deep) 100%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+:root:not(.dark) .hero-dissolve {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(250, 250, 248, 0.3) 40%,
+    var(--section-deep) 100%
+  );
+}
+
+/* ========== NAV GLASS ENHANCEMENT (Apple-inspired) ========== */
+.nav-glass {
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
 }
 
 /* ========== SCROLLBAR ========== */

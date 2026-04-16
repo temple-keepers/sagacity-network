@@ -30,8 +30,7 @@ const PLATFORMS = [
 export default function Portfolio() {
   return (
     <section
-      className="relative py-24 md:py-32 section-glow-top overflow-hidden"
-      style={{ background: "var(--color-surface)" }}
+      className="relative py-24 md:py-32 section-glow-top overflow-hidden section-surface"
     >
       {/* Background glow */}
       <div
@@ -48,7 +47,7 @@ export default function Portfolio() {
               Portfolio
             </span>
             <h2
-              className="text-[32px] md:text-[42px] font-[800] tracking-[-0.03em] mb-4"
+              className="text-[32px] md:text-[42px] font-[800] tracking-heading md:tracking-display mb-4"
               style={{ fontFamily: "var(--font-display)" }}
             >
               Not mockups.{" "}
@@ -73,11 +72,10 @@ export default function Portfolio() {
                 href={p.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block card-hover overflow-hidden"
+                className="group block card-hover shadow-border overflow-hidden"
                 style={{
                   borderRadius: "var(--radius-md)",
-                  border: "1px solid var(--color-border)",
-                  background: "var(--color-bg)",
+                  background: "var(--surface-0)",
                 }}
               >
                 {/* Gradient header */}

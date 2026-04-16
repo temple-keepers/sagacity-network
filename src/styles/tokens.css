@@ -9,6 +9,24 @@
   --color-border:  #E8E4EE;
   --color-footer:  #110D1A;
 
+  /* Luminance-stepped surfaces (Linear-inspired) */
+  --surface-0:     rgba(123, 63, 160, 0.02);
+  --surface-1:     rgba(123, 63, 160, 0.04);
+  --surface-2:     rgba(123, 63, 160, 0.06);
+  --surface-3:     rgba(123, 63, 160, 0.08);
+
+  /* Section rhythm backgrounds (Apple-inspired cinematic pacing) */
+  --section-deep:      #FAFAF8;
+  --section-elevated:  #F5F2F8;
+  --section-surface:   #F0EDF5;
+  --section-highlight: #EBE6F2;
+
+  /* Brand-tinted shadow layers (Stripe-inspired) */
+  --shadow-brand-far:   rgba(123, 63, 160, 0.10);
+  --shadow-brand-mid:   rgba(201, 168, 76, 0.04);
+  --shadow-brand-near:  rgba(0, 0, 0, 0.05);
+  --shadow-ambient:     rgba(123, 63, 160, 0.03);
+
   /* Gradients */
   --gradient-purple: linear-gradient(135deg, #7B3FA0 0%, #5B2D8E 50%, #3D1B6E 100%);
   --gradient-gold:   linear-gradient(135deg, #D4B85A 0%, #C9A84C 50%, #A88B3D 100%);
@@ -33,6 +51,24 @@
   --color-surface: #16122A;
   --color-border:  #2A2440;
   --color-footer:  #080612;
+
+  /* Luminance-stepped surfaces (Linear-inspired: depth via white opacity) */
+  --surface-0:     rgba(255, 255, 255, 0.02);
+  --surface-1:     rgba(255, 255, 255, 0.04);
+  --surface-2:     rgba(255, 255, 255, 0.06);
+  --surface-3:     rgba(255, 255, 255, 0.08);
+
+  /* Section rhythm backgrounds (cinematic dark pacing) */
+  --section-deep:      #0A0815;
+  --section-elevated:  #0F0C1A;
+  --section-surface:   #131020;
+  --section-highlight: #181428;
+
+  /* Brand-tinted shadow layers (Stripe-inspired, tuned for dark) */
+  --shadow-brand-far:   rgba(123, 63, 160, 0.18);
+  --shadow-brand-mid:   rgba(201, 168, 76, 0.06);
+  --shadow-brand-near:  rgba(0, 0, 0, 0.12);
+  --shadow-ambient:     rgba(123, 63, 160, 0.06);
 
   --gradient-purple: linear-gradient(135deg, #A668D0 0%, #7B3FA0 50%, #5B2D8E 100%);
   --gradient-gold:   linear-gradient(135deg, #E0C868 0%, #D4B85A 50%, #C9A84C 100%);

@@ -14,7 +14,7 @@ export default function ContactForm() {
       {state.success ? (
         <div className="p-4 rounded-md border border-green-500/20 bg-green-500/10 text-green-600 dark:text-green-400">
           <p className="font-semibold">Message sent successfully!</p>
-          <p className="text-sm opacity-90 mt-1">We'll get back to you as soon as possible.</p>
+          <p className="text-sm opacity-90 mt-1">We&apos;ll get back to you as soon as possible.</p>
         </div>
       ) : null}
 

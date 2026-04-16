@@ -22,7 +22,7 @@ export default function LeadCapture() {
             Free Assessment
           </span>
           <h2
-            className="text-[32px] md:text-[44px] font-[800] tracking-[-0.03em] mb-5 max-w-[600px] mx-auto"
+            className="text-[32px] md:text-[44px] font-[800] tracking-heading md:tracking-display mb-5 max-w-[600px] mx-auto"
             style={{ fontFamily: "var(--font-display)", color: "#F0ECF4" }}
           >
             Not sure where

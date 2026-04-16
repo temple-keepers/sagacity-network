@@ -7,9 +7,9 @@ export const dynamic = "force-dynamic";
 export default async function QueuePage() {
   const queue = await getEmailQueue();
 
-  const sent = queue.filter((q: any) => q.status === "sent").length;
-  const pending = queue.filter((q: any) => q.status === "pending").length;
-  const failed = queue.filter((q: any) => q.status === "failed").length;
+  const sent = queue.filter((q: { status: string }) => q.status === "sent").length;
+  const pending = queue.filter((q: { status: string }) => q.status === "pending").length;
+  const failed = queue.filter((q: { status: string }) => q.status === "failed").length;
 
   return (
     <>
