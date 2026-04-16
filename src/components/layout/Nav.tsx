@@ -6,15 +6,16 @@ import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 
-const LINKS = [
-  { href: "/services", label: "Services" },
-  { href: "/work", label: "Work" },
-  { href: "/training", label: "Training" },
-  { href: "/guyana", label: "Guyana" },
-  { href: "/about", label: "About" },
-];
+export default function Nav({ academyEnabled = false }: { academyEnabled?: boolean }) {
+  const LINKS = [
+    { href: "/services", label: "Services" },
+    { href: "/work", label: "Work" },
+    ...(academyEnabled ? [{ href: "/academy", label: "Academy" }] : []),
+    { href: "/training", label: "Training" },
+    { href: "/guyana", label: "Guyana" },
+    { href: "/about", label: "About" },
+  ];
 
-export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
