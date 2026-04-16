@@ -33,10 +33,15 @@ export async function GET(request: NextRequest) {
 /**
  * Allow only same-origin paths starting with "/" and not "//".
  * This blocks ?next=https://evil.com redirects.
+ *
+ * Backslashes are also blocked: Chromium-based browsers normalize "\" to "/"
+ * in URL paths, so "/\evil.com" would resolve to "//evil.com" and become an
+ * open redirect. We reject any backslash outright.
  */
 function sanitizeNext(raw: string | null): string {
   if (!raw) return "/academy/my-learning";
   if (!raw.startsWith("/")) return "/academy/my-learning";
   if (raw.startsWith("//")) return "/academy/my-learning";
+  if (raw.includes("\\")) return "/academy/my-learning";
   return raw;
 }
