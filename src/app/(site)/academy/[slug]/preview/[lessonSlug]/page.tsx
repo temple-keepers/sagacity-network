@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isAcademyEnabled } from "@/lib/academy/feature-flag";
-import { getPreviewLesson } from "@/lib/academy/queries";
+import { getCourseBySlug, getPreviewLesson } from "@/lib/academy/queries";
 import BlockRenderer from "@/components/academy/BlockRenderer";
+import LessonSidebar from "@/components/academy/LessonSidebar";
 
 export const revalidate = 60;
 
@@ -33,8 +34,11 @@ export default async function PreviewLessonPage({ params }: Props) {
   if (!isAcademyEnabled()) notFound();
 
   const { slug, lessonSlug } = await params;
-  const lesson = await getPreviewLesson(slug, lessonSlug);
-  if (!lesson) notFound();
+  const [lesson, course] = await Promise.all([
+    getPreviewLesson(slug, lessonSlug),
+    getCourseBySlug(slug),
+  ]);
+  if (!lesson || !course) notFound();
 
   return (
     <div className="min-h-screen" style={{ background: "var(--color-bg)" }}>
@@ -77,9 +81,17 @@ export default async function PreviewLessonPage({ params }: Props) {
       {/* Body */}
       <section className="py-12">
         <div className="max-w-site section-px">
-          <article className="max-w-[720px] mx-auto">
-            <BlockRenderer blocks={lesson.body} isPreview={true} />
-          </article>
+          <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-8 lg:gap-12 items-start">
+            <LessonSidebar
+              courseSlug={course.slug}
+              courseTitle={course.title}
+              modules={course.modules}
+              currentLessonSlug={lesson.slug}
+            />
+            <article className="max-w-[720px] min-w-0">
+              <BlockRenderer blocks={lesson.body} isPreview={true} />
+            </article>
+          </div>
         </div>
       </section>
 
