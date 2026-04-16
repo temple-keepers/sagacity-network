@@ -3,8 +3,10 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { isAcademyEnabled } from "@/lib/academy/feature-flag";
 import { getCourseBySlug } from "@/lib/academy/queries";
+import { createSupabaseServerClient } from "@/lib/supabase/server";
 import CurriculumAccordion from "@/components/academy/CurriculumAccordion";
 import FaqSection from "@/components/academy/FaqSection";
+import EnrolButton from "@/components/academy/EnrolButton";
 
 export const revalidate = 60;
 
@@ -40,6 +42,12 @@ export default async function CourseLandingPage({ params }: Props) {
   const { slug } = await params;
   const course = await getCourseBySlug(slug);
   if (!course) notFound();
+
+  const supabase = await createSupabaseServerClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  const isSignedIn = !!user;
 
   const lessonCount = course.modules.reduce((s, m) => s + m.lessons.length, 0);
   const firstPreview = course.modules
@@ -109,17 +117,11 @@ export default async function CourseLandingPage({ params }: Props) {
               >
                 {formatPrice(course.price_cents)}
               </div>
-              <button
-                type="button"
-                disabled
-                className="w-full px-5 py-3 text-[14px] font-[500] rounded-[8px] mb-3 cursor-not-allowed"
-                style={{
-                  background: "rgba(255, 255, 255, 0.1)",
-                  color: "rgba(240, 236, 244, 0.5)",
-                }}
-              >
-                Enrol — coming soon
-              </button>
+              <EnrolButton
+                courseSlug={course.slug}
+                priceLabel={formatPrice(course.price_cents)}
+                isSignedIn={isSignedIn}
+              />
               {firstPreview ? (
                 <Link
                   href={`/academy/${course.slug}/preview/${firstPreview.lesson.slug}`}

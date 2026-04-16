@@ -59,6 +59,21 @@ export interface LessonPreview {
   module: { title: string; position: number };
 }
 
+export interface LearnLesson {
+  id: string;
+  slug: string;
+  title: string;
+  summary: string;
+  body: Block[];
+  duration_minutes: number;
+  is_free_preview: boolean;
+  position: number;
+  course: { id: string; slug: string; title: string };
+  module: { id: string; title: string; position: number };
+  prevLessonSlug: string | null;
+  nextLessonSlug: string | null;
+}
+
 /**
  * Returns published courses for the /academy catalog.
  * RLS filters to status='published' automatically for anon role.
@@ -197,5 +212,72 @@ export async function getPreviewLesson(
     duration_minutes: data.duration_minutes ?? 0,
     course: { slug: course.slug, title: course.title },
     module: { title: mod.title, position: mod.position },
+  };
+}
+
+/**
+ * Returns a lesson only when the signed-in user can read it (RLS enforces).
+ * Also computes prev/next lesson slugs within the course, in ordered position.
+ */
+export async function getLessonForLearn(
+  courseSlug: string,
+  lessonSlug: string
+): Promise<LearnLesson | null> {
+  const supabase = await createSupabaseServerClient();
+
+  const { data, error } = await supabase
+    .from("lessons")
+    .select(
+      `
+      id, slug, title, summary, body, duration_minutes, is_free_preview, position, module_id,
+      modules!inner (
+        id, title, position,
+        courses!inner ( id, slug, title, status )
+      )
+    `
+    )
+    .eq("slug", lessonSlug)
+    .eq("modules.courses.slug", courseSlug)
+    .eq("modules.courses.status", "published")
+    .maybeSingle();
+
+  if (error) throw error;
+  if (!data) return null;
+
+  const mod = Array.isArray(data.modules) ? data.modules[0] : data.modules;
+  const course = Array.isArray(mod.courses) ? mod.courses[0] : mod.courses;
+
+  // Walk all lessons in order to find prev/next
+  const { data: allLessons } = await supabase
+    .from("lessons")
+    .select("slug, position, module_id, modules!inner(position, courses!inner(slug))")
+    .eq("modules.courses.slug", courseSlug)
+    .order("position", { ascending: true });
+
+  const ordered = (allLessons ?? [])
+    .slice()
+    .sort((a, b) => {
+      const ma = Array.isArray(a.modules) ? a.modules[0] : a.modules;
+      const mb = Array.isArray(b.modules) ? b.modules[0] : b.modules;
+      if (ma.position !== mb.position) return ma.position - mb.position;
+      return a.position - b.position;
+    })
+    .map((l) => l.slug);
+
+  const idx = ordered.indexOf(lessonSlug);
+
+  return {
+    id: data.id,
+    slug: data.slug,
+    title: data.title,
+    summary: data.summary ?? "",
+    body: (data.body as Block[]) ?? [],
+    duration_minutes: data.duration_minutes ?? 0,
+    is_free_preview: data.is_free_preview,
+    position: data.position,
+    course: { id: course.id, slug: course.slug, title: course.title },
+    module: { id: mod.id, title: mod.title, position: mod.position },
+    prevLessonSlug: idx > 0 ? ordered[idx - 1] : null,
+    nextLessonSlug: idx >= 0 && idx < ordered.length - 1 ? ordered[idx + 1] : null,
   };
 }

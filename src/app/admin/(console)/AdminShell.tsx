@@ -2,13 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, Users, Mail, FileText, MessageSquare, CalendarCheck, LogOut } from "lucide-react";
+import { LayoutDashboard, Users, Mail, FileText, MessageSquare, CalendarCheck, GraduationCap, LogOut } from "lucide-react";
 import { logout } from "../actions";
 
 const NAV = [
   { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { label: "Leads", href: "/admin/leads", icon: Users },
   { label: "Bookings", href: "/admin/bookings", icon: CalendarCheck },
+  { label: "Enrolments", href: "/admin/enrolments", icon: GraduationCap },
   { label: "Email Queue", href: "/admin/queue", icon: Mail },
   { label: "Templates", href: "/admin/templates", icon: FileText },
   { label: "Contacts", href: "/admin/contacts", icon: MessageSquare },
