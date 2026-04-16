@@ -300,29 +300,38 @@ export type Database = {
       }
       enrollments: {
         Row: {
+          amount_paid_cents: number | null
           course_id: string
           enrolled_at: string
           granted_by: string | null
           id: string
           source: string
+          status: string
+          stripe_customer_id: string | null
           stripe_session_id: string | null
           user_id: string
         }
         Insert: {
+          amount_paid_cents?: number | null
           course_id: string
           enrolled_at?: string
           granted_by?: string | null
           id?: string
           source: string
+          status?: string
+          stripe_customer_id?: string | null
           stripe_session_id?: string | null
           user_id: string
         }
         Update: {
+          amount_paid_cents?: number | null
           course_id?: string
           enrolled_at?: string
           granted_by?: string | null
           id?: string
           source?: string
+          status?: string
+          stripe_customer_id?: string | null
           stripe_session_id?: string | null
           user_id?: string
         }
@@ -553,6 +562,24 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      stripe_webhook_events: {
+        Row: {
+          event_id: string
+          received_at: string
+          type: string
+        }
+        Insert: {
+          event_id: string
+          received_at?: string
+          type: string
+        }
+        Update: {
+          event_id?: string
+          received_at?: string
+          type?: string
+        }
+        Relationships: []
       }
       user_roles: {
         Row: {
