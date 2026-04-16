@@ -23,7 +23,7 @@ The typical cost to automate a core workflow sits between one and five thousand 
 
 I am not asking you to spend money today. I am asking you to look at the number and decide whether a thirty-minute conversation is worth having.
 
-Book a call here: https://calendly.com/sagacitynetwork
+Book a call here: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 Warm regards,
 

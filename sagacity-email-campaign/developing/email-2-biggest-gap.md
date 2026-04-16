@@ -19,7 +19,7 @@ That same shift is available to you. It starts with mapping which tasks repeat, 
 
 I would like to walk through that with you. Thirty minutes, no obligation, no pitch. Just a clear picture of where your time is going and what it would take to get it back.
 
-Book a call here: https://calendly.com/sagacitynetwork
+Book a call here: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 Warm regards,
 

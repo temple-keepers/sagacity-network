@@ -17,7 +17,7 @@ My husband and I built Sagacity Network because we kept meeting business owners 
 
 Your assessment tells me you have built something real. Your score tells me you know where the gaps are. The only thing left is a conversation about which one to close first.
 
-Book your thirty minutes here: https://calendly.com/sagacitynetwork
+Book your thirty minutes here: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 You will see availability for the next two weeks. Pick whatever works for you.
 

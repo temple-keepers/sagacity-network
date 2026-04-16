@@ -15,7 +15,7 @@ None of these are emergencies. All of them are costing you capacity you could re
 
 Over the next seven days, I'm sending you four more emails. Tomorrow I'll go deeper on the automation gap and why it matters most. On day three, I'll share a real story about a business that closed it. Day five covers the actual cost of leaving things as they are. And on day seven, I'll invite you to a conversation where we can look at your specific situation together.
 
-If you'd rather skip ahead and talk now, my calendar is open: https://calendly.com/sagacitynetwork
+If you'd rather skip ahead and talk now, my calendar is open: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 Warm regards,
 

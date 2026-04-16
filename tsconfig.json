@@ -37,6 +37,7 @@
   ],
   "exclude": [
     "node_modules",
-    "sagacity-email-campaign"
+    "sagacity-email-campaign",
+    "supabase/functions"
   ]
 }

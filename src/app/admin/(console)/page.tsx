@@ -1,5 +1,5 @@
 import { getDashboardStats } from "../actions";
-import { Users, Mail, MessageSquare, FileText, TrendingUp, BarChart3 } from "lucide-react";
+import { Users, Mail, MessageSquare, FileText, TrendingUp, BarChart3, CalendarCheck } from "lucide-react";
 
 const BAND_COLORS: Record<string, string> = {
   "Digitally At Risk": "#E05252",
@@ -16,6 +16,7 @@ export default async function AdminDashboard() {
   const cards = [
     { label: "Total Leads", value: stats.totalLeads, sub: `${stats.recentLeads} this week`, icon: Users, color: "#A668D0" },
     { label: "Avg Score", value: stats.avgScore, sub: "out of 100", icon: TrendingUp, color: "#D4B85A" },
+    { label: "Upcoming Calls", value: stats.upcomingBookings, sub: `${stats.totalBookings} total`, icon: CalendarCheck, color: "#3DBE8F" },
     { label: "Emails Sent", value: stats.emailsSent, sub: `${stats.emailsPending} pending`, icon: Mail, color: "#3DBE8F" },
     { label: "Failed", value: stats.emailsFailed, sub: "delivery errors", icon: Mail, color: "#E05252" },
     { label: "Contacts", value: stats.totalContacts, sub: "form submissions", icon: MessageSquare, color: "#E09B3D" },

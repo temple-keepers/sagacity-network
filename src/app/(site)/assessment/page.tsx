@@ -183,6 +183,7 @@ export default function AssessmentPage() {
   const [loading, setLoading] = useState(false);
   const [score, setScore] = useState(0);
   const [animatedScore, setAnimatedScore] = useState(0);
+  const [leadId, setLeadId] = useState<string | null>(null);
   const circleRef = useRef<SVGCircleElement>(null);
   const catFillRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -252,11 +253,16 @@ export default function AssessmentPage() {
 
     try {
       if (supabaseUrl && supabaseKey) {
-        await fetch(`${supabaseUrl}/rest/v1/leads`, {
+        const res = await fetch(`${supabaseUrl}/rest/v1/leads`, {
           method: "POST",
-          headers: { "Content-Type": "application/json", apikey: supabaseKey, Authorization: `Bearer ${supabaseKey}`, Prefer: "return=minimal" },
+          headers: { "Content-Type": "application/json", apikey: supabaseKey, Authorization: `Bearer ${supabaseKey}`, Prefer: "return=representation" },
           body: JSON.stringify(payload),
         });
+        if (res.ok) {
+          const rows = (await res.json()) as Array<{ id?: string }>;
+          const insertedId = rows?.[0]?.id;
+          if (insertedId) setLeadId(insertedId);
+        }
       }
     } catch (e) { console.warn("Supabase error:", e); }
 
@@ -501,7 +507,7 @@ export default function AssessmentPage() {
               <h3 className="text-[18px] font-[700] mb-2" style={{ fontFamily: "var(--font-display)" }}>Ready to close the gaps?</h3>
               <p className="text-[13px] font-[300] leading-[1.6] mb-5" style={{ color: "rgba(240,236,244,0.5)" }}>Book a free 30-minute Digital Clarity Call. We&apos;ll walk through your score category by category — no hard sell.</p>
               <div className="flex gap-3 flex-wrap">
-                <Link href="/contact" className="shimmer-btn px-6 py-3 text-[14px] font-[500] rounded-xl no-underline" style={{ background: "var(--gradient-purple)", color: "#fff" }}>Book a free call &rarr;</Link>
+                <Link href={leadId ? `/book?leadId=${leadId}` : "/book"} className="shimmer-btn px-6 py-3 text-[14px] font-[500] rounded-xl no-underline" style={{ background: "var(--gradient-purple)", color: "#fff" }}>Book a free call &rarr;</Link>
                 <Link href="/services" className="px-6 py-3 text-[14px] font-[500] rounded-xl no-underline" style={{ background: "transparent", border: "1px solid rgba(255,255,255,0.08)", color: "rgba(240,236,244,0.5)" }}>See our services</Link>
               </div>
             </div>

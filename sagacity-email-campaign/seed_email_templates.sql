@@ -19,7 +19,7 @@ Your three biggest gaps are in web presence, client follow-up systems, and cyber
 
 I've put together a short email sequence over the next week — just five emails, one every couple of days. Each one focuses on one thing: what's wrong, why it matters, what fixing it looks like, and what's possible. No pressure. No pitch. Just real talk about what I'd do if this was my business.
 
-If you'd rather talk now than wait for the sequence, book a free 30-minute call here: https://calendly.com/sagacitynetwork
+If you'd rather talk now than wait for the sequence, book a free 30-minute call here: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 Looking forward to helping you turn this around.
 
@@ -41,7 +41,7 @@ A basic, properly optimised web presence doesn't have to be elaborate. It's a si
 
 Fixing this actually looks like: a simple website with your story, your services, and a clear way for people to contact you. That's it. Not £5,000 and six months. Weeks. One time. Permanent.
 
-Want us to take a look at this together? Book a free 30-minute call here: https://calendly.com/sagacitynetwork
+Want us to take a look at this together? Book a free 30-minute call here: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 Denise
 
@@ -61,7 +61,7 @@ Twelve months on, that basic website brings in about half her new work. The othe
 
 Your business is sitting on the same opportunity. People want to hire you. They just need to be able to find you first.
 
-Book a call and tell us what you're working with: https://calendly.com/sagacitynetwork
+Book a call and tell us what you're working with: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 Denise$body$)
 ON CONFLICT (band, email_number) DO UPDATE SET subject=EXCLUDED.subject, preview=EXCLUDED.preview, body=EXCLUDED.body, updated_at=now();
@@ -81,7 +81,7 @@ Now think about the cost of fixing it. A basic website, properly optimised, take
 
 The decision isn't really about whether you can afford a website. It's about whether you can afford not to have one.
 
-Let's talk through your numbers. Book a free call: https://calendly.com/sagacitynetwork
+Let's talk through your numbers. Book a free call: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 Denise
 
@@ -99,7 +99,7 @@ Here's what happens on the call: You talk. We listen. We look at your three lowe
 
 Most people who take this call do want to move forward. Not because they felt pressured, but because they realised the cost of waiting is higher than the cost of fixing it. Some people decide to wait another month. Some decide it's not for them right now. Both are fine. My job is to give you the truth so you can make the right decision.
 
-Book your free Digital Clarity Call here: https://calendly.com/sagacitynetwork
+Book your free Digital Clarity Call here: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 If a calendar booking feels too formal and you'd rather just reply and chat, do that instead. I read my emails.
 
@@ -127,7 +127,7 @@ Data and reporting ({{q5}})—you can't see what's actually working because you'
 
 Here's what happens next. Over the next week, I'm sending you four more emails. Each one focuses on one of these gaps and shows you what's possible if you fix it. They're short. They're honest. They won't pitch you to death.
 
-If you don't want to wait—if you'd rather just pick up the phone and talk through what you've found—you can book a free 30-minute call with me here: https://calendly.com/sagacitynetwork
+If you don't want to wait—if you'd rather just pick up the phone and talk through what you've found—you can book a free 30-minute call with me here: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 Otherwise, I'll be in your inbox tomorrow with the first one.
 
@@ -150,7 +150,7 @@ What fixing it looks like: it's not complex. It's a system. An automated acknowl
 
 Want us to take a look at this together? I can spend 30 minutes on a call with you, you can show us what's happening now, and we'll tell you exactly what would change if you fixed this one thing.
 
-Book a free call here: https://calendly.com/sagacitynetwork
+Book a free call here: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 All the best,
 Denise$body$)
@@ -173,7 +173,7 @@ They didn't spend money on fancy marketing tools. They didn't hire anyone. They 
 
 Book a call and tell us what you're working with. We'll listen to what's happening now and show you what we'd do.
 
-Here's the link: https://calendly.com/sagacitynetwork
+Here's the link: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 All the best,
 Denise$body$)
@@ -200,7 +200,7 @@ That's what's costing you. Not a new tool. Not a new platform. The thing you cou
 
 Let's talk through your numbers. I'll ask you a few questions about what's actually happening, and you'll see exactly how much better things could look with the right system in place.
 
-Book a free call here: https://calendly.com/sagacitynetwork
+Book a free call here: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 All the best,
 Denise$body$)
@@ -219,7 +219,7 @@ Here's what a call with me looks like. It's 30 minutes. No pitch, no pressure, n
 
 Some people realise they can fix things themselves. Some people need a partner. Some people aren't ready yet—and that's fine. But either way, you know where you stand and what you'd need to do to move.
 
-Book your free Digital Clarity Call here: https://calendly.com/sagacitynetwork
+Book your free Digital Clarity Call here: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 If you'd rather just reply to this email and suggest a time that works, do that. I'll find a slot.
 
@@ -242,7 +242,7 @@ Over the next week, I'm going to walk you through what's possible. I'll show you
 
 This isn't a sales funnel. It's how I work with people I want to help. You're one of those people.
 
-Next email lands tomorrow. In the meantime, if you want to skip ahead and talk to me now, the calendar is here: https://calendly.com/sagacitynetwork
+Next email lands tomorrow. In the meantime, if you want to skip ahead and talk to me now, the calendar is here: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 Talk soon,
 
@@ -264,7 +264,7 @@ The fix isn't expensive. It's not complicated. It's usually a combination of too
 
 I want to walk through this with you. Not to sell you anything. Just to show you what's possible and help you see the gap clearly.
 
-Want us to take a look at this together? Book a free 30-minute call and let's find your biggest automation opportunity: https://calendly.com/sagacitynetwork
+Want us to take a look at this together? Book a free 30-minute call and let's find your biggest automation opportunity: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 Talk soon,
 
@@ -288,7 +288,7 @@ The automation cost them £1,200 to build. It paid for itself in ten days.
 
 Your business probably has something similar sitting right in front of you. A repeatable process that feels like it just has to be manual because that's how you've always done it. I'd like to help you find it.
 
-Book a call and let's talk about what's possible: https://calendly.com/sagacitynetwork
+Book a call and let's talk about what's possible: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 Talk soon,
 
@@ -316,7 +316,7 @@ But here's the thing: most people don't act on this. They read the email, think 
 
 I don't want that to be you.
 
-If this math resonates, book a call. We'll map out exactly where those eight hours are going and what it would take to reclaim them: https://calendly.com/sagacitynetwork
+If this math resonates, book a call. We'll map out exactly where those eight hours are going and what it would take to reclaim them: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 Talk soon,
 
@@ -334,7 +334,7 @@ Those are all real concerns. And they're also all solvable.
 
 Here's what happens on a call with me. We spend thirty minutes walking through your business. I ask you about the workflows that eat your time. I listen for patterns. Then I tell you honestly what I think could be automated, how long it would take, and what it would cost. If it doesn't make sense, I'll tell you that too. This isn't a sales call—it's a diagnostic conversation.
 
-The calendar link is here: https://calendly.com/sagacitynetwork
+The calendar link is here: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 You'll see my availability for the next two weeks. Pick a time that works. I'm in UK time, but I take calls across time zones.
 
@@ -362,7 +362,7 @@ Here's what's coming. Over the next week, I'm sending you four more emails. The 
 
 No pressure on any of this. If nothing lands, that's fine. But if one conversation could surface something worth acting on, I'd rather you had the option.
 
-You can book a free 30-minute call anytime: https://calendly.com/sagacitynetwork
+You can book a free 30-minute call anytime: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 Talk soon,
 Denise$body$)
@@ -383,7 +383,7 @@ Here's the real cost. Every month that a competitor at your level builds this in
 
 The other thing: it's not as hard as you think. Most Advanced businesses get stuck in analysis. They know something should happen. They don't know what or how. One conversation can change that.
 
-If you want to talk through where AI actually fits into {{business}}, I'm here. Free 30-minute call: https://calendly.com/sagacitynetwork
+If you want to talk through where AI actually fits into {{business}}, I'm here. Free 30-minute call: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 That's it for now.
 Denise$body$)
@@ -406,7 +406,7 @@ That's not magic. That's structure. That's what happens when you move from "I'm 
 
 You might have three problems like that in {{business}} right now. You probably don't know about them because you're too deep in the day-to-day to see them. That's what I'm here for.
 
-Want to walk through your workflows and see if there's something like this hiding in there? Book a call: https://calendly.com/sagacitynetwork
+Want to walk through your workflows and see if there's something like this hiding in there? Book a call: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 Talk soon,
 Denise$body$)
@@ -431,7 +431,7 @@ For someone at your level, right now is the inflection point. Not because the te
 
 This week, decide. Not "should I do this?" but "do I start this month or next quarter?" One conversation can answer that.
 
-Book a call: https://calendly.com/sagacitynetwork
+Book a call: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 Denise$body$)
 ON CONFLICT (band, email_number) DO UPDATE SET subject=EXCLUDED.subject, preview=EXCLUDED.preview, body=EXCLUDED.body, updated_at=now();
@@ -449,7 +449,7 @@ No sales pitch. No pretending you need something you don't. Just one straight co
 
 If it lands — if something we talk through is worth acting on — then we talk next steps. If it doesn't, you've still got clear thinking about what your options are. That's valuable either way.
 
-You can book here: https://calendly.com/sagacitynetwork
+You can book here: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 If you'd rather just reply to this email and tell me what you're thinking, do that instead. I read my own inbox. Sometimes a conversation by email is clearer.
 

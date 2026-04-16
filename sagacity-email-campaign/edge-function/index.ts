@@ -73,6 +73,7 @@ function render(template: string, lead: Lead): string {
     "{{business}}": business,
     "{{score}}": String(lead.score ?? 0),
     "{{band}}": lead.band ?? "",
+    "{{lead_id}}": lead.id ?? "",
     "{{q1}}": String(lead.q1 ?? 0),
     "{{q2}}": String(lead.q2 ?? 0),
     "{{q3}}": String(lead.q3 ?? 0),

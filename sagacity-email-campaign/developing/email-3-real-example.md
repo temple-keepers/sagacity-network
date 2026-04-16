@@ -19,7 +19,7 @@ The automation cost less than a single month of the revenue it freed up.
 
 Your business almost certainly has a version of this story waiting to happen. A process you repeat, a sequence you follow, a task that feels permanent but is actually just unfinished infrastructure.
 
-I would like to help you find it: https://calendly.com/sagacitynetwork
+I would like to help you find it: https://sagacitynetwork.net/book?leadId={{lead_id}}
 
 Warm regards,
 
